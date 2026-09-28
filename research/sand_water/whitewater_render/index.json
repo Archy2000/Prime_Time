@@ -1,0 +1,98 @@
+[
+  {
+    "file": "program_00.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 450,
+    "byte_size": 1112
+  },
+  {
+    "file": "program_01.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 1702,
+    "byte_size": 1112
+  },
+  {
+    "file": "program_02.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 2954,
+    "byte_size": 1112
+  },
+  {
+    "file": "program_03.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 4230,
+    "byte_size": 1112
+  },
+  {
+    "file": "program_04.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 5858,
+    "byte_size": 1256
+  },
+  {
+    "file": "program_05.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 7238,
+    "byte_size": 1648
+  },
+  {
+    "file": "program_06.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 9010,
+    "byte_size": 2912
+  },
+  {
+    "file": "program_07.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 12070,
+    "byte_size": 3180
+  },
+  {
+    "file": "program_08.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 15410,
+    "byte_size": 1044
+  },
+  {
+    "file": "program_09.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 16574,
+    "byte_size": 1044
+  },
+  {
+    "file": "program_10.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 17738,
+    "byte_size": 1044
+  },
+  {
+    "file": "program_11.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 18926,
+    "byte_size": 1044
+  },
+  {
+    "file": "program_12.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 20094,
+    "byte_size": 432
+  },
+  {
+    "file": "program_13.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 20630,
+    "byte_size": 432
+  },
+  {
+    "file": "program_14.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 21166,
+    "byte_size": 432
+  },
+  {
+    "file": "program_15.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 21726,
+    "byte_size": 432
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "capacity_bounded": true,
+  "cleared_after_lifetime": true,
+  "local_footprint": true,
+  "moving_npc_particles": 41,
+  "passed": true,
+  "stationary_no_emission": true,
+  "stopped_clears": true,
+  "water_level_sync": true
+}

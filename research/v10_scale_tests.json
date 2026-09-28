@@ -1,0 +1,19 @@
+{
+  "after_npc": {
+    "energy": 0.0000132149802044655,
+    "foam_mass": 0.0,
+    "height_peak": 0.00166507845278829
+  },
+  "after_size_1": {
+    "energy": 0.00632849806257275,
+    "foam_mass": 0.000850197568070143,
+    "height_peak": 0.0243425220251083
+  },
+  "before_npc": {
+    "energy": 0.107858824521461,
+    "foam_mass": 0.136765205534175,
+    "height_peak": 0.159454584121704
+  },
+  "height_ratio": 0.0104423366813802,
+  "passed": true
+}

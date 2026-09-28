@@ -101,7 +101,7 @@ func _physics_process(dt:float)->void:
 			max_bob=maxf(max_bob,absf(obj.position.y-1.06))
 		wake=0
 	sim.update(dt);mat.set_shader_parameter("clock",time)
-	label.text="WATER STUDY / 水体试验场\n海浪与游动共用水高、流速和泡沫场"
+	label.text="WATER STUDY 14 / 水体试验场\n海浪与游动共用水高、流速和泡沫场"
 	if demo and time>5.5 and not captured:
 		captured=true;_capture("res://research/v3_water_action.png")
 	if demo and time>11:

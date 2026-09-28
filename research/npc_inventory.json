@@ -1,0 +1,79 @@
+[
+  {
+    "mesh": "Body",
+    "materials": [
+      "DefaultMale_Mat"
+    ],
+    "object": "Body"
+  },
+  {
+    "mesh": "man_scientist",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_scientist"
+  },
+  {
+    "mesh": "man_hazard",
+    "materials": [
+      "MatteBlack"
+    ],
+    "object": "man_hazard"
+  },
+  {
+    "mesh": "woman_scientist",
+    "materials": [
+      "MatteBlack"
+    ],
+    "object": "woman_scientist"
+  },
+  {
+    "mesh": "bird",
+    "materials": [
+      "palette_pakoCaravan"
+    ],
+    "object": "bird"
+  },
+  {
+    "mesh": "man_cowboy",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_cowboy"
+  },
+  {
+    "mesh": "man_lumberjack",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_lumberjack"
+  },
+  {
+    "mesh": "man_carpenter",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_carpenter"
+  },
+  {
+    "mesh": "man_business",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_business"
+  },
+  {
+    "mesh": "man_casual",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_casual"
+  },
+  {
+    "mesh": "man_construction_worker",
+    "materials": [
+      "LOW-POLY-COLORS"
+    ],
+    "object": "man_construction_worker"
+  }
+]

@@ -1,8 +1,8 @@
 {
-  "energy": 237.933182304606,
+  "energy": 237.92728482381,
   "finite": true,
-  "floating_bob": 0.189346971511841,
+  "floating_bob": 0.201084675788879,
   "impulses": 1310,
-  "max_height": 0.495364427566528,
-  "step_ms": 18.615
+  "max_height": 0.495655745267868,
+  "step_ms": 29.837
 }

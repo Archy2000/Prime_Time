@@ -1,0 +1,19 @@
+{
+  "captured_stops_attacking": true,
+  "damage_applied": true,
+  "defeat": true,
+  "feeding_heals": true,
+  "military_shots": 5,
+  "no_underwater_shooting": true,
+  "passed": true,
+  "police_shots": 3,
+  "roles": {
+    "civilian": 71,
+    "military": 8,
+    "police": 8
+  },
+  "variants": 12,
+  "wall_blocks_aim": true,
+  "wall_blocks_damage": true,
+  "warning_before_fire": true
+}

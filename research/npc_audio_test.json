@@ -1,0 +1,14 @@
+{
+  "bounded_pool": true,
+  "captured_silent": true,
+  "distant_culled": true,
+  "distinct_guns": true,
+  "panic_voice": true,
+  "passed": true,
+  "paused_no_new_sound": true,
+  "recorded_audio": true,
+  "running_steps": true,
+  "stationary_silent": true,
+  "swimming_sound": true,
+  "voice_cooldown": true
+}

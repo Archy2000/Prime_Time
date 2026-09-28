@@ -3,6 +3,8 @@ extends Node3D
 var game:Node3D
 var library:Dictionary={}
 var civilians:Array[MeshInstance3D]=[]
+var police_models:Array[MeshInstance3D]=[]
+var military_models:Array[MeshInstance3D]=[]
 var fragments:Array[RigidBody3D]=[]
 var captures:Array[Dictionary]=[]
 var rings:Array[Dictionary]=[]
@@ -36,25 +38,35 @@ func setup(owner_game:Node3D)->void:
 	for child in source.get_children():
 		if not child is MeshInstance3D:continue
 		library[String(child.name)]=child.duplicate()
-		if "man_casual" in child.name or "man_business" in child.name or "woman_scientist" in child.name:
-			civilians.append(child.duplicate())
 	source.free()
+	var humans:Node3D=load("res://assets/characters/humans/humans.gltf").instantiate()
+	for child in humans.get_children():
+		if not child is MeshInstance3D:continue
+		if String(child.name).begins_with("man_") or String(child.name).begins_with("woman_"):civilians.append(child.duplicate())
+		elif String(child.name).begins_with("police") and "assembled" in child.name:police_models.append(child.duplicate())
+		elif child.name=="military_assembled":military_models.append(child.duplicate())
+	humans.free()
 	# Cache unique facade meshes at load time, avoiding clipping work during impact.
 	for node:MeshInstance3D in game.destructibles:
 		if not game.node_building.has(node.get_instance_id()):continue
 		var key:int=node.mesh.get_instance_id()
 		if not fracture_cache.has(key):fracture_cache[key]=preload("res://scripts/fracture_mesh.gd").split(node)
 
-func make_civilian(index:int,standing:bool=false)->Node3D:
+func make_civilian(index:int,standing:bool=false,role:String="civilian")->Node3D:
 	var root:=Node3D.new()
 	if civilians.is_empty():return root
-	var source:MeshInstance3D=civilians[index%civilians.size()]
+	var choices:Array[MeshInstance3D]=police_models if role=="police" else military_models if role=="military" else civilians
+	var source:MeshInstance3D=choices[(int(index/4) if role=="police" else index)%choices.size()]
 	var person:=source.duplicate() as MeshInstance3D
 	var bounds:AABB=person.transform*person.mesh.get_aabb()
 	var factor:float=0.95/maxf(bounds.size.y,0.01)
 	person.transform=Transform3D(Basis.IDENTITY.scaled(Vector3.ONE*factor),Vector3.ZERO)*person.transform
 	person.position-=Vector3(bounds.get_center().x,bounds.position.y,bounds.get_center().z)*factor
 	root.add_child(person)
+	root.set_script(preload("res://scripts/civilian.gd"))
+	root.set_meta("role",role);root.set_meta("appearance",String(source.name))
+	root.setup(person,index,standing)
+	if role!="civilian":root.setup_armed(role)
 	if standing:return root
 	person.rotation.x=-PI/2.0
 	person.position.y=0.06
@@ -132,6 +144,7 @@ func update(dt:float)->void:
 func swallow(victim:Node3D)->void:
 	if victim.get_meta("captured",false):return
 	victim.set_meta("captured",true)
+	game.npc_audio.stop_actor(victim)
 	captures.append({"node":victim,"start":victim.global_position,"age":0.0,"duration":0.32,"phase":rng.randf()*TAU})
 	if absf(victim.global_position.y-game.water_level)<0.9:splash(victim.global_position,0.5)
 	if game.elapsed-last_meal_sound>0.15:
@@ -305,3 +318,7 @@ func popup(pos:Vector3,text:String,color:Color)->void:
 func _exit_tree()->void:
 	for node in library.values():node.free()
 	for node in civilians:node.free()
+	for node in police_models:node.free()
+	for node in military_models:node.free()
+
+

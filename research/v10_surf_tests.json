@@ -1,0 +1,10 @@
+{
+  "dry_foam": 0.0,
+  "finite": true,
+  "foam_after_5s": 0.0,
+  "impact_foam": 0.0676583796739578,
+  "impact_peak": 0.464635252952576,
+  "initial_foam": 0.800000011920929,
+  "passed": true,
+  "still_wall_foam": 0.0
+}

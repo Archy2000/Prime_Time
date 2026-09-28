@@ -1,0 +1,26 @@
+[
+  {
+    "file": "program_00.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 246,
+    "byte_size": 4056
+  },
+  {
+    "file": "program_01.asm.txt",
+    "stage": "vs_5_0",
+    "blob_offset": 4434,
+    "byte_size": 4056
+  },
+  {
+    "file": "program_02.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 8682,
+    "byte_size": 4416
+  },
+  {
+    "file": "program_03.asm.txt",
+    "stage": "ps_5_0",
+    "blob_offset": 13222,
+    "byte_size": 4416
+  }
+]

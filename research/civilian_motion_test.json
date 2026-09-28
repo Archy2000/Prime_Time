@@ -1,0 +1,9 @@
+{
+  "fall_changes_to_swim": true,
+  "passed": true,
+  "roof_moves": true,
+  "roof_senses_shark": true,
+  "roof_supported": true,
+  "swim_pose": true,
+  "swimmer_flees": true
+}

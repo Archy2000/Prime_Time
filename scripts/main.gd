@@ -50,6 +50,13 @@ var test_origin:=Vector3.ZERO
 var trace: Dictionary={}
 var wave_sim:RefCounted
 var water_fx:Node3D
+var npc_audio:Node3D
+var combat:Node3D
+var health:=100.0
+var defeated:=false
+var damage_flash:=0.0
+var health_label:Label
+var hit_overlay:ColorRect
 var fx:Node3D
 var buildings:Dictionary={}
 var node_building:Dictionary={}
@@ -80,6 +87,8 @@ func _ready()->void:
 	if OS.get_cmdline_user_args().has("--dry"):water.visible=false
 	_make_player()
 	fx=Node3D.new();fx.set_script(load("res://scripts/impact_fx.gd"));fx.process_mode=Node.PROCESS_MODE_PAUSABLE;add_child(fx);fx.setup(self)
+	combat=preload("res://scripts/human_combat.gd").new();add_child(combat);combat.setup(self)
+	npc_audio=preload("res://scripts/npc_audio.gd").new();add_child(npc_audio);npc_audio.setup(self)
 	_make_targets()
 	_make_roof_targets()
 	_make_hud()
@@ -216,7 +225,8 @@ func _make_roof_targets()->void:
 		if not solids.has(roof.get_instance_id()):
 			var body:=StaticBody3D.new();body.collision_layer=1;body.set_meta("visual",roof);roof.add_child(body)
 			var shape:=CollisionShape3D.new();shape.shape=roof.mesh.create_trimesh_shape();body.add_child(shape);solids[roof.get_instance_id()]=body
-		var person:Node3D=fx.make_civilian(roof_targets,true);add_child(person);person.position=pos
+		var role:String="police" if roof_targets%4==1 else "military" if roof_targets%4==3 else "civilian"
+		var person:Node3D=fx.make_civilian(roof_targets,true,role);add_child(person);person.position=pos
 		person.set_meta("rooftop",true);person.set_meta("roof_support",roof);person.set_meta("phase",rng.randf()*TAU)
 		targets.append(person);positions.append(pos);roof_targets+=1
 		if roof_targets>=32:break
@@ -264,15 +274,17 @@ func _make_hud()->void:
 	var v:=VBoxContainer.new();top.add_child(v)
 	var title:=Label.new();title.text="PRIME TIME  /  洪城";title.add_theme_font_size_override("font_size",26);title.modulate=Color(0.95,0.80,0.37);v.add_child(title)
 	status=Label.new();v.add_child(status)
+	health_label=Label.new();health_label.add_theme_font_size_override("font_size",14);health_label.modulate=Color(1,0.55,0.40);v.add_child(health_label)
+	hit_overlay=ColorRect.new();hit_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);hit_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;hit_overlay.color=Color(0.8,0.03,0.01,0);root.add_child(hit_overlay)
 	boost_bar=ProgressBar.new();boost_bar.custom_minimum_size.y=5;boost_bar.show_percentage=false;v.add_child(boost_bar)
 	var hint:=Label.new();hint.text="WASD 游动 · 空格跃起 · Shift 冲刺 · E 吞噬";hint.add_theme_font_size_override("font_size",13);v.add_child(hint)
 	var bottom:=PanelContainer.new();root.add_child(bottom);bottom.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);bottom.offset_top=-59;bottom.offset_left=24;bottom.offset_right=-24;bottom.offset_bottom=-18;_panel_style(bottom)
 	feed_label=Label.new();feed_label.add_theme_font_size_override("font_size",15);bottom.add_child(feed_label)
-	notice=Label.new();notice.position=Vector2(26,150);notice.modulate=Color(0.94,0.77,0.40);root.add_child(notice)
-	notice.text="空格跃起捕食楼顶居民；成长到 1.65× 才能撞毁建筑。"
+	notice=Label.new();notice.position=Vector2(26,175);notice.modulate=Color(0.94,0.77,0.40);root.add_child(notice)
+	notice.text="屋顶警察与军方会开火！利用建筑掩护，跃起吞噬可回血。"
 	help=PanelContainer.new();root.add_child(help);help.position=Vector2(24,210);_panel_style(help);help.visible=false
-	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 5 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF11：全屏    F1：收起说明\n\n体型达到 1.65× 可撞毁建筑。跃起接近楼顶居民可吞噬。";help.add_child(text)
-	var corner:=Label.new();root.add_child(corner);corner.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);corner.offset_left=-330;corner.offset_top=26;corner.offset_right=-24;corner.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;corner.text="破坏修复与血液扩散  07\nF1 帮助 · F2 水体 · F3 滤镜"
+	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 5 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF11：全屏    F1：收起说明\n\n体型达到 1.65× 可撞毁建筑。跃起接近楼顶居民可吞噬。\n警察单发 / 军方连射；建筑挡子弹，吞噬回复 8 点生命。";help.add_child(text)
+	var corner:=Label.new();root.add_child(corner);corner.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);corner.offset_left=-330;corner.offset_top=26;corner.offset_right=-24;corner.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;corner.text="水深颜色修正  14\nF1 帮助 · F2 水体 · F3 滤镜"
 	combo_label=Label.new();root.add_child(combo_label);combo_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);combo_label.offset_left=-310;combo_label.offset_top=88;combo_label.offset_right=-24;combo_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;combo_label.add_theme_font_size_override("font_size",26);combo_label.modulate=Color(0.98,0.8,0.3)
 	pause_label=Label.new();root.add_child(pause_label);pause_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER);pause_label.offset_left=-100;pause_label.offset_top=-30;pause_label.add_theme_font_size_override("font_size",32);pause_label.text="已暂停  /  ESC";pause_label.visible=false
 	retro_filter.build_panel(root)
@@ -285,7 +297,9 @@ func _unhandled_input(event:InputEvent)->void:
 	if event.is_action_pressed("jump") and not paused:_jump()
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.physical_keycode:
-			KEY_ESCAPE:paused=not paused;pause_label.visible=paused;get_tree().paused=paused
+			KEY_ESCAPE:
+				if defeated:return
+				paused=not paused;pause_label.visible=paused;get_tree().paused=paused
 			KEY_F1:help.visible=not help.visible
 			KEY_F2:get_tree().paused=false;get_tree().change_scene_to_file("res://scenes/water_lab.tscn")
 			KEY_R:get_tree().paused=false;get_tree().reload_current_scene()
@@ -305,7 +319,7 @@ func _toggle_water()->void:
 	water_mat.set_shader_parameter("clarity",0.6 if clear_water else 0.65)
 
 func _physics_process(dt:float)->void:
-	if not ready_done or paused:return
+	if not ready_done or paused or defeated:return
 	physics_frames+=1
 	elapsed+=dt
 	combo_timer=maxf(0,combo_timer-dt)
@@ -357,28 +371,18 @@ func _physics_process(dt:float)->void:
 			if body and body.has_meta("visual"):
 				var m:MeshInstance3D=body.get_meta("visual")
 				if m in destructibles:_break_piece(m)
+	npc_audio.update(dt)
 	if Input.is_action_pressed("bite") and bite_timer<=0:_bite()
 	for i in range(targets.size()-1,-1,-1):
 		var target:Node3D=targets[i]
 		if not is_instance_valid(target):continue
-		if target.get_meta("rooftop",false):
-			var support:MeshInstance3D=target.get_meta("roof_support")
-			if not is_instance_valid(support) or support.get_meta("broken",false):
-				target.position.y-=dt*5.0
-				if target.position.y<=water_level:
-					target.set_meta("rooftop",false);target.position.y=water_level
-			else:target.rotation.y=atan2(player.position.x-target.position.x,player.position.z-target.position.z)
-		else:
-			target.position.y=water_level+wave_sim.sample_surface(target.position).y+sin(elapsed*3+float(target.get_meta("phase")))*0.035
+		target.update_civilian(self,dt)
+		npc_audio.update_actor(target,dt)
 		if _can_eat(target,bite_window>0):_capture_target(i);continue
-		if target.get_meta("rooftop",false):continue
-		var away:Vector3=target.position-player.position;away.y=0
-		if away.length()<6 and away.length()>0.1:
-			var wanted:Vector3=target.position+away.normalized()*dt*0.7
-			var query:=PhysicsRayQueryParameters3D.create(target.position,wanted+away.normalized()*0.25,1)
-			if get_world_3d().direct_space_state.intersect_ray(query).is_empty():target.position=wanted
-			target.rotation.y=atan2(-away.x,-away.z)
-		target.rotation.z=sin(elapsed*5+float(target.get_meta("phase")))*0.14
+	combat.update(dt)
+	damage_flash=maxf(0.0,damage_flash-dt*0.9)
+	hit_overlay.color.a=damage_flash
+	health_label.text="生命 %03d / 100  ·  警戒 %s"%[ceili(health),"交火中" if combat.bullets.size()>0 else "搜索中"]
 	_update_water(dt)
 	fx.update(dt)
 	_camera_update(dt)
@@ -430,6 +434,8 @@ func _capture_target(i:int)->void:
 	targets.remove_at(i);fx.swallow(target)
 
 func _finish_meal(pos:Vector3)->void:
+	if defeated:return
+	health=minf(100.0,health+8.0)
 	eaten+=1;growth=minf(3.2,1.0+eaten*0.065);combo+=1;combo_timer=3.0;score+=100*maxi(1,combo)
 	(player.get_child(0) as CollisionShape3D).shape.radius=0.55*growth
 	(player.get_child(0) as CollisionShape3D).position.y=0.40*growth
@@ -692,3 +698,14 @@ func _run_wake_demo()->void:
 	get_tree().quit(0 if checks.passed else 1)
 
 
+
+
+func take_damage(amount:float)->void:
+	if defeated or amount<=0:return
+	health=maxf(0.0,health-amount)
+	damage_flash=0.22;shake=maxf(shake,0.18)
+	if health<=0:
+		defeated=true
+		health_label.text="生命 000 / 100"
+		pause_label.text="鲨鱼被击败  /  R 重新开始";pause_label.visible=true
+		get_tree().paused=true

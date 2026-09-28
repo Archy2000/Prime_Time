@@ -13,6 +13,7 @@ var vx:=PackedFloat32Array()
 var vz:=PackedFloat32Array()
 var foam:=PackedFloat32Array()
 var next_foam:=PackedFloat32Array()
+var impact:=PackedFloat32Array()
 var solid:=PackedByteArray()
 var rgba:=PackedFloat32Array()
 var flow_rgba:=PackedFloat32Array()
@@ -29,6 +30,7 @@ var max_height:=0.0
 func _init()->void:
 	height.resize(N*N);floor_height.resize(N*N);base_floor.resize(N*N)
 	vx.resize(N*N);vz.resize(N*N);foam.resize(N*N);next_foam.resize(N*N);solid.resize(N*N)
+	impact.resize(N*N)
 	base_floor.fill(-0.3);floor_height.fill(-0.3)
 	rgba.resize(N*N*4);flow_rgba.resize(N*N*4)
 	texture=ImageTexture.create_from_image(Image.create_from_data(N,N,false,Image.FORMAT_RGBAF,rgba.to_byte_array()))
@@ -49,7 +51,7 @@ func set_obstacles(boxes:Array,water_y:float)->void:
 				floor_height[i]=maxf(floor_height[i],b.end.y)
 	for i in N*N:
 		if floor_height[i]>level+0.48:
-			solid[i]=1;height[i]=0;vx[i]=0;vz[i]=0;foam[i]=0
+			solid[i]=1;height[i]=0;vx[i]=0;vz[i]=0;foam[i]=0;next_foam[i]=0;impact[i]=0
 
 func seed_swell()->void:
 	for z in N:
@@ -64,13 +66,16 @@ func seed_swell()->void:
 func disturb(pos:Vector3,radius:float,power:float,white:float=0.0,momentum:Vector2=Vector2.ZERO)->void:
 	var p:Vector2=(Vector2(pos.x,pos.z)-origin)/cell
 	var r:float=maxf(1.15,radius/cell)
+	# The numerical footprint must span a cell, but a small swimmer must not
+	# displace a metre-wide column at full strength just because the grid is coarse.
+	var footprint:float=minf(1.0,pow(maxf(radius,0.0)/(r*cell),2.0))
 	for z in range(maxi(1,int(p.y-r-1)),mini(N-1,int(p.y+r+2))):
 		for x in range(maxi(1,int(p.x-r-1)),mini(N-1,int(p.x+r+2))):
 			var d:float=Vector2(x-p.x,z-p.y).length()/r
 			if d>=1:continue
 			var i:=z*N+x
 			if solid[i]>0:continue
-			var w:float=(1-d*d)*(1-d*d)
+			var w:float=(1-d*d)*(1-d*d)*footprint
 			height[i]=clampf(height[i]+w*power,-0.45,0.65)
 			foam[i]=minf(1,foam[i]+w*white)
 			vx[i]=clampf(vx[i]+momentum.x*w,-3,3);vz[i]=clampf(vz[i]+momentum.y*w,-3,3)
@@ -85,8 +90,9 @@ func swimmer(pos:Vector3,velocity:Vector3,size:float,dt:float)->void:
 	var speed:=velocity.length()
 	if speed<0.15:return
 	var d:=velocity.normalized();var side:=d.cross(Vector3.UP)
-	var force:=minf(speed/9.0,1.6)*dt*14.0
-	var flow:=Vector2(velocity.x,velocity.z)*0.08*dt*14.0
+	var body_scale:=clampf(size,0.0,1.0)
+	var force:=minf(speed/9.0,1.6)*dt*14.0*body_scale
+	var flow:=Vector2(velocity.x,velocity.z)*0.08*dt*14.0*body_scale
 	disturb(pos+d*0.75*size,0.55*size,0.06*force,0.015*force,flow)
 	disturb(pos-d*0.85*size,0.55*size,-0.05*force,0.025*force,flow*0.6)
 	for sign_value in [-1.0,1.0]:
@@ -103,6 +109,7 @@ func update(dt:float)->void:
 	for i in N*N:
 		rgba[i*4]=height[i];rgba[i*4+1]=floor_height[i];rgba[i*4+2]=foam[i];rgba[i*4+3]=float(solid[i])
 		flow_rgba[i*4]=vx[i];flow_rgba[i*4+1]=vz[i]
+		flow_rgba[i*4+3]=impact[i]
 	texture.update(Image.create_from_data(N,N,false,Image.FORMAT_RGBAF,rgba.to_byte_array()))
 	flow_texture.update(Image.create_from_data(N,N,false,Image.FORMAT_RGBAF,flow_rgba.to_byte_array()))
 	last_step_ms=float(Time.get_ticks_usec()-started)/1000.0
@@ -110,6 +117,8 @@ func update(dt:float)->void:
 func _step()->void:
 	clock+=STEP
 	var factor:=7.0*STEP/cell
+	var impact_decay:=exp(-STEP*5.0)
+	var foam_decay:=exp(-STEP*1.05)
 	for z in range(1,N-1):
 		for x in range(1,N-1):
 			var i:=z*N+x
@@ -132,15 +141,28 @@ func _step()->void:
 			var du:=clampf(level+(h+height[i-N])*0.5-maxf(floor_height[i],floor_height[i-N]),0,3)
 			var change:float=-STEP/cell*(vx[i]*dr-vx[i-1]*dl+vz[i]*dd-vz[i-N]*du)
 			flow_rgba[i*4+2]=maxf(floor_height[i]-level,clampf(h+change,-0.65,0.85))
-			var steep:=Vector2(height[i+1]-height[i-1],height[i+N]-height[i-N]).length()/cell
-			var contact:float=float(solid[i-1]+solid[i+1]+solid[i-N]+solid[i+N])
 			var wet_depth:=maxf(0,level+h-floor_height[i])
-			var generation:=(maxf(0,steep-0.10)*0.12+maxf(0,change)*contact*2.5)*smoothstep(0.015,0.12,wet_depth)
+			# Use the fluid-side surface at solid neighbours: a wall is not a wave crest.
+			var hr:float=h if solid[i+1]>0 else height[i+1]
+			var hl:float=h if solid[i-1]>0 else height[i-1]
+			var hd:float=h if solid[i+N]>0 else height[i+N]
+			var hu:float=h if solid[i-N]>0 else height[i-N]
+			var steep:=Vector2(hr-hl,hd-hu).length()/(2.0*cell)
+			var speed:=Vector2((vx[i]+vx[i-1])*0.5,(vz[i]+vz[i-N])*0.5).length()
+			# Incoming flux piles up against a wall, then the foam lives on in the flow.
+			var incoming:=maxf(vx[i-1],0)*float(solid[i+1])+maxf(-vx[i],0)*float(solid[i-1])
+			incoming+=maxf(vz[i-N],0)*float(solid[i+N])+maxf(-vz[i],0)*float(solid[i-N])
+			var wet:=smoothstep(0.008,0.08,wet_depth)
+			var breaking:=smoothstep(0.045,0.20,steep)*smoothstep(0.025,0.20,h)
+			var shoaling:=(1.0-smoothstep(0.06,0.32,wet_depth))*smoothstep(0.06,0.42,speed)
+			var collision:=incoming*smoothstep(0.001,0.018,maxf(change,0))
+			var source:=(breaking*0.16+shoaling*0.65+collision*1.15)*wet
+			impact[i]=maxf(impact[i]*impact_decay,clampf(collision*2.0+shoaling*0.4,0,1)*wet)
 			var px:=clampf(float(x)-(vx[i]+vx[i-1])*0.5*STEP/cell,1,N-2.001)
 			var pz:=clampf(float(z)-(vz[i]+vz[i-N])*0.5*STEP/cell,1,N-2.001)
 			var ix:=int(px);var iz:=int(pz);var j:=iz*N+ix
 			var advected:float=lerpf(lerpf(foam[j],foam[j+1],px-ix),lerpf(foam[j+N],foam[j+N+1],px-ix),pz-iz)
-			next_foam[i]=clampf(advected*0.972-0.0015+minf(generation,0.03),0,1)
+			next_foam[i]=clampf(advected*foam_decay-STEP*0.008+source*STEP,0,1)*wet
 	max_height=0
 	for z in range(1,N-1):
 		for x in range(1,N-1):

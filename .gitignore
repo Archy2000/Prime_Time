@@ -4,3 +4,4 @@ tools/dotnet/
 tools/godot/
 research/*.log
 local_data/
+research/**/*.log
