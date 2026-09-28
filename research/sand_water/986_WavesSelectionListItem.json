@@ -1,0 +1,25 @@
+{
+  "m_Name": "WavesSelectionListItem",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 44,
+    "bytes[1]": 99,
+    "bytes[2]": 43,
+    "bytes[3]": 32,
+    "bytes[4]": 47,
+    "bytes[5]": 239,
+    "bytes[6]": 149,
+    "bytes[7]": 31,
+    "bytes[8]": 92,
+    "bytes[9]": 133,
+    "bytes[10]": 204,
+    "bytes[11]": 118,
+    "bytes[12]": 45,
+    "bytes[13]": 43,
+    "bytes[14]": 78,
+    "bytes[15]": 157
+  },
+  "m_ClassName": "WavesSelectionListItem",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

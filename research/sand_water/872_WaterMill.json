@@ -1,0 +1,25 @@
+{
+  "m_Name": "WaterMill",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 65,
+    "bytes[1]": 40,
+    "bytes[2]": 74,
+    "bytes[3]": 62,
+    "bytes[4]": 115,
+    "bytes[5]": 67,
+    "bytes[6]": 178,
+    "bytes[7]": 170,
+    "bytes[8]": 240,
+    "bytes[9]": 195,
+    "bytes[10]": 183,
+    "bytes[11]": 91,
+    "bytes[12]": 206,
+    "bytes[13]": 9,
+    "bytes[14]": 196,
+    "bytes[15]": 22
+  },
+  "m_ClassName": "WaterMill",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

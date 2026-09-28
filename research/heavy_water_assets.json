@@ -1,0 +1,26 @@
+[
+  {
+    "name": "WaterHeavyEntry_01",
+    "seconds": 2.93,
+    "peak": 0.88,
+    "rms": 0.0724905342490722,
+    "sha256": "f68510026969af9faefe6488a8f91a8e12df61a25617ce1e3c1e9d22f34cc131",
+    "method": "layered source water + synthesized damped cavity pulse"
+  },
+  {
+    "name": "WaterHeavyEntry_02",
+    "seconds": 3.0100000000000002,
+    "peak": 0.88,
+    "rms": 0.04935050980209227,
+    "sha256": "5563f559f7923fc733bc5ff46e5c3e5aebf73d9b2d361599b6dab307321c2c66",
+    "method": "layered source water + synthesized damped cavity pulse"
+  },
+  {
+    "name": "WaterHeavyEntry_03",
+    "seconds": 3.09,
+    "peak": 0.88,
+    "rms": 0.07793375032738478,
+    "sha256": "53225e52b457999614592f982cfc4aa79a2a5e4ec06714cfa4d0624bd209a321",
+    "method": "layered source water + synthesized damped cavity pulse"
+  }
+]

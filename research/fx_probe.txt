@@ -1,0 +1,39 @@
+FRAGMENT highriserWall_cell_007 GameObject/JapanHighriser (5)/highriserWall (9)/highriserWall_cell_007
+FRAGMENT highriserWall_cell_006 GameObject/JapanHighriser (4)/highriserWall (11)/highriserWall_cell_006
+FRAGMENT highriserWall_cell_004 GameObject/JapanHighriser (5)/highriserMiddle (4)/highriserWall_cell_004
+FRAGMENT highriserWall_cell GameObject/JapanHighriser/highriserWall (26)/highriserWall_cell
+FRAGMENT highriserWall_cell_002 GameObject/JapanHighriser (5)/highriserMiddle (4)/highriserWall_cell_002
+FRAGMENT highriserWall_cell_003 GameObject/JapanHighriser (3)/highriserMiddle (4)/highriserWall_cell_003
+FRAGMENT highriserWall_cell_005 GameObject/JapanHighriser/highriserWall (9)/highriserWall_cell_005
+FRAGMENT highriserWall_cell_001 GameObject/JapanHighriser (2)/highriserWall (10)/highriserWall_cell_001
+FRAGMENT lowrise2Wall_cell_002 JapanStage/lowrise2Floors curve (1)/lowrise2Wall (10)/lowrise2Wall_cell_002
+FRAGMENT lowriseWall_cell_002 JapanStage/2floor lowrise (5)/lowriseWall (8)/lowriseWall_cell_002
+FRAGMENT lowrise2Wall_cell_006 JapanStage/GameObject (1)/lowrise2Wall (4)/lowrise2Wall_cell_006
+FRAGMENT lowriseWall_cell_003 JapanStage/2floor lowrise (2)/lowriseWall (8)/lowriseWall_cell_003
+FRAGMENT lowrise2Wall_cell_004 JapanStage/lowrise2Floors L (2)/lowrise2Wall (9)/lowrise2Wall_cell_004
+FRAGMENT lowrise2Wall_cell_007 JapanStage/lowrise2Floors curve (1)/lowrise2Wall (10)/lowrise2Wall_cell_007
+FRAGMENT lowriseWall_cell_006 JapanStage/2floor lowrise/lowriseWall (2)/lowriseWall_cell_006
+FRAGMENT lowriseWall_cell JapanStage/2floor lowrise (5)/lowriseWall (6)/lowriseWall_cell
+FRAGMENT lowrise2Wall_cell_003 JapanStage/lowrise2Floors L (2)/lowrise2Wall (11)/lowrise2Wall_cell_003
+FRAGMENT lowrise2Wall_cell_001 JapanStage/lowrise2Floors curve (1)/lowrise2Wall (10)/lowrise2Wall_cell_001
+FRAGMENT lowriseWall_cell_004 JapanStage/2floor lowrise (5)/lowriseWall (6)/lowriseWall_cell_004
+FRAGMENT lowrise2Wall_cell_005 JapanStage/lowrise2Floors curve/lowrise2Wall (9)/lowrise2Wall_cell_005
+FRAGMENT lowriseWall_cell_001 JapanStage/2floor lowrise (5)/lowriseWall (3)/lowriseWall_cell_001
+FRAGMENT lowrise2Wall_cell JapanStage/lowrise2Floors curve/lowrise2Wall (9)/lowrise2Wall_cell
+FRAGMENT lowrise2Wall_cell_008 JapanStage/lowrise2Floors L (1)/lowrise2Wall (12)/lowrise2Wall_cell_008
+FRAGMENT lowriseWall_cell_005 JapanStage/2floor lowrise (3)/lowriseWall (2)/lowriseWall_cell_005
+FRAGMENT lowrise2Wall_cell_009 JapanStage/lowrise2Floors curve (1)/lowrise2Wall (9)/lowrise2Wall_cell_009
+FX_MAT liquidfire2_2x2 [('_MainTex', 127, 'fire64')]
+FX_MAT liquidfire2_3x3 [('_MainTex', 86, 'liquidfire_3x3')]
+FX_MAT smoke_bally [('_MainTex', 100, 'smoke_bally')]
+FX_MAT smoke_smudgy [('_MainTex', 118, 'smoke_smudgy')]
+FX_MAT cartoonSmoke_alphaBlend [('_BumpMap', 0, ''), ('_DetailAlbedoMap', 0, ''), ('_DetailMask', 0, ''), ('_DetailNormalMap', 0, ''), ('_EmissionMap', 0, ''), ('_MainTex', 120, 'smoke_single'), ('_MetallicGlossMap', 0, ''), ('_OcclusionMap', 0, ''), ('_ParallaxMap', 0, '')]
+FX_MAT EnemyBlood [('_BumpMap', 0, ''), ('_EmissionMap', 0, ''), ('_MainTex', 129, 'rollasplat1')]
+FX_MAT playerBlood [('_MainTex', 129, 'rollasplat1')]
+FX_MAT FireHazard [('_MainTex', 80, 'flare_big')]
+FX_MAT cartoonSmoke WHITE [('_BumpMap', 0, ''), ('_EmissionMap', 0, ''), ('_MainTex', 120, 'smoke_single')]
+FX_MAT decal_explode_alphaBlend [('_MainTex', 106, 'explosiondecalsmallBlack')]
+FX_MAT decal_explode_glow [('_MainTex', 113, 'explosiondecalsmall')]
+FX_MAT MeltingFire_glow [('_MainTex', 0, '')]
+FX_MAT fire_additive [('_MainTex', 102, 'fire')]
+FX_MAT fire_glow [('_MainTex', 102, 'fire')]

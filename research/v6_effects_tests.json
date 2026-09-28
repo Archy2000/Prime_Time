@@ -1,0 +1,20 @@
+{
+  "bounded_fragments": true,
+  "bounded_stains": true,
+  "chain_collapse": true,
+  "collapse_pauses": true,
+  "collision_removed": true,
+  "first_fracture_ms": 13.912,
+  "found_building": true,
+  "growth_gate": true,
+  "meal_started_blood": true,
+  "multiple_original_chunks": true,
+  "passed": true,
+  "roof_stain": true,
+  "source_surface_preserved": true,
+  "spawned_chunks": 120,
+  "stains_expire": true,
+  "stains_persist": true,
+  "stationary_no_stamp_spam": true,
+  "trail_stamps": 51
+}

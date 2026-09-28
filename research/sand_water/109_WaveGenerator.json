@@ -1,0 +1,25 @@
+{
+  "m_Name": "WaveGenerator",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 103,
+    "bytes[1]": 42,
+    "bytes[2]": 180,
+    "bytes[3]": 16,
+    "bytes[4]": 167,
+    "bytes[5]": 243,
+    "bytes[6]": 104,
+    "bytes[7]": 193,
+    "bytes[8]": 136,
+    "bytes[9]": 99,
+    "bytes[10]": 71,
+    "bytes[11]": 146,
+    "bytes[12]": 14,
+    "bytes[13]": 18,
+    "bytes[14]": 227,
+    "bytes[15]": 15
+  },
+  "m_ClassName": "WaveGenerator",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

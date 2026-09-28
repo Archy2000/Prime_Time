@@ -1,0 +1,16 @@
+#
+# Date: 2026-07-10
+# Source: https://www.controllerarts.com/
+# Author: hello@controllerarts.com
+# License: Proprietary License. No AI/ML training permitted. No redistribution.
+#
+
+newmtl M_Great_White_Shark
+Ns 39.999996
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd T_Great_White_Shark.png
+map_d T_Great_White_Shark.png

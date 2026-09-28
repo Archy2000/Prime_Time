@@ -1,0 +1,97 @@
+{
+  "all_building_parts_collidable": true,
+  "all_families_ram": true,
+  "building_parts": 2180,
+  "cloud_expands": true,
+  "diffusion_advances": true,
+  "missing_building_colliders": 0,
+  "passed": true,
+  "ram_scenarios": [
+    {
+      "family": "2floor lowrise",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "2floor lowrise",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    },
+    {
+      "family": "lowrise2floors curve",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "lowrise2floors curve",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    },
+    {
+      "family": "lowrise2floors l",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "lowrise2floors l",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    },
+    {
+      "family": "japanhighriser",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "japanhighriser",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    },
+    {
+      "family": "japanesehome",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "japanesehome",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    },
+    {
+      "family": "talo_",
+      "growth": 1.65,
+      "growth_gate": true,
+      "level": 1.15,
+      "passed": true
+    },
+    {
+      "family": "talo_",
+      "growth": 3.2,
+      "growth_gate": true,
+      "level": 3.3,
+      "passed": true
+    }
+  ],
+  "water_cleared_by_7s": true,
+  "water_lifetime_short": true
+}

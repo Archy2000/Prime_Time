@@ -1,0 +1,349 @@
+[
+  {
+    "shader": "636_Water",
+    "kernel": "Initialization",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "UpdateFloor",
+    "resources": {
+      "textures": [],
+      "inBuffers": [
+        {
+          "name": "groundCells",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "BlurFloor",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "HeightIntegration",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "VelocityIntegration",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "Advection",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "UpdateAmount",
+    "resources": {
+      "textures": [
+        {
+          "name": "obstaclesMap",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": 2,
+          "resType": 0
+        }
+      ],
+      "inBuffers": [
+        {
+          "name": "airCells",
+          "generatedName": "",
+          "bindPoint": 1,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "UpdateTangent",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "SubtractFloor",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "CopyGroundHeight",
+    "resources": {
+      "textures": [],
+      "inBuffers": [
+        {
+          "name": "groundCells",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "636_Water",
+    "kernel": "Paint",
+    "resources": {
+      "textures": [
+        {
+          "name": "brushPatternStencil",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": 0,
+          "texDimension": 2,
+          "resType": 0
+        }
+      ],
+      "inBuffers": [
+        {
+          "name": "brushData",
+          "generatedName": "",
+          "bindPoint": 1,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ],
+      "outBuffers": [
+        {
+          "name": "input",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "647_Whitewater",
+    "kernel": "Initialization",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "whitewater",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "647_Whitewater",
+    "kernel": "Update",
+    "resources": {
+      "textures": [],
+      "inBuffers": [
+        {
+          "name": "waterCells",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ],
+      "outBuffers": [
+        {
+          "name": "whitewater",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  },
+  {
+    "shader": "647_Whitewater",
+    "kernel": "Culling",
+    "resources": {
+      "textures": [],
+      "inBuffers": [],
+      "outBuffers": [
+        {
+          "name": "drawList",
+          "generatedName": "",
+          "bindPoint": 0,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        },
+        {
+          "name": "drawShadowList",
+          "generatedName": "",
+          "bindPoint": 1,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        },
+        {
+          "name": "args",
+          "generatedName": "",
+          "bindPoint": 2,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        },
+        {
+          "name": "argsShadow",
+          "generatedName": "",
+          "bindPoint": 3,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        },
+        {
+          "name": "whitewater",
+          "generatedName": "",
+          "bindPoint": 4,
+          "samplerBindPoint": -1,
+          "texDimension": -1,
+          "resType": 0
+        }
+      ]
+    }
+  }
+]

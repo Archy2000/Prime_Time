@@ -1,0 +1,22 @@
+//////////////////////////////////////////
+//
+// NOTE: This is *not* a valid shader file
+//
+///////////////////////////////////////////
+Shader "Lit/Water" {
+Properties {
+
+refractionFactor ("Refraction factor", Range(0, 0.1)) = 0.5
+
+waterNormalMap ("Water normal", 2D) = "white" { }
+
+}
+SubShader {
+ Tags { "IGNOREPROJECTOR" = "true" "QUEUE" = "Transparent" "RenderType" = "Transparent" }
+ Pass {
+ Name "Forward"
+  Tags { "IGNOREPROJECTOR" = "true" "LIGHTMODE" = "Forward" "QUEUE" = "Transparent" "RenderType" = "Transparent" }
+  GpuProgramID 55952
+}
+}
+}

@@ -1,0 +1,25 @@
+{
+  "m_Name": "WaterSelection",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 109,
+    "bytes[1]": 93,
+    "bytes[2]": 52,
+    "bytes[3]": 78,
+    "bytes[4]": 96,
+    "bytes[5]": 56,
+    "bytes[6]": 228,
+    "bytes[7]": 150,
+    "bytes[8]": 88,
+    "bytes[9]": 33,
+    "bytes[10]": 104,
+    "bytes[11]": 69,
+    "bytes[12]": 184,
+    "bytes[13]": 19,
+    "bytes[14]": 16,
+    "bytes[15]": 230
+  },
+  "m_ClassName": "WaterSelection",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

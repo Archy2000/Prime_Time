@@ -1,0 +1,6 @@
+.godot/
+tools/python_libs/
+tools/dotnet/
+tools/godot/
+research/*.log
+local_data/

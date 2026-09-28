@@ -1,0 +1,394 @@
+[
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "groundResolution",
+        "type": 1,
+        "offset": 2448,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "beachMin",
+        "type": 0,
+        "offset": 1824,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "beachMax",
+        "type": 0,
+        "offset": 1840,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "waterCellSize",
+        "type": 0,
+        "offset": 2464,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 4
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "deltaTime",
+        "type": 0,
+        "offset": 2520,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "gravityForce",
+        "type": 0,
+        "offset": 2524,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "waterCellSize",
+        "type": 0,
+        "offset": 2464,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 4
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "deltaTime",
+        "type": 0,
+        "offset": 2520,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "gravityForce",
+        "type": 0,
+        "offset": 2524,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "maxVelocity",
+        "type": 0,
+        "offset": 2528,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "damping",
+        "type": 0,
+        "offset": 2548,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "kappa",
+        "type": 0,
+        "offset": 2556,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "beachSize",
+        "type": 0,
+        "offset": 1856,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "deltaTime",
+        "type": 0,
+        "offset": 2520,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "advectionFactor",
+        "type": 0,
+        "offset": 2536,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "playTime",
+        "type": 0,
+        "offset": 1816,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "beachMin",
+        "type": 0,
+        "offset": 1824,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "beachMax",
+        "type": 0,
+        "offset": 1840,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "sunColor",
+        "type": 0,
+        "offset": 2000,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "airResolution",
+        "type": 1,
+        "offset": 2512,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "deltaTime",
+        "type": 0,
+        "offset": 2520,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "evaporationFactor",
+        "type": 0,
+        "offset": 2532,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "waveAmplitude",
+        "type": 0,
+        "offset": 2540,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "customWave",
+        "type": 0,
+        "offset": 2544,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "level",
+        "type": 0,
+        "offset": 2552,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "waterCellSize",
+        "type": 0,
+        "offset": 2464,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 4
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2560,
+    "params": [
+      {
+        "name": "beachSize",
+        "type": 0,
+        "offset": 1856,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "brushOperation",
+        "type": 1,
+        "offset": 2208,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "brushMode",
+        "type": 1,
+        "offset": 2212,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "brushWorldToObject",
+        "type": 0,
+        "offset": 2288,
+        "arraySize": 0,
+        "rowCount": 4,
+        "colCount": 4
+      },
+      {
+        "name": "brushPosition",
+        "type": 0,
+        "offset": 2352,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "brushScale",
+        "type": 0,
+        "offset": 2384,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "brushWrap",
+        "type": 1,
+        "offset": 2412,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "brushShape",
+        "type": 1,
+        "offset": 2416,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "brushEasing",
+        "type": 1,
+        "offset": 2420,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2480,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      }
+    ]
+  }
+]

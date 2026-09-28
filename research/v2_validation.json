@@ -1,0 +1,10 @@
+{
+  "active_fragments": 110,
+  "collision_driven_broken_parts": 32,
+  "fps": 40.0,
+  "passed": true,
+  "physics_fragments_spawned": 151,
+  "swallow_animations": 8,
+  "water_impulses": 294,
+  "wave_step_ms": 8.513
+}

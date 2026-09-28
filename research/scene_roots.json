@@ -1,0 +1,370 @@
+[
+  {
+    "file": "level0",
+    "id": 4633,
+    "name": "DEBUGSTUFF",
+    "active": false,
+    "pos": "Vector3f(187.63369750976562, -0.9148300290107727, 267.9999694824219)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4640,
+    "name": "UIAudioManager",
+    "active": true,
+    "pos": "Vector3f(-118801912.0, 0.0, 1037612288.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4651,
+    "name": "LootLockerLifecycleManager",
+    "active": false,
+    "pos": "Vector3f(0.0, 0.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4687,
+    "name": "GoalManager",
+    "active": true,
+    "pos": "Vector3f(362.824462890625, 444.66473388671875, -1.5887565612792969)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4689,
+    "name": "MainMenuController",
+    "active": true,
+    "pos": "Vector3f(-725.0, 9.0, 70.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4692,
+    "name": "GlyphController",
+    "active": true,
+    "pos": "Vector3f(68.0554428100586, 18.720970153808594, 33.00279998779297)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4727,
+    "name": "Main CameraNIGHT",
+    "active": true,
+    "pos": "Vector3f(-34.5, 2.5, -7.199999809265137)",
+    "children": 4
+  },
+  {
+    "file": "level0",
+    "id": 4787,
+    "name": "LootLockerLifecycleManager",
+    "active": true,
+    "pos": "Vector3f(0.0, 0.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4807,
+    "name": "EventSystem",
+    "active": true,
+    "pos": "Vector3f(0.0, 8.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4816,
+    "name": "TimeScaleReset",
+    "active": true,
+    "pos": "Vector3f(89.99401092529297, 112.79287719726562, 0.162353515625)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4840,
+    "name": "MenuObjectToggler",
+    "active": true,
+    "pos": "Vector3f(-118801912.0, 0.0, 1037612288.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4890,
+    "name": "Directional Light (1)",
+    "active": true,
+    "pos": "Vector3f(-66.5, -0.75, 81.0999984741211)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4945,
+    "name": "GameObject",
+    "active": true,
+    "pos": "Vector3f(110.0, 58.70000076293945, 169.0)",
+    "children": 19
+  },
+  {
+    "file": "level0",
+    "id": 4966,
+    "name": "SteamManager",
+    "active": true,
+    "pos": "Vector3f(-8.700000762939453, 19.799999237060547, 41.0)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 4975,
+    "name": "Navigation",
+    "active": true,
+    "pos": "Vector3f(0.0, 0.0, 0.0)",
+    "children": 1
+  },
+  {
+    "file": "level0",
+    "id": 4986,
+    "name": "LootLockerManager",
+    "active": true,
+    "pos": "Vector3f(-3435.99462890625, -2010.7724609375, 9.607589721679688)",
+    "children": 0
+  },
+  {
+    "file": "level0",
+    "id": 5031,
+    "name": "tolppawires",
+    "active": false,
+    "pos": "Vector3f(46.0, -67.0999984741211, 218.0)",
+    "children": 6
+  },
+  {
+    "file": "level1",
+    "id": 54,
+    "name": "EventSystem",
+    "active": true,
+    "pos": "Vector3f(0.0, 8.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level1",
+    "id": 56,
+    "name": "Camera",
+    "active": true,
+    "pos": "Vector3f(357.1439514160156, 290.32965087890625, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level1",
+    "id": 57,
+    "name": "PreloadSceneController",
+    "active": true,
+    "pos": "Vector3f(433.4631042480469, 54.353271484375, -36.71897888183594)",
+    "children": 0
+  },
+  {
+    "file": "level1",
+    "id": 62,
+    "name": "GoalManager",
+    "active": true,
+    "pos": "Vector3f(2342.5546875, -0.0, 23926.87109375)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14198,
+    "name": "Plane (1)",
+    "active": false,
+    "pos": "Vector3f(-30.899999618530273, 27.799999237060547, -89.4000015258789)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14209,
+    "name": "Exitpoint",
+    "active": false,
+    "pos": "Vector3f(-4.519999980926514, 2.0, -38.970001220703125)",
+    "children": 7
+  },
+  {
+    "file": "level2",
+    "id": 14213,
+    "name": "JapanStage",
+    "active": true,
+    "pos": "Vector3f(0.0, 0.0, 0.0)",
+    "children": 355
+  },
+  {
+    "file": "level2",
+    "id": 14221,
+    "name": "EventSystem",
+    "active": true,
+    "pos": "Vector3f(0.0, 8.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14230,
+    "name": "Directional Light",
+    "active": true,
+    "pos": "Vector3f(-66.5, -0.75, 81.0999984741211)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14255,
+    "name": "playerBullet",
+    "active": false,
+    "pos": "Vector3f(-202.89999389648438, 3.6000003814697266, 58.600006103515625)",
+    "children": 2
+  },
+  {
+    "file": "level2",
+    "id": 14260,
+    "name": "TruckSpawnerPysty",
+    "active": false,
+    "pos": "Vector3f(1.600006103515625, 2.8000001907348633, 385.3999938964844)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14264,
+    "name": "Navigation",
+    "active": true,
+    "pos": "Vector3f(0.0, 0.0, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14269,
+    "name": "Plane",
+    "active": false,
+    "pos": "Vector3f(-19.799999237060547, 27.799999237060547, 15.300000190734863)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14279,
+    "name": "Ocean",
+    "active": true,
+    "pos": "Vector3f(0.0, -11.800000190734863, 0.0)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14291,
+    "name": "MEN 2 (1)",
+    "active": true,
+    "pos": "Vector3f(14.0, -0.01781749725341797, -19.0)",
+    "children": 35
+  },
+  {
+    "file": "level2",
+    "id": 14293,
+    "name": "Traffic Spawner Vaaka (1)",
+    "active": true,
+    "pos": "Vector3f(-493.0, 0.7799997329711914, -14.5)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 14301,
+    "name": "GameObject (2)",
+    "active": true,
+    "pos": "Vector3f(-65.9530029296875, 0.5, 66.27400207519531)",
+    "children": 7
+  },
+  {
+    "file": "level2",
+    "id": 14311,
+    "name": "Traffic Spawner Pysty (1)",
+    "active": true,
+    "pos": "Vector3f(12.899999618530273, 0.7799997329711914, -516.7000122070312)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 15268,
+    "name": "ROLLATEXT",
+    "active": true,
+    "pos": "Vector3f(2.0, 1.909999966621399, -233.0)",
+    "children": 5
+  },
+  {
+    "file": "level2",
+    "id": 15279,
+    "name": "exitpipe",
+    "active": true,
+    "pos": "Vector3f(-209.47000122070312, 2.640700101852417, 150.63999938964844)",
+    "children": 4
+  },
+  {
+    "file": "level2",
+    "id": 19301,
+    "name": "enemyBullet_soldier",
+    "active": true,
+    "pos": "Vector3f(16.490747451782227, 4.190000057220459, -32.22361755371094)",
+    "children": 5
+  },
+  {
+    "file": "level2",
+    "id": 23076,
+    "name": "wreck_Crater",
+    "active": false,
+    "pos": "Vector3f(13.729999542236328, -0.44999998807907104, -187.52999877929688)",
+    "children": 4
+  },
+  {
+    "file": "level2",
+    "id": 24363,
+    "name": "GamePlay (1)",
+    "active": true,
+    "pos": "Vector3f(345.0, 152.0, 10.0)",
+    "children": 13
+  },
+  {
+    "file": "level2",
+    "id": 24956,
+    "name": "PowerupBox",
+    "active": false,
+    "pos": "Vector3f(13.710000038146973, 0.8500000238418579, -188.2899932861328)",
+    "children": 2
+  },
+  {
+    "file": "level2",
+    "id": 26213,
+    "name": "enemy_tank",
+    "active": false,
+    "pos": "Vector3f(-121.0, -0.5050723552703857, -28.0)",
+    "children": 2
+  },
+  {
+    "file": "level2",
+    "id": 26214,
+    "name": "enemy_tank (1)",
+    "active": false,
+    "pos": "Vector3f(-110.0, -0.5050723552703857, 0.0)",
+    "children": 2
+  },
+  {
+    "file": "level2",
+    "id": 26304,
+    "name": "TrafficFlare (5)",
+    "active": false,
+    "pos": "Vector3f(-12.800000190734863, 33.5, 12.199999809265137)",
+    "children": 0
+  },
+  {
+    "file": "level2",
+    "id": 27184,
+    "name": "enemy_MIB",
+    "active": false,
+    "pos": "Vector3f(-132.8000030517578, -0.4436199963092804, -6.099999904632568)",
+    "children": 8
+  },
+  {
+    "file": "level2",
+    "id": 27185,
+    "name": "enemy_MIB (1)",
+    "active": false,
+    "pos": "Vector3f(3.5999999046325684, -0.4436199963092804, 75.4000015258789)",
+    "children": 8
+  }
+]

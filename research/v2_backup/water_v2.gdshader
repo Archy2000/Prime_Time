@@ -1,0 +1,64 @@
+shader_type spatial;
+render_mode unshaded,cull_disabled,depth_draw_never;
+uniform sampler2D screen_tex:hint_screen_texture,source_color,filter_linear;
+uniform sampler2D depth_tex:hint_depth_texture,filter_nearest;
+uniform sampler2D water_normal:hint_normal,repeat_enable,filter_linear_mipmap;
+uniform sampler2D caustics_tex:repeat_enable,filter_linear_mipmap;
+uniform sampler2D wave_field:filter_linear,repeat_disable;
+uniform vec2 field_origin=vec2(-72.0,-88.0);
+uniform float field_extent=144.0;
+uniform vec3 shallow_color:source_color=vec3(0.16,0.67,0.66);
+uniform vec3 deep_color:source_color=vec3(0.035,0.30,0.40);
+uniform float clarity=0.32;
+uniform float refraction_factor=0.0025;
+uniform float clock=0.0;
+uniform float water_height=1.15;
+varying vec3 world_pos;
+float tide(vec2 p){return sin(dot(p,vec2(0.12,0.21))-clock*1.6)*0.065+sin(dot(p,vec2(-0.32,0.18))+clock*1.1)*0.025;}
+void vertex(){
+    world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
+    vec2 fuv=(world_pos.xz-field_origin)/field_extent;
+    VERTEX.y+=texture(wave_field,fuv).r*0.28+tide(world_pos.xz);
+}
+void fragment(){
+    vec2 fuv=(world_pos.xz-field_origin)/field_extent;
+    vec4 field=texture(wave_field,fuv);
+    vec2 px=vec2(1.0/192.0,0.0);
+    vec2 slope=vec2(texture(wave_field,fuv+px.xy).r-texture(wave_field,fuv-px.xy).r,texture(wave_field,fuv+px.yx).r-texture(wave_field,fuv-px.yx).r);
+    vec2 uv=world_pos.xz*0.12;
+    vec3 n1=texture(water_normal,uv+vec2(clock*0.018,clock*0.009)).rgb*2.0-1.0;
+    vec3 n2=texture(water_normal,uv*0.63+vec2(-clock*0.012,clock*0.017)).rgb*2.0-1.0;
+    vec2 wave=n1.xy*0.42+n2.xy*0.32+slope*2.5;
+    float depth=texture(depth_tex,SCREEN_UV).r;
+    vec4 p=INV_PROJECTION_MATRIX*vec4(SCREEN_UV*2.0-1.0,depth*2.0-1.0,1.0);
+    float thickness=max(0.0,-p.z/p.w+VERTEX.z);
+    vec2 refracted=clamp(SCREEN_UV+wave*refraction_factor*min(thickness,1.2),vec2(0.002),vec2(0.998));
+    float rd=texture(depth_tex,refracted).r;
+    vec4 rp=INV_PROJECTION_MATRIX*vec4(refracted*2.0-1.0,rd*2.0-1.0,1.0);
+    if(-rp.z/rp.w<-VERTEX.z+0.02)refracted=SCREEN_UV;
+    vec3 ground=texture(screen_tex,refracted).rgb;
+    vec4 ground_world=INV_VIEW_MATRIX*p/p.w;
+    vec2 cuv=ground_world.xz*0.12+wave*0.075;
+    float c1=texture(caustics_tex,cuv+vec2(clock*0.009,-clock*0.006)).r;
+    float c2=texture(caustics_tex,cuv*1.13+vec2(-clock*0.006,clock*0.005)).r;
+    float caustic=(max(c1,c2)*0.5+sqrt(c1*c2)*0.5)*exp(-thickness*0.19)*smoothstep(0.03,0.35,thickness);
+    ground+=vec3(0.27,0.57,0.51)*caustic*0.8;
+    float absorption=1.0-exp(-thickness*clarity);
+    vec3 tint=mix(shallow_color,deep_color,1.0-exp(-thickness*0.22));
+    vec3 color=mix(ground,tint,clamp(absorption*0.72+0.18,0.0,0.92));
+    vec3 norm=normalize(vec3(wave.x*1.2,1.0,wave.y*1.2));
+    vec3 light=normalize(vec3(0.35,0.85,-0.32));
+    vec3 view_dir=normalize(CAMERA_POSITION_WORLD-world_pos);
+    float spec=pow(max(dot(norm,normalize(light+view_dir)),0.0),48.0);
+    color+=vec3(0.75,0.82,0.74)*spec*0.40;
+    float noise=texture(caustics_tex,world_pos.xz*0.8+wave*0.1+clock*0.015).r;
+    float shoreline=(1.0-smoothstep(0.06,0.58,thickness))*smoothstep(0.08,0.40,noise+n2.x*0.17);
+    float pulse=sin(dot(world_pos.xz,vec2(0.24,0.37))-clock*1.65);
+    float breaker=smoothstep(0.965,1.0,pulse)*(1.0-smoothstep(1.6,4.0,thickness))*smoothstep(0.10,0.38,noise+n1.x*0.2);
+    float turbulence=field.b*smoothstep(0.04,0.40,noise+n1.y*0.22);
+    float crest=smoothstep(0.14,0.35,length(slope))*smoothstep(0.15,0.5,noise);
+    float white=clamp(shoreline*0.85+breaker*0.75+turbulence*1.15+crest*0.60,0.0,0.94);
+    color=mix(color,vec3(0.82,0.94,0.88),white);
+    ALBEDO=color;
+    ALPHA=1.0;
+}

@@ -1,0 +1,22 @@
+; Prime Time - local research prototype
+config_version=5
+
+[application]
+config/name="PRIME TIME — Flooded City"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="PrimeTime"
+run/main_scene="res://scenes/main.tscn"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
+[rendering]
+shader_compiler/shader_cache/enabled=false
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.19,0.21,0.20,1)
+

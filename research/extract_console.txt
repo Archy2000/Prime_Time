@@ -1,0 +1,113 @@
+{
+  "instances": 2774,
+  "mesh_variants": 102,
+  "unique_meshes": 95,
+  "materials": 26,
+  "textures": 17,
+  "errors": [
+    [
+      "/JapanStage/verkkoaitaSmall/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (1)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (1)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (2)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (2)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (3)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (3)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (4)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (4)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (5)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (5)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (6)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (6)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (7)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (7)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (8)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (8)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (9)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (9)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (10)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (10)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (11)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (11)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (12)/verkkoaita_pohja",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ],
+    [
+      "/JapanStage/verkkoaitaSmall (12)/verkkoaitaReuna_001",
+      "too many indices for array: array is 0-dimensional, but 2 were indexed"
+    ]
+  ]
+}

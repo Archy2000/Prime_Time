@@ -1,0 +1,25 @@
+{
+  "m_Name": "Buoyancy",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 77,
+    "bytes[1]": 80,
+    "bytes[2]": 195,
+    "bytes[3]": 133,
+    "bytes[4]": 163,
+    "bytes[5]": 238,
+    "bytes[6]": 142,
+    "bytes[7]": 171,
+    "bytes[8]": 219,
+    "bytes[9]": 71,
+    "bytes[10]": 45,
+    "bytes[11]": 121,
+    "bytes[12]": 151,
+    "bytes[13]": 6,
+    "bytes[14]": 2,
+    "bytes[15]": 12
+  },
+  "m_ClassName": "Buoyancy",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

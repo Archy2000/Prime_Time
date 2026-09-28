@@ -1,0 +1,67 @@
+{
+  "cases": [
+    {
+      "bounded_droplets": true,
+      "exactly_two_events": true,
+      "landed": true,
+      "landing": {
+        "amplitude": 0.151071428571429,
+        "drops": 65,
+        "landing": true,
+        "life": 2.0,
+        "radius": 1.05,
+        "size": 1.0,
+        "vertical_speed": -14.1
+      },
+      "passed": true,
+      "size": 1.0,
+      "solver_impulses": 26,
+      "takeoff": {
+        "amplitude": 0.104464285714286,
+        "drops": 55,
+        "landing": false,
+        "life": 2.0,
+        "radius": 0.8,
+        "size": 1.0,
+        "vertical_speed": 15.0
+      },
+      "visual_leaves_water": true,
+      "visual_returns_underwater": true
+    },
+    {
+      "bounded_droplets": true,
+      "exactly_two_events": true,
+      "landed": true,
+      "landing": {
+        "amplitude": 0.423000000000001,
+        "drops": 140,
+        "landing": true,
+        "life": 2.27609903369994,
+        "radius": 3.36,
+        "size": 3.2,
+        "vertical_speed": -18.8
+      },
+      "passed": true,
+      "size": 3.2,
+      "solver_impulses": 26,
+      "takeoff": {
+        "amplitude": 0.28665,
+        "drops": 134,
+        "landing": false,
+        "life": 2.27609903369994,
+        "radius": 2.56,
+        "size": 3.2,
+        "vertical_speed": 20.5
+      },
+      "visual_leaves_water": true,
+      "visual_returns_underwater": true
+    }
+  ],
+  "crown_cleans_up": true,
+  "growth_increases_radius": true,
+  "growth_increases_spray": true,
+  "growth_increases_wave": true,
+  "passed": true,
+  "pause_freezes_effects": true,
+  "wave_finite": true
+}

@@ -1,0 +1,25 @@
+{
+  "m_Name": "Water",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 9,
+    "bytes[1]": 254,
+    "bytes[2]": 116,
+    "bytes[3]": 28,
+    "bytes[4]": 212,
+    "bytes[5]": 13,
+    "bytes[6]": 51,
+    "bytes[7]": 43,
+    "bytes[8]": 130,
+    "bytes[9]": 26,
+    "bytes[10]": 83,
+    "bytes[11]": 90,
+    "bytes[12]": 239,
+    "bytes[13]": 47,
+    "bytes[14]": 104,
+    "bytes[15]": 91
+  },
+  "m_ClassName": "Water",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

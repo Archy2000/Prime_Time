@@ -1,0 +1,75 @@
+shader_type spatial;
+render_mode unshaded,cull_disabled,depth_draw_never;
+uniform sampler2D screen_tex:hint_screen_texture,source_color,filter_linear;
+uniform sampler2D depth_tex:hint_depth_texture,filter_nearest;
+uniform sampler2D water_normal:hint_normal,repeat_enable,filter_linear_mipmap;
+uniform sampler2D caustics_tex:repeat_enable,filter_linear_mipmap;
+uniform sampler2D wave_field:filter_linear,repeat_disable;
+uniform sampler2D flow_field:filter_linear,repeat_disable;
+uniform float field_resolution=160.0;
+uniform vec2 field_origin=vec2(-72.0,-88.0);
+uniform float field_extent=144.0;
+uniform vec3 shallow_color:source_color=vec3(0.16,0.67,0.66);
+uniform vec3 deep_color:source_color=vec3(0.035,0.30,0.40);
+uniform float clarity=0.32;
+uniform float refraction_factor=0.0025;
+uniform float clock=0.0;
+uniform float water_height=1.15;
+uniform bool terrain_clipping=false;
+varying vec3 world_pos;
+float hash21(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float soft_noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash21(i),hash21(i+vec2(1,0)),f.x),mix(hash21(i+vec2(0,1)),hash21(i+vec2(1,1)),f.x),f.y);}
+float tide(vec2 p){return sin(dot(p,vec2(0.12,0.21))-clock*1.6)*0.065+sin(dot(p,vec2(-0.32,0.18))+clock*1.1)*0.025;}
+void vertex(){
+    world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
+    vec2 fuv=(world_pos.xz-field_origin)/field_extent;
+    VERTEX.y+=texture(wave_field,fuv).r;
+    world_pos.y+=texture(wave_field,fuv).r;
+}
+void fragment(){
+    vec2 fuv=(world_pos.xz-field_origin)/field_extent;
+    vec4 field=texture(wave_field,fuv);
+    vec2 px=vec2(1.0/field_resolution,0.0);
+    vec2 flow=texture(flow_field,fuv).rg;
+    vec2 slope=vec2(texture(wave_field,fuv+px.xy).r-texture(wave_field,fuv-px.xy).r,texture(wave_field,fuv+px.yx).r-texture(wave_field,fuv-px.yx).r);
+    vec2 uv=world_pos.xz*0.18-flow*0.012;
+    vec3 n1=texture(water_normal,uv+vec2(clock*0.018,clock*0.009)).rgb*2.0-1.0;
+    vec3 n2=texture(water_normal,uv*0.63+vec2(-clock*0.012,clock*0.017)).rgb*2.0-1.0;
+    vec2 wave=n1.xy*0.18+n2.xy*0.14+slope/(2.0*field_extent/field_resolution)*3.0;
+    float depth=texture(depth_tex,SCREEN_UV).r;
+    vec4 p=INV_PROJECTION_MATRIX*vec4(SCREEN_UV*2.0-1.0,depth*2.0-1.0,1.0);
+    float thickness=max(0.0,-p.z/p.w+VERTEX.z);
+    vec2 refracted=clamp(SCREEN_UV+wave*refraction_factor*min(thickness,1.2),vec2(0.002),vec2(0.998));
+    float rd=texture(depth_tex,refracted).r;
+    vec4 rp=INV_PROJECTION_MATRIX*vec4(refracted*2.0-1.0,rd*2.0-1.0,1.0);
+    if(-rp.z/rp.w<-VERTEX.z+0.02)refracted=SCREEN_UV;
+    vec3 ground=texture(screen_tex,refracted).rgb;
+    vec4 ground_world=INV_VIEW_MATRIX*p/p.w;
+    vec2 cuv=ground_world.xz*0.20+wave*0.10;
+    float c1=texture(caustics_tex,cuv+vec2(clock*0.009,-clock*0.006)).r;
+    float c2=texture(caustics_tex,cuv*1.13+vec2(-clock*0.006,clock*0.005)).r;
+    float caustic=(max(c1,c2)*0.5+sqrt(c1*c2)*0.5)*exp(-thickness*0.19)*smoothstep(0.03,0.35,thickness);
+    ground+=vec3(0.27,0.57,0.51)*caustic*0.24;
+    float absorption=1.0-exp(-thickness*clarity);
+    vec3 tint=mix(shallow_color,deep_color,1.0-exp(-thickness*0.22));
+    vec3 color=mix(ground,tint,clamp(absorption*0.72+0.18,0.0,0.92));
+    vec3 norm=normalize(vec3(wave.x*1.2,1.0,wave.y*1.2));
+    vec3 light=normalize(vec3(0.35,0.85,-0.32));
+    vec3 view_dir=normalize(CAMERA_POSITION_WORLD-world_pos);
+    float spec=pow(max(dot(norm,normalize(light+view_dir)),0.0),48.0);
+    color+=vec3(0.75,0.82,0.74)*spec*0.12;
+    float wet_depth=water_height+field.r-field.g;
+    if(terrain_clipping && wet_depth<0.006)discard;
+    vec2 fp=world_pos.xz-flow*0.14;
+    float patches=soft_noise(fp*3.7+vec2(clock*0.08,-clock*0.07));
+    float grains=soft_noise(fp*17.0+clock*0.16);
+    float breakup=smoothstep(0.46,0.72,patches*0.72+grains*0.28);
+    float edge=(1.0-smoothstep(0.015,0.095,thickness));
+    float turbulence=smoothstep(0.32,0.92,field.b)*breakup;
+    float steepness=length(slope)/(2.0*field_extent/field_resolution);
+    float crest=smoothstep(0.12,0.28,steepness)*smoothstep(0.08,0.22,field.r);
+    float white=clamp(edge*breakup*0.52+turbulence*0.30+crest*breakup*0.52,0.0,0.82);
+    color=mix(color,vec3(0.82,0.94,0.88),white);
+    ALBEDO=color;
+    ALPHA=1.0;
+}

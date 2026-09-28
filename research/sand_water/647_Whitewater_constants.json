@@ -1,0 +1,86 @@
+[
+  {
+    "name": "$Globals",
+    "byteSize": 2448,
+    "params": [
+      {
+        "name": "seed",
+        "type": 5,
+        "offset": 1808,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "frameCount",
+        "type": 1,
+        "offset": 1820,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "beachSize",
+        "type": 0,
+        "offset": 1856,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 3
+      },
+      {
+        "name": "capacity",
+        "type": 5,
+        "offset": 2208,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "waterResolution",
+        "type": 1,
+        "offset": 2432,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 2
+      },
+      {
+        "name": "deltaTime",
+        "type": 0,
+        "offset": 2440,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      }
+    ]
+  },
+  {
+    "name": "$Globals",
+    "byteSize": 2448,
+    "params": [
+      {
+        "name": "capacity",
+        "type": 5,
+        "offset": 2208,
+        "arraySize": 0,
+        "rowCount": 1,
+        "colCount": 1
+      },
+      {
+        "name": "cameraFrustumPlanes",
+        "type": 0,
+        "offset": 2224,
+        "arraySize": 6,
+        "rowCount": 1,
+        "colCount": 4
+      },
+      {
+        "name": "shadowFrustumPlanes",
+        "type": 0,
+        "offset": 2320,
+        "arraySize": 6,
+        "rowCount": 1,
+        "colCount": 4
+      }
+    ]
+  }
+]

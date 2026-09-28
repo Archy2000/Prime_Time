@@ -1,0 +1,1 @@
+Metadata version 39: string layout not decoded. No C# method bodies recovered. Use ComputeShader kernels and constantBuffers as evidence.

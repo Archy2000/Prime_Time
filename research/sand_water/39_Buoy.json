@@ -1,0 +1,25 @@
+{
+  "m_Name": "Buoy",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 250,
+    "bytes[1]": 43,
+    "bytes[2]": 209,
+    "bytes[3]": 0,
+    "bytes[4]": 1,
+    "bytes[5]": 91,
+    "bytes[6]": 247,
+    "bytes[7]": 217,
+    "bytes[8]": 92,
+    "bytes[9]": 133,
+    "bytes[10]": 243,
+    "bytes[11]": 0,
+    "bytes[12]": 105,
+    "bytes[13]": 195,
+    "bytes[14]": 183,
+    "bytes[15]": 35
+  },
+  "m_ClassName": "Buoy",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

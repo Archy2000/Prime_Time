@@ -1,0 +1,33 @@
+//////////////////////////////////////////
+//
+// NOTE: This is *not* a valid shader file
+//
+///////////////////////////////////////////
+Shader "Lit/BordersWaterFront" {
+Properties {
+
+rockColor ("Rock color", Color) = (0.25,0.5,0.5,1)
+
+rockColor2 ("Rock color 2", Color) = (0.25,0.5,0.5,1)
+
+refractionFactor ("Refraction factor", Range(0, 0.1)) = 0.5
+
+sandMap ("Sand map", 2D) = "white" { }
+
+}
+SubShader {
+ Tags { "QUEUE" = "Transparent+1" "RenderType" = "Transparent" }
+ Pass {
+ Name "Forward"
+  Tags { "LIGHTMODE" = "Forward" "QUEUE" = "Transparent+1" "RenderType" = "Transparent" }
+ ZWrite Off
+  GpuProgramID 33582
+}
+ Pass {
+ Name "ShadowCaster"
+  Tags { "LIGHTMODE" = "SHADOWCASTER" "QUEUE" = "Transparent+1" "RenderType" = "Transparent" }
+ Cull Front
+  GpuProgramID 67503
+}
+}
+}

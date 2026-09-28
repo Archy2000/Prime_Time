@@ -1,0 +1,17 @@
+{
+  "assets_loaded": true,
+  "burst_limited": true,
+  "dry_muted": true,
+  "heavy_entry_triggered": true,
+  "idle_fades": true,
+  "lab_enabled": true,
+  "lab_wave": true,
+  "landing_and_drips": true,
+  "large_entry_deeper_and_louder": true,
+  "listener_at_player": true,
+  "loops_started": true,
+  "motion_rises": true,
+  "passed": true,
+  "pause_freezes": true,
+  "switch_no_duplicate_buses": true
+}

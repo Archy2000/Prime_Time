@@ -1,0 +1,25 @@
+{
+  "m_Name": "SimulationSettings",
+  "m_ExecutionOrder": 0,
+  "m_PropertiesHash": {
+    "bytes[0]": 9,
+    "bytes[1]": 7,
+    "bytes[2]": 190,
+    "bytes[3]": 228,
+    "bytes[4]": 98,
+    "bytes[5]": 164,
+    "bytes[6]": 178,
+    "bytes[7]": 160,
+    "bytes[8]": 73,
+    "bytes[9]": 142,
+    "bytes[10]": 75,
+    "bytes[11]": 237,
+    "bytes[12]": 84,
+    "bytes[13]": 126,
+    "bytes[14]": 13,
+    "bytes[15]": 82
+  },
+  "m_ClassName": "SimulationSettings",
+  "m_Namespace": "",
+  "m_AssemblyName": "Assembly-CSharp"
+}

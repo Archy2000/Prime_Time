@@ -1,0 +1,133 @@
+- Controller Arts -
+PS1-STYLED GREAT WHITE SHARK
+Documentation
+Package Version: 1.0.0
+Release Date: 2026-07-09
+Last Update: 2026-07-09
+Blender Version: 5.0.1
+See Section 7 for license terms
+Jule 09, 2026
+Contents
+1 INTRODUCTION 2
+2 CONTENT AND WORKFLOW 2
+2.1 Directory Structure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2.2 Blender Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+3 TECHNICAL SPECIFICATIONS 3
+3.1 Engine-Specific Configuration . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3.1.1 Unity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3.1.2 Unreal Engine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.1.3 Godot . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+4 UPDATES AND SUPPORT 4
+5 ASSET LIST 5
+5.1 Meshes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+5.2 Textures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+6 CHANGELOG 6
+7 LICENSE AND COPYRIGHT 6
+1
+1 INTRODUCTION
+This documentation provides a comprehensive guide for integrating the PS1-Styled
+Great White Shark into your development pipeline. It details the directory structures,
+and the strict technical rendering specifications required to maintain an authentic PS1
+aesthetic. Furthermore, it outlines step-by-step engine configurations for Unity, Unreal
+Engine, and Godot. An exhaustive visual catalog of all included assets is provided at the
+end of this document for quick reference
+2 CONTENT AND WORKFLOW
+The geometry and textures are developed natively in Blender 5.0.1. The work-
+flow ensures low polygon counts and vertex snapping compatibility characteristic of the
+targeted aesthetic.
+2.1 Directory Structure
+The package is organized into specific directories for optimized access.
+Table 1: Correlation between folder names and their contents.
+Folder Name Description
+GLB Contains *.glbfiles with fully embedded textures
+GLTF Contains *.gltffiles mapping to separated external texture files
+OBJ Contains *.objstatic meshes and their corresponding material
+files
+Previews Contains previews of each asset, including metadata for polycount
+and object size
+Textures Contains the texture files
+2.2 Blender Integration
+The core *.blendfile contains the source scene hosting all assets.
+2
+3 TECHNICAL SPECIFICATIONS
+Default filtering methods (Bilinear/Trilinear) will blur the textures and compro-
+mise the pixelated aesthetic. To maintain the intended PS1 aesthetic and ensure seamless
+integration across different game engines, adhere to the following technical parameters:
+Table 2: Recommended import and rendering settings.
+Setting Description
+Metric Scale Assets are modeled such that 1 Blender Unit≡ 1 Meter
+Texture Filtering /
+Filter Mode
+Set to Point(Unity/Unreal) or Nearest(Godot) or Closest
+(Blender). This ensures pixels are rendered sharply without inter-
+polation
+Mipmaps Disable Generate Mipmaps. Mipmapping applies automatic blur-
+ring to textures viewed at a distance, which breaks the retro visual
+style
+Texture
+Compression
+Set to Noneor Uncompressed. Modern compression algorithms
+introduce blocky artifacts and color bleeding that degrade low-
+resolution textures
+Normals / Shading Set normals to Flator disable Smooth Shading. Smooth nor-
+mals interpolate lighting across polygon faces, which eliminates the
+faceted, low-poly geometry characteristic of PS1 hardware
+3.1 Engine-Specific Configuration
+The following configurations must be applied to every texture imported from this
+package. Default engine settings apply interpolation and compression that are incompat-
+ible with the PS1 aesthetic.
+3.1.1 Unity
+Select the texture asset in the Project panel. In the Inspector, apply the following
+settings underTexture Import Settings:
+Filter Mode: Point (no filter)
+Generate Mip Maps:Disabled
+Compression: None
+Max Size:Match the original texture resolution (maximum 256)
+For mesh shading, select the mesh and underModel→Normals, setSmoothing
+Angleto 0.
+3
+3.1.2 Unreal Engine
+Double-click the texture asset to open the Texture Editor. Apply the following
+settings in theDetailspanel:
+Filter: Nearest
+Mip Gen Settings: NoMipmaps
+Compression Settings: UserInterface2D (RGBA)or TC EditorIconto
+avoid lossy compression
+sRGB:Enabled (default)
+For flat shading, set the Static MeshLOD→Normal Import Methodto
+Import Normalsand ensure no smoothing groups are applied on export from Blender.
+3.1.3 Godot
+Select the texture file in the FileSystem dock and open theImporttab. Apply
+the following settings, then clickReimport:
+Filter:Disabled (corresponds to Nearestfiltering)
+Mipmaps→Generate:Disabled
+Compress→Mode: Losslessor Uncompressed
+Alternatively, set theTexture Filterproperty directly on theMeshInstance3D
+material to Nearestto override globally without reimporting each texture.
+4 UPDATES AND SUPPORT
+Package updates and structural corrections are distributed directly through Itch.io
+(https://c-arts.itch.io/). Subscribe to the personal website newsletter athttps://
+www.controllerarts.com/to receive automated deployment notifications. For technical
+support or issues, please contact via email:hello@controllerarts.com.
+4
+5 ASSET LIST
+5.1 Meshes
+5.2 Textures
+5
+6 CHANGELOG
+Table 5: Package modification log.
+Filename Status Timestamp
+T Great White Shark Added 2026-07-10
+SK Great White Shark Added 2026-07-10
+7 LICENSE AND COPYRIGHT
+Commercial and personal use is permitted. These assets may be incorporated into
+games, applications, films, or other derivative works without restriction.
+Redistribution, resale, or repackaging of these assets — whether modified or un-
+modified — as standalone content (e.g., as part of another asset pack or free resource
+collection) is strictly prohibited.
+These assets are strictly prohibited from being used in any Artificial Intelligence
+(AI) or Machine Learning (ML) applications. This includes, but is not limited to, the
+use of the assets as inputs or training data for image generation models, algorithmic
+processing, or automated geometry synthesis. This package is provided as-is, without
+warranty of any kind. - Controller Arts - is not liable for any issues arising from its use.
+6
