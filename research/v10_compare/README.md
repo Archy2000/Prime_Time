@@ -29,3 +29,5 @@
 `../v10_breach_tests.json`：1× / 3.2× 体型的跃出、落水、放大、暂停与回收通过。
 
 运行 `tools/compare_foam.gd -- --tag=before` / `--tag=after` 重录；`tools/encode_foam_comparison.py` 生成对比视频。
+
+项目瘦身记录（2026-09-29）：已清理 before/after 中的 frame_000.png–frame_119.png 连续录制帧；保留 MP4、关键截图和 capture.json。保留视频均已完整解码验证。重新编码前需先重新录制生成帧序列。

@@ -1,0 +1,2912 @@
+{
+  "date": "2026-09-29",
+  "removed_count": 726,
+  "removed_bytes": 744506053.0,
+  "validation": "All retained MP4 files decoded successfully; AVI/MP4 pairs have identical video frame counts and durations; each comparison video has 120 frames.",
+  "files": [
+    {
+      "path": "research\\v2_demo.avi",
+      "bytes": 48483686
+    },
+    {
+      "path": "research\\v3_water_demo.avi",
+      "bytes": 21253650
+    },
+    {
+      "path": "research\\v4_city_wake.avi",
+      "bytes": 35887804
+    },
+    {
+      "path": "research\\v5_roof_hunt.avi",
+      "bytes": 26164112
+    },
+    {
+      "path": "research\\v6_effects.avi",
+      "bytes": 38625304
+    },
+    {
+      "path": "research\\v8_breach.avi",
+      "bytes": 69332344
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_000.png",
+      "bytes": 693358
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_001.png",
+      "bytes": 693852
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_002.png",
+      "bytes": 693647
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_003.png",
+      "bytes": 694093
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_004.png",
+      "bytes": 695091
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_005.png",
+      "bytes": 694985
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_006.png",
+      "bytes": 695399
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_007.png",
+      "bytes": 696046
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_008.png",
+      "bytes": 696259
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_009.png",
+      "bytes": 696678
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_010.png",
+      "bytes": 697178
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_011.png",
+      "bytes": 697642
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_012.png",
+      "bytes": 698351
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_013.png",
+      "bytes": 699786
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_014.png",
+      "bytes": 700241
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_015.png",
+      "bytes": 700016
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_016.png",
+      "bytes": 700358
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_017.png",
+      "bytes": 701629
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_018.png",
+      "bytes": 701834
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_019.png",
+      "bytes": 702809
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_020.png",
+      "bytes": 702783
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_021.png",
+      "bytes": 703119
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_022.png",
+      "bytes": 703493
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_023.png",
+      "bytes": 704094
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_024.png",
+      "bytes": 704761
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_025.png",
+      "bytes": 705764
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_026.png",
+      "bytes": 706329
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_027.png",
+      "bytes": 705813
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_028.png",
+      "bytes": 706147
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_029.png",
+      "bytes": 707219
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_030.png",
+      "bytes": 707058
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_031.png",
+      "bytes": 708204
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_032.png",
+      "bytes": 708969
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_033.png",
+      "bytes": 709998
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_034.png",
+      "bytes": 710132
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_035.png",
+      "bytes": 710879
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_036.png",
+      "bytes": 711690
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_037.png",
+      "bytes": 712270
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_038.png",
+      "bytes": 713369
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_039.png",
+      "bytes": 714473
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_040.png",
+      "bytes": 716008
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_041.png",
+      "bytes": 717007
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_042.png",
+      "bytes": 719514
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_043.png",
+      "bytes": 720102
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_044.png",
+      "bytes": 721269
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_045.png",
+      "bytes": 721676
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_046.png",
+      "bytes": 723049
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_047.png",
+      "bytes": 723531
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_048.png",
+      "bytes": 723530
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_049.png",
+      "bytes": 723496
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_050.png",
+      "bytes": 723706
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_051.png",
+      "bytes": 724357
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_052.png",
+      "bytes": 723968
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_053.png",
+      "bytes": 723085
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_054.png",
+      "bytes": 723608
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_055.png",
+      "bytes": 722656
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_056.png",
+      "bytes": 723028
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_057.png",
+      "bytes": 722236
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_058.png",
+      "bytes": 722656
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_059.png",
+      "bytes": 722087
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_060.png",
+      "bytes": 722080
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_061.png",
+      "bytes": 721235
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_062.png",
+      "bytes": 721193
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_063.png",
+      "bytes": 721581
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_064.png",
+      "bytes": 721243
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_065.png",
+      "bytes": 722156
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_066.png",
+      "bytes": 722813
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_067.png",
+      "bytes": 722591
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_068.png",
+      "bytes": 723530
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_069.png",
+      "bytes": 723927
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_070.png",
+      "bytes": 725166
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_071.png",
+      "bytes": 726443
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_072.png",
+      "bytes": 726650
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_073.png",
+      "bytes": 726541
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_074.png",
+      "bytes": 727304
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_075.png",
+      "bytes": 728287
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_076.png",
+      "bytes": 729390
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_077.png",
+      "bytes": 731049
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_078.png",
+      "bytes": 731832
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_079.png",
+      "bytes": 732396
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_080.png",
+      "bytes": 734488
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_081.png",
+      "bytes": 733221
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_082.png",
+      "bytes": 731394
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_083.png",
+      "bytes": 729919
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_084.png",
+      "bytes": 728292
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_085.png",
+      "bytes": 726644
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_086.png",
+      "bytes": 724552
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_087.png",
+      "bytes": 722876
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_088.png",
+      "bytes": 721830
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_089.png",
+      "bytes": 720385
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_090.png",
+      "bytes": 719102
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_091.png",
+      "bytes": 717788
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_092.png",
+      "bytes": 716448
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_093.png",
+      "bytes": 715225
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_094.png",
+      "bytes": 714544
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_095.png",
+      "bytes": 713823
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_096.png",
+      "bytes": 713388
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_097.png",
+      "bytes": 712915
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_098.png",
+      "bytes": 711720
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_099.png",
+      "bytes": 711998
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_100.png",
+      "bytes": 711356
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_101.png",
+      "bytes": 711506
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_102.png",
+      "bytes": 710093
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_103.png",
+      "bytes": 710462
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_104.png",
+      "bytes": 710696
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_105.png",
+      "bytes": 710447
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_106.png",
+      "bytes": 710635
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_107.png",
+      "bytes": 710934
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_108.png",
+      "bytes": 710651
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_109.png",
+      "bytes": 710801
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_110.png",
+      "bytes": 710240
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_111.png",
+      "bytes": 710266
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_112.png",
+      "bytes": 709987
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_113.png",
+      "bytes": 710080
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_114.png",
+      "bytes": 709575
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_115.png",
+      "bytes": 709200
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_116.png",
+      "bytes": 707931
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_117.png",
+      "bytes": 707363
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_118.png",
+      "bytes": 706260
+    },
+    {
+      "path": "research\\v10_compare\\before\\frame_119.png",
+      "bytes": 704963
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_000.png",
+      "bytes": 690315
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_001.png",
+      "bytes": 690999
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_002.png",
+      "bytes": 691425
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_003.png",
+      "bytes": 691560
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_004.png",
+      "bytes": 691732
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_005.png",
+      "bytes": 691541
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_006.png",
+      "bytes": 691320
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_007.png",
+      "bytes": 691205
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_008.png",
+      "bytes": 690958
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_009.png",
+      "bytes": 691182
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_010.png",
+      "bytes": 692309
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_011.png",
+      "bytes": 692292
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_012.png",
+      "bytes": 692899
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_013.png",
+      "bytes": 693746
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_014.png",
+      "bytes": 693695
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_015.png",
+      "bytes": 693299
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_016.png",
+      "bytes": 693484
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_017.png",
+      "bytes": 693781
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_018.png",
+      "bytes": 693204
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_019.png",
+      "bytes": 694644
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_020.png",
+      "bytes": 694805
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_021.png",
+      "bytes": 695034
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_022.png",
+      "bytes": 694536
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_023.png",
+      "bytes": 695052
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_024.png",
+      "bytes": 694589
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_025.png",
+      "bytes": 695561
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_026.png",
+      "bytes": 695296
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_027.png",
+      "bytes": 694961
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_028.png",
+      "bytes": 695426
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_029.png",
+      "bytes": 695607
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_030.png",
+      "bytes": 695235
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_031.png",
+      "bytes": 695458
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_032.png",
+      "bytes": 695973
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_033.png",
+      "bytes": 696204
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_034.png",
+      "bytes": 696479
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_035.png",
+      "bytes": 696123
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_036.png",
+      "bytes": 696228
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_037.png",
+      "bytes": 696298
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_038.png",
+      "bytes": 696496
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_039.png",
+      "bytes": 696235
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_040.png",
+      "bytes": 696925
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_041.png",
+      "bytes": 697577
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_042.png",
+      "bytes": 697676
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_043.png",
+      "bytes": 697965
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_044.png",
+      "bytes": 697582
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_045.png",
+      "bytes": 697425
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_046.png",
+      "bytes": 697626
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_047.png",
+      "bytes": 697217
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_048.png",
+      "bytes": 697647
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_049.png",
+      "bytes": 697092
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_050.png",
+      "bytes": 696732
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_051.png",
+      "bytes": 696921
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_052.png",
+      "bytes": 696905
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_053.png",
+      "bytes": 696100
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_054.png",
+      "bytes": 695373
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_055.png",
+      "bytes": 695634
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_056.png",
+      "bytes": 695410
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_057.png",
+      "bytes": 696083
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_058.png",
+      "bytes": 696147
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_059.png",
+      "bytes": 695703
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_060.png",
+      "bytes": 695446
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_061.png",
+      "bytes": 695712
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_062.png",
+      "bytes": 695202
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_063.png",
+      "bytes": 694797
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_064.png",
+      "bytes": 694537
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_065.png",
+      "bytes": 695602
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_066.png",
+      "bytes": 695825
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_067.png",
+      "bytes": 696082
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_068.png",
+      "bytes": 695852
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_069.png",
+      "bytes": 695239
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_070.png",
+      "bytes": 695735
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_071.png",
+      "bytes": 695050
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_072.png",
+      "bytes": 694809
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_073.png",
+      "bytes": 695055
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_074.png",
+      "bytes": 694443
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_075.png",
+      "bytes": 694443
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_076.png",
+      "bytes": 693875
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_077.png",
+      "bytes": 693731
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_078.png",
+      "bytes": 694097
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_079.png",
+      "bytes": 693804
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_080.png",
+      "bytes": 692451
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_081.png",
+      "bytes": 692425
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_082.png",
+      "bytes": 692572
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_083.png",
+      "bytes": 692462
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_084.png",
+      "bytes": 693061
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_085.png",
+      "bytes": 692940
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_086.png",
+      "bytes": 692570
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_087.png",
+      "bytes": 692797
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_088.png",
+      "bytes": 692902
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_089.png",
+      "bytes": 692814
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_090.png",
+      "bytes": 692723
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_091.png",
+      "bytes": 692738
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_092.png",
+      "bytes": 692778
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_093.png",
+      "bytes": 692724
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_094.png",
+      "bytes": 693069
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_095.png",
+      "bytes": 693273
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_096.png",
+      "bytes": 693012
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_097.png",
+      "bytes": 693388
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_098.png",
+      "bytes": 693670
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_099.png",
+      "bytes": 694055
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_100.png",
+      "bytes": 694259
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_101.png",
+      "bytes": 695126
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_102.png",
+      "bytes": 694843
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_103.png",
+      "bytes": 695210
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_104.png",
+      "bytes": 694574
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_105.png",
+      "bytes": 694693
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_106.png",
+      "bytes": 694385
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_107.png",
+      "bytes": 694629
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_108.png",
+      "bytes": 694369
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_109.png",
+      "bytes": 694487
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_110.png",
+      "bytes": 694693
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_111.png",
+      "bytes": 695074
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_112.png",
+      "bytes": 694692
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_113.png",
+      "bytes": 694636
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_114.png",
+      "bytes": 694229
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_115.png",
+      "bytes": 694618
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_116.png",
+      "bytes": 694026
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_117.png",
+      "bytes": 694072
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_118.png",
+      "bytes": 694435
+    },
+    {
+      "path": "research\\v10_compare\\after\\frame_119.png",
+      "bytes": 694563
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_000.png",
+      "bytes": 690315
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_001.png",
+      "bytes": 690999
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_002.png",
+      "bytes": 691425
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_003.png",
+      "bytes": 691560
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_004.png",
+      "bytes": 691732
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_005.png",
+      "bytes": 691541
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_006.png",
+      "bytes": 691320
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_007.png",
+      "bytes": 691205
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_008.png",
+      "bytes": 690958
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_009.png",
+      "bytes": 691182
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_010.png",
+      "bytes": 692309
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_011.png",
+      "bytes": 692292
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_012.png",
+      "bytes": 692899
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_013.png",
+      "bytes": 693746
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_014.png",
+      "bytes": 693695
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_015.png",
+      "bytes": 693299
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_016.png",
+      "bytes": 693484
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_017.png",
+      "bytes": 693781
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_018.png",
+      "bytes": 693204
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_019.png",
+      "bytes": 694644
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_020.png",
+      "bytes": 694805
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_021.png",
+      "bytes": 695034
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_022.png",
+      "bytes": 694536
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_023.png",
+      "bytes": 695052
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_024.png",
+      "bytes": 694589
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_025.png",
+      "bytes": 695561
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_026.png",
+      "bytes": 695296
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_027.png",
+      "bytes": 694961
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_028.png",
+      "bytes": 695426
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_029.png",
+      "bytes": 695607
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_030.png",
+      "bytes": 695235
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_031.png",
+      "bytes": 695458
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_032.png",
+      "bytes": 695973
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_033.png",
+      "bytes": 696204
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_034.png",
+      "bytes": 696479
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_035.png",
+      "bytes": 696123
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_036.png",
+      "bytes": 696228
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_037.png",
+      "bytes": 696298
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_038.png",
+      "bytes": 696496
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_039.png",
+      "bytes": 696235
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_040.png",
+      "bytes": 696925
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_041.png",
+      "bytes": 697577
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_042.png",
+      "bytes": 697676
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_043.png",
+      "bytes": 697965
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_044.png",
+      "bytes": 697582
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_045.png",
+      "bytes": 697425
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_046.png",
+      "bytes": 697626
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_047.png",
+      "bytes": 697217
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_048.png",
+      "bytes": 697647
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_049.png",
+      "bytes": 697092
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_050.png",
+      "bytes": 696732
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_051.png",
+      "bytes": 696921
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_052.png",
+      "bytes": 696905
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_053.png",
+      "bytes": 696100
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_054.png",
+      "bytes": 695373
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_055.png",
+      "bytes": 695634
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_056.png",
+      "bytes": 695410
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_057.png",
+      "bytes": 696083
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_058.png",
+      "bytes": 696147
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_059.png",
+      "bytes": 695703
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_060.png",
+      "bytes": 695446
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_061.png",
+      "bytes": 695712
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_062.png",
+      "bytes": 695202
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_063.png",
+      "bytes": 694797
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_064.png",
+      "bytes": 694537
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_065.png",
+      "bytes": 695602
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_066.png",
+      "bytes": 695825
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_067.png",
+      "bytes": 696082
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_068.png",
+      "bytes": 695852
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_069.png",
+      "bytes": 695239
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_070.png",
+      "bytes": 695735
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_071.png",
+      "bytes": 695050
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_072.png",
+      "bytes": 694809
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_073.png",
+      "bytes": 695055
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_074.png",
+      "bytes": 694443
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_075.png",
+      "bytes": 694443
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_076.png",
+      "bytes": 693875
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_077.png",
+      "bytes": 693731
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_078.png",
+      "bytes": 694097
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_079.png",
+      "bytes": 693804
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_080.png",
+      "bytes": 692451
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_081.png",
+      "bytes": 692425
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_082.png",
+      "bytes": 692572
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_083.png",
+      "bytes": 692462
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_084.png",
+      "bytes": 693061
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_085.png",
+      "bytes": 692940
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_086.png",
+      "bytes": 692570
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_087.png",
+      "bytes": 692797
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_088.png",
+      "bytes": 692902
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_089.png",
+      "bytes": 692814
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_090.png",
+      "bytes": 692723
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_091.png",
+      "bytes": 692738
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_092.png",
+      "bytes": 692778
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_093.png",
+      "bytes": 692724
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_094.png",
+      "bytes": 693069
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_095.png",
+      "bytes": 693273
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_096.png",
+      "bytes": 693012
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_097.png",
+      "bytes": 693388
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_098.png",
+      "bytes": 693670
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_099.png",
+      "bytes": 694055
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_100.png",
+      "bytes": 694259
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_101.png",
+      "bytes": 695126
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_102.png",
+      "bytes": 694843
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_103.png",
+      "bytes": 695210
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_104.png",
+      "bytes": 694574
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_105.png",
+      "bytes": 694693
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_106.png",
+      "bytes": 694385
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_107.png",
+      "bytes": 694629
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_108.png",
+      "bytes": 694369
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_109.png",
+      "bytes": 694487
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_110.png",
+      "bytes": 694693
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_111.png",
+      "bytes": 695074
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_112.png",
+      "bytes": 694692
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_113.png",
+      "bytes": 694636
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_114.png",
+      "bytes": 694229
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_115.png",
+      "bytes": 694618
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_116.png",
+      "bytes": 694026
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_117.png",
+      "bytes": 694072
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_118.png",
+      "bytes": 694435
+    },
+    {
+      "path": "research\\v11_compare\\before\\frame_119.png",
+      "bytes": 694563
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_000.png",
+      "bytes": 701124
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_001.png",
+      "bytes": 701528
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_002.png",
+      "bytes": 702039
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_003.png",
+      "bytes": 702199
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_004.png",
+      "bytes": 701986
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_005.png",
+      "bytes": 701933
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_006.png",
+      "bytes": 701583
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_007.png",
+      "bytes": 701411
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_008.png",
+      "bytes": 701200
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_009.png",
+      "bytes": 702150
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_010.png",
+      "bytes": 702843
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_011.png",
+      "bytes": 702466
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_012.png",
+      "bytes": 702804
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_013.png",
+      "bytes": 703225
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_014.png",
+      "bytes": 703440
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_015.png",
+      "bytes": 702867
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_016.png",
+      "bytes": 703303
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_017.png",
+      "bytes": 703306
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_018.png",
+      "bytes": 703462
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_019.png",
+      "bytes": 704153
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_020.png",
+      "bytes": 705753
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_021.png",
+      "bytes": 704904
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_022.png",
+      "bytes": 704884
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_023.png",
+      "bytes": 705072
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_024.png",
+      "bytes": 705367
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_025.png",
+      "bytes": 705371
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_026.png",
+      "bytes": 704815
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_027.png",
+      "bytes": 704586
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_028.png",
+      "bytes": 705385
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_029.png",
+      "bytes": 704952
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_030.png",
+      "bytes": 705049
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_031.png",
+      "bytes": 705214
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_032.png",
+      "bytes": 705996
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_033.png",
+      "bytes": 706104
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_034.png",
+      "bytes": 705970
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_035.png",
+      "bytes": 705589
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_036.png",
+      "bytes": 706160
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_037.png",
+      "bytes": 706195
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_038.png",
+      "bytes": 707099
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_039.png",
+      "bytes": 707317
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_040.png",
+      "bytes": 707359
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_041.png",
+      "bytes": 707570
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_042.png",
+      "bytes": 707664
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_043.png",
+      "bytes": 708006
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_044.png",
+      "bytes": 708488
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_045.png",
+      "bytes": 707869
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_046.png",
+      "bytes": 708300
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_047.png",
+      "bytes": 708069
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_048.png",
+      "bytes": 708585
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_049.png",
+      "bytes": 708009
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_050.png",
+      "bytes": 706947
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_051.png",
+      "bytes": 707202
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_052.png",
+      "bytes": 706832
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_053.png",
+      "bytes": 705768
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_054.png",
+      "bytes": 705588
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_055.png",
+      "bytes": 705513
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_056.png",
+      "bytes": 704928
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_057.png",
+      "bytes": 705766
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_058.png",
+      "bytes": 705405
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_059.png",
+      "bytes": 705184
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_060.png",
+      "bytes": 704642
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_061.png",
+      "bytes": 705394
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_062.png",
+      "bytes": 705143
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_063.png",
+      "bytes": 705183
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_064.png",
+      "bytes": 705302
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_065.png",
+      "bytes": 705396
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_066.png",
+      "bytes": 705459
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_067.png",
+      "bytes": 705787
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_068.png",
+      "bytes": 705051
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_069.png",
+      "bytes": 705023
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_070.png",
+      "bytes": 704773
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_071.png",
+      "bytes": 705098
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_072.png",
+      "bytes": 704849
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_073.png",
+      "bytes": 705099
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_074.png",
+      "bytes": 704469
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_075.png",
+      "bytes": 704551
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_076.png",
+      "bytes": 704207
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_077.png",
+      "bytes": 704134
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_078.png",
+      "bytes": 704091
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_079.png",
+      "bytes": 704042
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_080.png",
+      "bytes": 703210
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_081.png",
+      "bytes": 702688
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_082.png",
+      "bytes": 702947
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_083.png",
+      "bytes": 702554
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_084.png",
+      "bytes": 702842
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_085.png",
+      "bytes": 703690
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_086.png",
+      "bytes": 703230
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_087.png",
+      "bytes": 703551
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_088.png",
+      "bytes": 702664
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_089.png",
+      "bytes": 702688
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_090.png",
+      "bytes": 702868
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_091.png",
+      "bytes": 702905
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_092.png",
+      "bytes": 702843
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_093.png",
+      "bytes": 703660
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_094.png",
+      "bytes": 703178
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_095.png",
+      "bytes": 703515
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_096.png",
+      "bytes": 703544
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_097.png",
+      "bytes": 703755
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_098.png",
+      "bytes": 703446
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_099.png",
+      "bytes": 704063
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_100.png",
+      "bytes": 704981
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_101.png",
+      "bytes": 705318
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_102.png",
+      "bytes": 705236
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_103.png",
+      "bytes": 705390
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_104.png",
+      "bytes": 704825
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_105.png",
+      "bytes": 704441
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_106.png",
+      "bytes": 704755
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_107.png",
+      "bytes": 704608
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_108.png",
+      "bytes": 704772
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_109.png",
+      "bytes": 704958
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_110.png",
+      "bytes": 704822
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_111.png",
+      "bytes": 705957
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_112.png",
+      "bytes": 705794
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_113.png",
+      "bytes": 705374
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_114.png",
+      "bytes": 706467
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_115.png",
+      "bytes": 705529
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_116.png",
+      "bytes": 705201
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_117.png",
+      "bytes": 704978
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_118.png",
+      "bytes": 705466
+    },
+    {
+      "path": "research\\v11_compare\\after\\frame_119.png",
+      "bytes": 705393
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_000.png",
+      "bytes": 701124
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_001.png",
+      "bytes": 701528
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_002.png",
+      "bytes": 702039
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_003.png",
+      "bytes": 702199
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_004.png",
+      "bytes": 701986
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_005.png",
+      "bytes": 701933
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_006.png",
+      "bytes": 701583
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_007.png",
+      "bytes": 701411
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_008.png",
+      "bytes": 701200
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_009.png",
+      "bytes": 702150
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_010.png",
+      "bytes": 702843
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_011.png",
+      "bytes": 702466
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_012.png",
+      "bytes": 702804
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_013.png",
+      "bytes": 703225
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_014.png",
+      "bytes": 703440
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_015.png",
+      "bytes": 702867
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_016.png",
+      "bytes": 703303
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_017.png",
+      "bytes": 703306
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_018.png",
+      "bytes": 703462
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_019.png",
+      "bytes": 704153
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_020.png",
+      "bytes": 705753
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_021.png",
+      "bytes": 704904
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_022.png",
+      "bytes": 704884
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_023.png",
+      "bytes": 705072
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_024.png",
+      "bytes": 705367
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_025.png",
+      "bytes": 705371
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_026.png",
+      "bytes": 704815
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_027.png",
+      "bytes": 704586
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_028.png",
+      "bytes": 705385
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_029.png",
+      "bytes": 704952
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_030.png",
+      "bytes": 705049
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_031.png",
+      "bytes": 705214
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_032.png",
+      "bytes": 705996
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_033.png",
+      "bytes": 706104
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_034.png",
+      "bytes": 705970
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_035.png",
+      "bytes": 705589
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_036.png",
+      "bytes": 706160
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_037.png",
+      "bytes": 706195
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_038.png",
+      "bytes": 707099
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_039.png",
+      "bytes": 707317
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_040.png",
+      "bytes": 707359
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_041.png",
+      "bytes": 707570
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_042.png",
+      "bytes": 707664
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_043.png",
+      "bytes": 708006
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_044.png",
+      "bytes": 708488
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_045.png",
+      "bytes": 707869
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_046.png",
+      "bytes": 708300
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_047.png",
+      "bytes": 708069
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_048.png",
+      "bytes": 708585
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_049.png",
+      "bytes": 708009
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_050.png",
+      "bytes": 706947
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_051.png",
+      "bytes": 707202
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_052.png",
+      "bytes": 706832
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_053.png",
+      "bytes": 705768
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_054.png",
+      "bytes": 705588
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_055.png",
+      "bytes": 705513
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_056.png",
+      "bytes": 704928
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_057.png",
+      "bytes": 705766
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_058.png",
+      "bytes": 705405
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_059.png",
+      "bytes": 705184
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_060.png",
+      "bytes": 704642
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_061.png",
+      "bytes": 705394
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_062.png",
+      "bytes": 705143
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_063.png",
+      "bytes": 705183
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_064.png",
+      "bytes": 705302
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_065.png",
+      "bytes": 705396
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_066.png",
+      "bytes": 705459
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_067.png",
+      "bytes": 705787
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_068.png",
+      "bytes": 705051
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_069.png",
+      "bytes": 705023
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_070.png",
+      "bytes": 704773
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_071.png",
+      "bytes": 705098
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_072.png",
+      "bytes": 704849
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_073.png",
+      "bytes": 705099
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_074.png",
+      "bytes": 704469
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_075.png",
+      "bytes": 704551
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_076.png",
+      "bytes": 704207
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_077.png",
+      "bytes": 704134
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_078.png",
+      "bytes": 704091
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_079.png",
+      "bytes": 704042
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_080.png",
+      "bytes": 703210
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_081.png",
+      "bytes": 702688
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_082.png",
+      "bytes": 702947
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_083.png",
+      "bytes": 702554
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_084.png",
+      "bytes": 702842
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_085.png",
+      "bytes": 703690
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_086.png",
+      "bytes": 703230
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_087.png",
+      "bytes": 703551
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_088.png",
+      "bytes": 702664
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_089.png",
+      "bytes": 702688
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_090.png",
+      "bytes": 702868
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_091.png",
+      "bytes": 702905
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_092.png",
+      "bytes": 702843
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_093.png",
+      "bytes": 703660
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_094.png",
+      "bytes": 703178
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_095.png",
+      "bytes": 703515
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_096.png",
+      "bytes": 703544
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_097.png",
+      "bytes": 703755
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_098.png",
+      "bytes": 703446
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_099.png",
+      "bytes": 704063
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_100.png",
+      "bytes": 704981
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_101.png",
+      "bytes": 705318
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_102.png",
+      "bytes": 705236
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_103.png",
+      "bytes": 705390
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_104.png",
+      "bytes": 704825
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_105.png",
+      "bytes": 704441
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_106.png",
+      "bytes": 704755
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_107.png",
+      "bytes": 704608
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_108.png",
+      "bytes": 704772
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_109.png",
+      "bytes": 704958
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_110.png",
+      "bytes": 704822
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_111.png",
+      "bytes": 705957
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_112.png",
+      "bytes": 705794
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_113.png",
+      "bytes": 705374
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_114.png",
+      "bytes": 706467
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_115.png",
+      "bytes": 705529
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_116.png",
+      "bytes": 705201
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_117.png",
+      "bytes": 704978
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_118.png",
+      "bytes": 705466
+    },
+    {
+      "path": "research\\v12_compare\\before\\frame_119.png",
+      "bytes": 705393
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_000.png",
+      "bytes": 690284
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_001.png",
+      "bytes": 690272
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_002.png",
+      "bytes": 691005
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_003.png",
+      "bytes": 691197
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_004.png",
+      "bytes": 690720
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_005.png",
+      "bytes": 690593
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_006.png",
+      "bytes": 690773
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_007.png",
+      "bytes": 690708
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_008.png",
+      "bytes": 690118
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_009.png",
+      "bytes": 690705
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_010.png",
+      "bytes": 691487
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_011.png",
+      "bytes": 691378
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_012.png",
+      "bytes": 692031
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_013.png",
+      "bytes": 693312
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_014.png",
+      "bytes": 693203
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_015.png",
+      "bytes": 692408
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_016.png",
+      "bytes": 693019
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_017.png",
+      "bytes": 692940
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_018.png",
+      "bytes": 693419
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_019.png",
+      "bytes": 693991
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_020.png",
+      "bytes": 693762
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_021.png",
+      "bytes": 694068
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_022.png",
+      "bytes": 693538
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_023.png",
+      "bytes": 694134
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_024.png",
+      "bytes": 693904
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_025.png",
+      "bytes": 694445
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_026.png",
+      "bytes": 694536
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_027.png",
+      "bytes": 694651
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_028.png",
+      "bytes": 694840
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_029.png",
+      "bytes": 694849
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_030.png",
+      "bytes": 694565
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_031.png",
+      "bytes": 694805
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_032.png",
+      "bytes": 695389
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_033.png",
+      "bytes": 695512
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_034.png",
+      "bytes": 695878
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_035.png",
+      "bytes": 695501
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_036.png",
+      "bytes": 695773
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_037.png",
+      "bytes": 695809
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_038.png",
+      "bytes": 695885
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_039.png",
+      "bytes": 695760
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_040.png",
+      "bytes": 695878
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_041.png",
+      "bytes": 696504
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_042.png",
+      "bytes": 696683
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_043.png",
+      "bytes": 696501
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_044.png",
+      "bytes": 696143
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_045.png",
+      "bytes": 696425
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_046.png",
+      "bytes": 696576
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_047.png",
+      "bytes": 696029
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_048.png",
+      "bytes": 696761
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_049.png",
+      "bytes": 696470
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_050.png",
+      "bytes": 696087
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_051.png",
+      "bytes": 696305
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_052.png",
+      "bytes": 695842
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_053.png",
+      "bytes": 695051
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_054.png",
+      "bytes": 694886
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_055.png",
+      "bytes": 694723
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_056.png",
+      "bytes": 694471
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_057.png",
+      "bytes": 695168
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_058.png",
+      "bytes": 695586
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_059.png",
+      "bytes": 695162
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_060.png",
+      "bytes": 694978
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_061.png",
+      "bytes": 695173
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_062.png",
+      "bytes": 695196
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_063.png",
+      "bytes": 694774
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_064.png",
+      "bytes": 694461
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_065.png",
+      "bytes": 695141
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_066.png",
+      "bytes": 695274
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_067.png",
+      "bytes": 695480
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_068.png",
+      "bytes": 694570
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_069.png",
+      "bytes": 694663
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_070.png",
+      "bytes": 694774
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_071.png",
+      "bytes": 694531
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_072.png",
+      "bytes": 694708
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_073.png",
+      "bytes": 694667
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_074.png",
+      "bytes": 693604
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_075.png",
+      "bytes": 693445
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_076.png",
+      "bytes": 693363
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_077.png",
+      "bytes": 692714
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_078.png",
+      "bytes": 693377
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_079.png",
+      "bytes": 693157
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_080.png",
+      "bytes": 692149
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_081.png",
+      "bytes": 691977
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_082.png",
+      "bytes": 692251
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_083.png",
+      "bytes": 692173
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_084.png",
+      "bytes": 692437
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_085.png",
+      "bytes": 692887
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_086.png",
+      "bytes": 692239
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_087.png",
+      "bytes": 692478
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_088.png",
+      "bytes": 692529
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_089.png",
+      "bytes": 692521
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_090.png",
+      "bytes": 692489
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_091.png",
+      "bytes": 692438
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_092.png",
+      "bytes": 692549
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_093.png",
+      "bytes": 692894
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_094.png",
+      "bytes": 692770
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_095.png",
+      "bytes": 693044
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_096.png",
+      "bytes": 693042
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_097.png",
+      "bytes": 693036
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_098.png",
+      "bytes": 693703
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_099.png",
+      "bytes": 693791
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_100.png",
+      "bytes": 693877
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_101.png",
+      "bytes": 694756
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_102.png",
+      "bytes": 694501
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_103.png",
+      "bytes": 694822
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_104.png",
+      "bytes": 694448
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_105.png",
+      "bytes": 694235
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_106.png",
+      "bytes": 693877
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_107.png",
+      "bytes": 694214
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_108.png",
+      "bytes": 694032
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_109.png",
+      "bytes": 694096
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_110.png",
+      "bytes": 694349
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_111.png",
+      "bytes": 694733
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_112.png",
+      "bytes": 694532
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_113.png",
+      "bytes": 694401
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_114.png",
+      "bytes": 694098
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_115.png",
+      "bytes": 694360
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_116.png",
+      "bytes": 693730
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_117.png",
+      "bytes": 694133
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_118.png",
+      "bytes": 694182
+    },
+    {
+      "path": "research\\v12_compare\\after\\frame_119.png",
+      "bytes": 694214
+    }
+  ]
+}

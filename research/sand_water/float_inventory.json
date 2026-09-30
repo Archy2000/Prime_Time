@@ -1,0 +1,398 @@
+[
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 39,
+    "type": "MonoScript",
+    "name": "Buoy"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 83,
+    "type": "MonoScript",
+    "name": "PartyBeaconID_t"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 93,
+    "type": "MonoScript",
+    "name": "Rock"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 242,
+    "type": "MonoScript",
+    "name": "float4x2.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 257,
+    "type": "MonoScript",
+    "name": "RocketToy"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 260,
+    "type": "MonoScript",
+    "name": "DebugUIHandlerFloatField"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 356,
+    "type": "MonoScript",
+    "name": "float3x3.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 369,
+    "type": "MonoScript",
+    "name": "WoodenBoat"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 415,
+    "type": "MonoScript",
+    "name": "float2.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 427,
+    "type": "MonoScript",
+    "name": "BurstString.Float"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 448,
+    "type": "MonoScript",
+    "name": "Buoyancy"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 523,
+    "type": "MonoScript",
+    "name": "float4x4.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 696,
+    "type": "MonoScript",
+    "name": "UIntFloat"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 717,
+    "type": "MonoScript",
+    "name": "float3.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 730,
+    "type": "MonoScript",
+    "name": "float2x4.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 772,
+    "type": "MonoScript",
+    "name": "Gemstone"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 855,
+    "type": "MonoScript",
+    "name": "Boat"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 928,
+    "type": "MonoScript",
+    "name": "float3x4.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 950,
+    "type": "MonoScript",
+    "name": "float2x2.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 1006,
+    "type": "MonoScript",
+    "name": "float4.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 1177,
+    "type": "MonoScript",
+    "name": "float4x3.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 1251,
+    "type": "MonoScript",
+    "name": "DebugUIHandlerIndirectFloatField"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 1339,
+    "type": "MonoScript",
+    "name": "float3x2.gen"
+  },
+  {
+    "file": "globalgamemanagers.assets",
+    "id": 1550,
+    "type": "MonoScript",
+    "name": "float2x3.gen"
+  },
+  {
+    "file": "resources.assets",
+    "id": 25,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 29,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 33,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 39,
+    "type": "GameObject",
+    "name": "DebugUIFloatField"
+  },
+  {
+    "file": "resources.assets",
+    "id": 46,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 49,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 73,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 89,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 97,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 103,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 112,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 122,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 126,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 148,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "resources.assets",
+    "id": 156,
+    "type": "GameObject",
+    "name": "Float"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 330,
+    "type": "Mesh",
+    "name": "Rock_05"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 335,
+    "type": "Mesh",
+    "name": "RocketToy"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 340,
+    "type": "Mesh",
+    "name": "Gemstone"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 349,
+    "type": "Mesh",
+    "name": "Rock_05_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 359,
+    "type": "Mesh",
+    "name": "Rock_02"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 386,
+    "type": "Mesh",
+    "name": "Rock_02_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 391,
+    "type": "Mesh",
+    "name": "Rock_03_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 395,
+    "type": "Mesh",
+    "name": "Rock_03"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 399,
+    "type": "Mesh",
+    "name": "Buoy_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 421,
+    "type": "Mesh",
+    "name": "Rock_01_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 458,
+    "type": "Mesh",
+    "name": "BoatObstacle_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 470,
+    "type": "Mesh",
+    "name": "Rock_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 474,
+    "type": "Mesh",
+    "name": "Rock_06"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 502,
+    "type": "Mesh",
+    "name": "Boat_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 519,
+    "type": "Mesh",
+    "name": "Rock_04_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 525,
+    "type": "Mesh",
+    "name": "Rock_06_Collider"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 535,
+    "type": "Mesh",
+    "name": "WoodenBoat_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 548,
+    "type": "Mesh",
+    "name": "Rock_04"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 1483,
+    "type": "GameObject",
+    "name": "RocketToy"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 1516,
+    "type": "GameObject",
+    "name": "WoodenBoat"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 1917,
+    "type": "GameObject",
+    "name": "Boat_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 1989,
+    "type": "GameObject",
+    "name": "Buoy"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 2324,
+    "type": "GameObject",
+    "name": "WoodenBoat_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 2437,
+    "type": "GameObject",
+    "name": "Boat"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 2869,
+    "type": "GameObject",
+    "name": "Gemstone"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 3052,
+    "type": "GameObject",
+    "name": "Buoy_01"
+  },
+  {
+    "file": "sharedassets0.assets",
+    "id": 3534,
+    "type": "GameObject",
+    "name": "Rock"
+  }
+]

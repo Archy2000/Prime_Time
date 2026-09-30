@@ -1,0 +1,45 @@
+{
+  "cases": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "cooldown_reduced_20_percent": true,
+  "enclosed_swim_recovers": true,
+  "no_sandcastle_rock": true,
+  "original_geometry_preserved": true,
+  "original_material_preserved": true,
+  "passed": true,
+  "submerged_roof_cases": [
+    {
+      "clear": true,
+      "family": "2floor lowrise"
+    },
+    {
+      "clear": true,
+      "family": "lowrise2floors curve"
+    },
+    {
+      "clear": true,
+      "family": "lowrise2floors l"
+    },
+    {
+      "clear": true,
+      "family": "japanhighriser"
+    },
+    {
+      "clear": true,
+      "family": "japanesehome"
+    },
+    {
+      "clear": true,
+      "family": "talo_"
+    }
+  ],
+  "submerged_roofs_recover": true
+}

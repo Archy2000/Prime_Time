@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "manual_lower_protected": true,
+      "reached_target": true,
+      "shallow_body_clearance": true,
+      "shallow_model_clearance": true,
+      "size": 1.0,
+      "smooth": true,
+      "water": 1.15
+    },
+    {
+      "manual_lower_protected": true,
+      "reached_target": true,
+      "shallow_body_clearance": true,
+      "shallow_model_clearance": true,
+      "size": 2.3,
+      "smooth": true,
+      "water": 2.84
+    },
+    {
+      "manual_lower_protected": true,
+      "reached_target": true,
+      "shallow_body_clearance": true,
+      "shallow_model_clearance": true,
+      "size": 3.2,
+      "smooth": true,
+      "water": 4.01
+    }
+  ],
+  "higher_manual_water_preserved": true,
+  "jump_not_clamped": true,
+  "passed": true
+}

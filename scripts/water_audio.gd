@@ -3,8 +3,8 @@ extends Node3D
 const ROOT := "res://assets/audio/water/"
 const MAX_VOICES := 16
 @export_range(-40, 6) var water_volume_db := 0.0
-@export_range(0, 1) var ambient_gain := 0.20
-@export_range(0, 1) var motion_gain := 0.29
+@export_range(0, 1) var ambient_gain := 0.035
+@export_range(0, 1) var motion_gain := 0.10
 @export_range(0, 1) var agitation_gain := 0.32
 var muted := false
 var focus := Vector3.ZERO
@@ -14,7 +14,6 @@ var clock := 0.0
 var moving := 0.0
 var intensity := 0.0
 var freshness := 0.0
-var pulse := 0.0
 var surge := 0.0
 var size := 1.0
 var emitted := 0
@@ -44,7 +43,7 @@ func _ready() -> void:
 	listener = AudioListener3D.new()
 	add_child(listener)
 	listener.make_current()
-	for spec in [["WaterCalm_02", "Water Ambient"], ["WaterFlowing", "Water Motion"], ["WaterAgitated_01", "Water Motion"]]:
+	for spec in [["WaterCalm_02", "Water Ambient"], ["SharkGlide", "Water Motion"], ["WaterAgitated_01", "Water Motion"]]:
 		var p := AudioStreamPlayer.new()
 		var stream := _clip(spec[0]).duplicate() as AudioStreamWAV
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
@@ -96,13 +95,11 @@ func _process(dt: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Water"), water_volume_db)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Water"), muted or not enabled)
 	_mix(loops[0], ambient_gain if enabled else 0.0, dt, 1.2)
-	_mix(loops[1], minf(intensity, 1.0) * motion_gain, dt, 6.0)
-	_mix(loops[2], maxf(clampf((intensity - 0.55) / 0.95, 0, 1), surge) * agitation_gain if enabled else 0.0, dt, 5.0)
-	loops[1].pitch_scale = lerpf(0.9, 1.12, minf(intensity, 1.0))
-	pulse -= dt
-	if target > 0.10 and pulse <= 0:
-		pulse = rng.randf_range(0.32, 0.55) / maxf(0.6, target)
-		shot("WaterSplashSmall", 5, focus, -21 + minf(target, 1.0) * 5, 1.0 / pow(maxf(size, 1), 0.12), "swim", 0.15)
+	# Submerged swimming has a soft continuous displacement texture, no repeated slaps.
+	_mix(loops[1], minf(intensity, 1.2) * motion_gain, dt, 3.5)
+	# Agitated surface water belongs to landings and waves, never ordinary movement.
+	_mix(loops[2], surge * agitation_gain if enabled else 0.0, dt, 5.0)
+	loops[1].pitch_scale = lerpf(0.96, 1.04, minf(intensity / 1.5, 1.0))
 
 func _mix(p: AudioStreamPlayer, target: float, dt: float, response: float) -> void:
 	p.volume_linear = lerpf(p.volume_linear, target, 1.0 - exp(-dt * response))
@@ -146,7 +143,6 @@ func breach(pos: Vector3, body_size: float, vertical_speed: float, landing: bool
 		shot("WaterHeavyEntry", 3, pos, gain, pitch, "breach", 0.08)
 		surge = minf(1.0, power * body_size * 0.45)
 		# Leave space for the low impact and collapsing sheet before discrete drops.
-		pulse = 0.55
 		_drips(pos)
 	else:
 		shot("WaterSplashMedium", 4, pos, -13.0 + minf(body_size - 1, 3) * 1.1 + linear_to_db(power), 1.0 / pow(maxf(body_size, 1), 0.19), "breach", 0.08)

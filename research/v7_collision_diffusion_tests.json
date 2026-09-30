@@ -1,7 +1,7 @@
 {
   "all_building_parts_collidable": true,
   "all_families_ram": true,
-  "building_parts": 2180,
+  "building_parts": 2604,
   "cloud_expands": true,
   "diffusion_advances": true,
   "missing_building_colliders": 0,

@@ -129,6 +129,9 @@ func update(dt:float)->void:
 		var b:=fragments[i]
 		if not is_instance_valid(b):fragments.remove_at(i);continue
 		var age:float=float(b.get_meta("age",0.0))+dt;b.set_meta("age",age)
+		if b.get_meta("masonry",false) and age>0.75:
+			game.floating_world.accept_piece(b)
+			b.queue_free();fragments.remove_at(i);continue
 		var local_water:Vector3=game.wave_sim.sample_surface(b.position)
 		var surface_y:float=game.water_level+local_water.y
 		if not b.get_meta("splashed",false) and b.position.y<surface_y+0.05 and b.linear_velocity.y<-0.4:
@@ -179,7 +182,7 @@ func _stamp_blood(pos:Vector3,size:float,angle:float)->void:
 	var hit:Dictionary=get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(origin,Vector3(pos.x,-0.5,pos.z),1))
 	var on_water:bool=hit.is_empty() or hit.position.y<game.water_level
 	var support:Node=null
-	if not hit.is_empty():support=hit.collider.get_meta("visual",null)
+	if not hit.is_empty() and hit.collider.has_meta("visual"):support=hit.collider.get_meta("visual")
 	var plane:=MeshInstance3D.new();var quad:=PlaneMesh.new();quad.size=Vector2(size*rng.randf_range(0.8,1.25),size*rng.randf_range(0.8,1.25));plane.mesh=quad
 	var mat:=StandardMaterial3D.new();mat.albedo_texture=load("res://assets/effects/rollasplat1.png");mat.albedo_color=Color(0.38+rng.randf()*0.08,0.035,0.012,0.82)
 	mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat.cull_mode=BaseMaterial3D.CULL_DISABLED;mat.render_priority=2
@@ -246,6 +249,7 @@ func fracture(mesh_node:MeshInstance3D,impulse:Vector3,amount:int=8)->void:
 		var world_center:Vector3=mesh_node.global_transform*local_center
 		var b:=RigidBody3D.new();b.mass=clampf((mesh_node.global_transform*mesh.get_aabb()).get_volume()*0.5,0.35,8.0);b.collision_layer=4;b.collision_mask=1;b.linear_damp=0.24;b.angular_damp=0.5
 		add_child(b);b.position=world_center;b.add_child(fragment)
+		b.set_meta("masonry",true)
 		fragment.transform=Transform3D(mesh_node.global_basis,-(mesh_node.global_basis*local_center))
 		var shape:=CollisionShape3D.new();var bs:=BoxShape3D.new();var size:Vector3=mesh_node.global_basis.get_scale()*mesh.get_aabb().size
 		bs.size=Vector3(maxf(0.08,absf(size.x)),maxf(0.08,absf(size.y)),maxf(0.08,absf(size.z)))*0.85;shape.shape=bs

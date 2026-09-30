@@ -3,6 +3,18 @@ extends Node3D
 const CITY_SCALE := 0.2
 const BUILDING_GROWTH:=1.65
 var airborne:=false
+var air_age:=0.0
+var trapped_time:=0.0
+var trap_probe_time:=0.0
+var trap_probe_position:=START
+var blocked_motion_time:=0.0
+var slide_side:=1.0
+const BOOST_REST:=4.0
+var roof_escape:=false
+var escape_point:=Vector3.ZERO
+var last_swim_safe:=START
+var floating_world:Node3D
+var tower_district:Node3D
 var jump_velocity:=0.0
 var jump_cooldown:=0.0
 var air_drift:=Vector3.ZERO
@@ -28,6 +40,14 @@ var targets: Array[Node3D]=[]
 var destructibles: Array[MeshInstance3D]=[]
 var solids: Dictionary={}
 var water_level:=1.15
+const BASE_WATER_LEVEL:=1.15
+const WATER_PER_GROWTH:=3.0
+const MAX_WATER_LEVEL:=12.0
+const WATER_NPC_COUNT:=180
+const ROOF_NPC_COUNT:=64
+const SHARK_LOWER_EXTENT:=0.40 # Model lower fins, including swim/growth animation margin.
+const FLOOR_CLEARANCE:=0.12
+var swim_floor_y:=-0.05 # Highest street/grass surface; roofs are not swimming ground.
 var eaten:=0
 var wrecked:=0
 var growth:=1.0
@@ -89,8 +109,14 @@ func _ready()->void:
 	fx=Node3D.new();fx.set_script(load("res://scripts/impact_fx.gd"));fx.process_mode=Node.PROCESS_MODE_PAUSABLE;add_child(fx);fx.setup(self)
 	combat=preload("res://scripts/human_combat.gd").new();add_child(combat);combat.setup(self)
 	npc_audio=preload("res://scripts/npc_audio.gd").new();add_child(npc_audio);npc_audio.setup(self)
-	_make_targets()
+	# Newly created city colliders must reach the physics server before spawn probes.
+	await get_tree().physics_frame
 	_make_roof_targets()
+	tower_district=preload("res://scripts/tower_district.gd").new();add_child(tower_district);tower_district.setup(self)
+	floating_world=preload("res://scripts/floating_world.gd").new();add_child(floating_world);floating_world.setup(self)
+	await get_tree().physics_frame
+	_make_targets()
+	last_swim_safe=player.position
 	_make_hud()
 	ready_done=true
 	print("READY: ",city.get_child_count()," imported scene nodes, ",solids.size()," colliders, ",targets.size()," targets")
@@ -154,23 +180,29 @@ func _load_city()->void:
 		var source_path:String=item.get("path","")
 		_register_building(mesh_node,source_path,mesh_name)
 		mesh_node.set_meta("source_mesh",mesh_name)
+		if mesh_name in ["road","grass","grass_001"]:
+			swim_floor_y=maxf(swim_floor_y,(mesh_node.global_transform*mesh_node.mesh.get_aabb()).end.y)
 		if mesh_name=="road":
 			var asphalt:=StandardMaterial3D.new();asphalt.albedo_color=Color(0.18,0.20,0.19);asphalt.roughness=1.0;asphalt.cull_mode=BaseMaterial3D.CULL_DISABLED;mesh_node.material_override=asphalt
-		var breakable:=node_building.has(mesh_node.get_instance_id()) or mesh_name.contains("wall") or mesh_name.begins_with("car_") or mesh_name.contains("kyltti") or mesh_name.contains("tolppa") or mesh_name.contains("seina") or mesh_name.contains("house")
+		# Terrain and painted road markings are the continuous map surface;
+		# every discrete scene prop, including vegetation and utility wires, breaks.
+		var terrain:bool=mesh_name in ["road","grass","grass_001","snow","plane_003","plane_005"] or mesh_name.contains("shadow") or mesh_name.begins_with("valiviiva")
+		var breakable:=not terrain
 		if breakable:
 			destructibles.append(mesh_node)
 			mesh_node.set_meta("car",mesh_name.begins_with("car_"))
 			mesh_node.set_meta("broken",false)
+			mesh_node.set_meta("required_growth",BUILDING_GROWTH if node_building.has(mesh_node.get_instance_id()) else 1.0)
 		# Unity also used colliders on parent objects. The flattened glTF only
 		# records mesh-local colliders, so reconstruct collision for building parts.
-		if (item.get("collider",false) or node_building.has(mesh_node.get_instance_id())) and not mesh_name.contains("shadow") and not mesh_name.contains("grass"):
+		if (item.get("collider",false) or breakable) and not mesh_name.contains("shadow") and not mesh_name.contains("grass"):
 			var body:=StaticBody3D.new();body.collision_layer=1;body.collision_mask=0
 			mesh_node.add_child(body)
 			var shape:=CollisionShape3D.new();shape.shape=mesh_node.mesh.create_trimesh_shape();body.add_child(shape)
 			body.set_meta("visual",mesh_node)
 			solids[mesh_node.get_instance_id()]=body
 	# Navigation stays within the extracted area.
-	for spec in [[Vector3(-61,3,-20),Vector3(1,16,150)],[Vector3(61,3,-20),Vector3(1,16,150)],[Vector3(0,3,-77),Vector3(125,16,1)],[Vector3(0,3,44),Vector3(125,16,1)]]:
+	for spec in [[Vector3(-61,12,-20),Vector3(1,40,150)],[Vector3(61,12,-20),Vector3(1,40,150)],[Vector3(0,12,-77),Vector3(125,40,1)],[Vector3(0,12,44),Vector3(125,40,1)]]:
 		var b:=StaticBody3D.new();add_child(b);b.position=spec[0]
 		var s:=CollisionShape3D.new();var box:=BoxShape3D.new();box.size=spec[1];s.shape=box;b.add_child(s)
 
@@ -198,14 +230,24 @@ func _make_player()->void:
 	_camera_update(1.0)
 
 func _make_targets()->void:
-	# Extracted civilian meshes with procedural swimming and capture motion.
-	for i in 55:
-		var target:Node3D=fx.make_civilian(i);add_child(target)
-		var x:=rng.randf_range(-4.2,4.2)
-		var z:float=-24.0-float(i%10)*3.0
-		if i>=30:x=rng.randf_range(-25,25);z=-3.2+rng.randf_range(-3.0,3.0)
-		target.position=Vector3(x,water_level,z)
-		target.set_meta("phase",rng.randf()*TAU);targets.append(target)
+	var positions:Array[Vector3]=[]
+	var sphere:=SphereShape3D.new();sphere.radius=0.4
+	var query:=PhysicsShapeQueryParameters3D.new();query.shape=sphere;query.collision_mask=1
+	for attempt in 6000:
+		if positions.size()>=WATER_NPC_COUNT:break
+		var pos:=Vector3(rng.randf_range(-48,48),water_level,rng.randf_range(-70,35))
+		if positions.size()<90:pos.x=rng.randf_range(-4.2,4.2)
+		if pos.distance_to(START)<4.0:continue
+		var ray:=PhysicsRayQueryParameters3D.create(pos+Vector3.UP*30,pos-Vector3.UP*0.1,1)
+		if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():continue
+		query.transform=Transform3D(Basis.IDENTITY,pos)
+		if not get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():continue
+		var crowded:=false
+		for previous in positions:
+			if previous.distance_squared_to(pos)<1.0:crowded=true;break
+		if crowded:continue
+		var target:Node3D=fx.make_civilian(positions.size());add_child(target);target.position=pos
+		target.set_meta("phase",rng.randf()*TAU);targets.insert(positions.size(),target);positions.append(pos)
 
 func _make_roof_targets()->void:
 	var candidates:Array[MeshInstance3D]=[]
@@ -229,24 +271,25 @@ func _make_roof_targets()->void:
 		var person:Node3D=fx.make_civilian(roof_targets,true,role);add_child(person);person.position=pos
 		person.set_meta("rooftop",true);person.set_meta("roof_support",roof);person.set_meta("phase",rng.randf()*TAU)
 		targets.append(person);positions.append(pos);roof_targets+=1
-		if roof_targets>=32:break
+		if roof_targets>=ROOF_NPC_COUNT:break
 
 func _jump()->void:
 	if airborne or jump_cooldown>0:return
-	airborne=true;jump_cooldown=1.5;jump_velocity=15.0+(growth-1)*2.5
+	airborne=true;air_age=0;roof_escape=false;jump_cooldown=1.5;jump_velocity=15.0+(growth-1)*2.5
+	var max_jump:float=jump_velocity
 	var heading:Vector3=player.velocity.normalized() if player.velocity.length()>0.5 else -visual.global_basis.z.normalized()
 	heading.y=0;air_drift=heading.normalized()*6.5
 	leap_target=null
-	var nearest:=8.0
+	var nearest:=8.0+2.0*(growth-1.0)
 	for target in targets:
 		if not target.get_meta("rooftop",false):continue
 		var delta:Vector3=target.position-player.position;delta.y=0
 		var alignment:float=delta.normalized().dot(heading)
 		var priority:float=delta.length()+(1.0-alignment)*5.0
-		if priority<nearest and alignment>0.35 and target.position.y-player.position.y<8:
+		if priority<nearest and alignment>0.35 and target.position.y+1.3-player.position.y<max_jump*max_jump/36.0:
 			nearest=priority;leap_target=target
 	if is_instance_valid(leap_target):
-		jump_velocity=clampf(sqrt(36.0*maxf(1.0,leap_target.position.y+1.3-player.position.y)),8,18)
+		jump_velocity=clampf(sqrt(36.0*maxf(1.0,leap_target.position.y+1.3-player.position.y)),8,max_jump)
 		var delta:Vector3=leap_target.position-player.position;delta.y=0
 		air_drift=delta.limit_length(6.5)
 	water_fx.water_y=water_level;water_fx.breach(player.position,growth,jump_velocity,false)
@@ -283,8 +326,8 @@ func _make_hud()->void:
 	notice=Label.new();notice.position=Vector2(26,175);notice.modulate=Color(0.94,0.77,0.40);root.add_child(notice)
 	notice.text="屋顶警察与军方会开火！利用建筑掩护，跃起吞噬可回血。"
 	help=PanelContainer.new();root.add_child(help);help.position=Vector2(24,210);_panel_style(help);help.visible=false
-	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 5 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF11：全屏    F1：收起说明\n\n体型达到 1.65× 可撞毁建筑。跃起接近楼顶居民可吞噬。\n警察单发 / 军方连射；建筑挡子弹，吞噬回复 8 点生命。";help.add_child(text)
-	var corner:=Label.new();root.add_child(corner);corner.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);corner.offset_left=-330;corner.offset_top=26;corner.offset_right=-24;corner.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;corner.text="水深颜色修正  14\nF1 帮助 · F2 水体 · F3 滤镜"
+	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 4 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位（最高 12 米）\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF11：全屏    F1：收起说明\n\n体型 1.65× 可撞毁普通建筑，2.30× 可撞毁高楼。\n比自身弱小的杂物、树木、船只接触即可碾碎。\n大物件先成长或冲刺；车辆至少 2.30× 才能直接碾压。\n成长带动涨水，跃起接近高楼守卫可吞噬。\n警察单发 / 军方连射；建筑挡子弹，吞噬回复 8 点生命。";help.add_child(text)
+	var corner:=Label.new();root.add_child(corner);corner.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);corner.offset_left=-330;corner.offset_top=26;corner.offset_right=-24;corner.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;corner.text="人群与高水位  19\nF1 帮助 · F2 水体 · F3 滤镜"
 	combo_label=Label.new();root.add_child(combo_label);combo_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);combo_label.offset_left=-310;combo_label.offset_top=88;combo_label.offset_right=-24;combo_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;combo_label.add_theme_font_size_override("font_size",26);combo_label.modulate=Color(0.98,0.8,0.3)
 	pause_label=Label.new();root.add_child(pause_label);pause_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER);pause_label.offset_left=-100;pause_label.offset_top=-30;pause_label.add_theme_font_size_override("font_size",32);pause_label.text="已暂停  /  ESC";pause_label.visible=false
 	retro_filter.build_panel(root)
@@ -326,8 +369,9 @@ func _physics_process(dt:float)->void:
 	if combo_timer<=0:combo=0
 	bite_window=maxf(0,bite_window-dt);jump_cooldown=maxf(0,jump_cooldown-dt)
 	boost_time=maxf(0,boost_time-dt);cooldown=maxf(0,cooldown-dt);bite_timer=maxf(0,bite_timer-dt)
-	if Input.is_physical_key_pressed(KEY_PAGEUP):water_level=minf(5.0,water_level+dt*0.55)
-	if Input.is_physical_key_pressed(KEY_PAGEDOWN):water_level=maxf(0.25,water_level-dt*0.55)
+	if Input.is_physical_key_pressed(KEY_PAGEUP):water_level=minf(MAX_WATER_LEVEL,water_level+dt*1.1)
+	if Input.is_physical_key_pressed(KEY_PAGEDOWN):_lower_water(dt*0.55)
+	_update_growth_water(dt)
 	water.position.y=water_level
 	var axis:=Input.get_vector("left","right","forward","back")
 	var forward:Vector3=-camera.global_basis.z;forward.y=0;forward=forward.normalized()
@@ -336,31 +380,60 @@ func _physics_process(dt:float)->void:
 	var speed:float=lerpf(8.0,12.0,1.0/clampf(growth,1.0,9.0))*(1.5 if boost_time>0 else 1.0)
 	var surface:float=water_level+wave_sim.sample_surface(player.position).y
 	if airborne:
+		air_age+=dt
 		jump_velocity-=18.0*dt
 		if dir.length()>0.1:air_drift=air_drift.move_toward(dir*8.0,dt*13.0)
 		elif is_instance_valid(leap_target) and not leap_target.get_meta("captured",false):
 			var to_roof:Vector3=leap_target.position-player.position;to_roof.y=0;air_drift=(to_roof*3.0).limit_length(6.5)
 		# Clear the roof lip before moving inward, instead of hitting its underside.
+		if dir.length()>0.1:leap_target=null
 		if is_instance_valid(leap_target) and jump_velocity>0 and player.position.y<leap_target.position.y+0.25:air_drift=Vector3.ZERO
+		if roof_escape and dir.length()<=0.1:
+			var away:Vector3=escape_point-player.position;away.y=0
+			air_drift=away.normalized()*(7.0+growth)
 		player.velocity=Vector3(air_drift.x,jump_velocity,air_drift.z)
 	else:
 		player.velocity=player.velocity.move_toward(dir*speed,dt*45.0);player.velocity.y=0
-		player.position.y=lerpf(player.position.y,surface-0.52*growth,minf(1,dt*12))
+		# Sweep vertical buoyancy instead of teleporting through submerged roofs.
+		var target_y:float=maxf(lerpf(player.position.y,_swim_body_y(surface),minf(1,dt*12)),swim_floor_y+FLOOR_CLEARANCE+0.15*growth)
+		player.velocity.y=(target_y-player.position.y)/maxf(dt,0.001)
 	if dir.length()>0.1:visual.rotation.y=lerp_angle(visual.rotation.y,atan2(-dir.x,-dir.z),minf(1.0,dt*12.0))
 	visual.rotation.x=lerpf(visual.rotation.x,clampf(atan2(jump_velocity,8.0),-0.65,0.8) if airborne else 0.0,minf(1,dt*10))
 	var ram_velocity:Vector3=player.velocity
 	var was_descending := airborne and jump_velocity < 0.0
+	_clear_small_obstacles(ram_velocity,dt)
+	var before_move:Vector3=player.position
 	player.move_and_slide()
+	_resolve_blocked_motion(before_move,dir,speed,dt)
+	# A swimming body can be supported ABOVE the water by a shallow roof.
+	# It must become airborne again; hiding its model underwater cannot resolve it.
+	if not airborne and player.position.y>surface+0.05 and player.position.y>_swim_body_y(surface)+0.35:
+		airborne=true;air_age=0;jump_velocity=0;was_descending=true;leap_target=null
+		var support_ray:=PhysicsRayQueryParameters3D.create(player.position+Vector3.UP*0.4*growth,player.position-Vector3.UP*(0.3*growth+0.3),1)
+		var support:Dictionary=get_world_3d().direct_space_state.intersect_ray(support_ray)
+		if not support.is_empty():_escape_roof(support.collider)
 	if airborne:
 		# Test water entry before a supporting roof collision cancels vertical speed.
 		surface=water_level+wave_sim.sample_surface(player.position).y
-		if player.position.y<=surface+0.05 and was_descending:
+		var water_pose:=Vector3(player.position.x,_swim_body_y(surface),player.position.z)
+		var clear_entry:bool=not player.test_move(player.global_transform,water_pose-player.position) and _water_column_clear(water_pose)
+		if player.position.y<=surface+0.05 and was_descending and clear_entry:
 			water_fx.water_y=water_level;water_fx.breach(player.position,growth,jump_velocity,true)
-			airborne=false;player.position.y=surface-0.52*growth;jump_velocity=0
+			airborne=false;player.position.y=_swim_body_y(surface);jump_velocity=0
 			player.velocity.y=0;leap_target=null;air_drift=Vector3.ZERO
+			roof_escape=false;air_age=0;last_swim_safe=player.position
 		else:
 			for i in player.get_slide_collision_count():
-				if player.get_slide_collision(i).get_normal().y>0.5 and jump_velocity<0:jump_velocity=0
+				var collision:=player.get_slide_collision(i)
+				if collision.get_normal().y < -0.4 and jump_velocity>0:
+					jump_velocity=0;leap_target=null
+				if collision.get_normal().y>0.4 and was_descending:
+					jump_velocity=0
+					if not roof_escape:_escape_roof(collision.get_collider())
+			if air_age>6.0:_recover_from_building()
+	else:
+		if _water_column_clear(player.position):last_swim_safe=player.position
+	_check_trapped(dt)
 	_lock_shark_to_water()
 	visual.update_motion(dt,Vector2(player.velocity.x,player.velocity.z).length()/growth,airborne)
 	if boost_time>0:
@@ -384,12 +457,137 @@ func _physics_process(dt:float)->void:
 	hit_overlay.color.a=damage_flash
 	health_label.text="生命 %03d / 100  ·  警戒 %s"%[ceili(health),"交火中" if combat.bullets.size()>0 else "搜索中"]
 	_update_water(dt)
+	floating_world.update(dt)
 	fx.update(dt)
 	_camera_update(dt)
 	status.text="吞噬 %02d   /   体型 %.2f×   /   破坏 %02d"%[eaten,growth,wrecked]
-	boost_bar.value=100.0*(1.0-clampf((cooldown-boost_time)/5.0,0,1))
+	boost_bar.value=100.0*(1.0-clampf((cooldown-boost_time)/BOOST_REST,0,1))
 	combo_label.text=("COMBO ×%d\n"%combo if combo>1 else "")+"%06d"%score
 	feed_label.text="洪水现场   /   水位 %.1fm    ·    %s    |    PAGE↑↓ 调水位    |    %02d:%02d"%[water_level,"清澈水体" if clear_water else "末世浑水",int(elapsed)/60,int(elapsed)%60]
+
+func _growth_water_target()->float:
+	return minf(MAX_WATER_LEVEL,BASE_WATER_LEVEL+maxf(0.0,growth-1.0)*WATER_PER_GROWTH)
+
+func _water_column_clear(pos:Vector3)->bool:
+	# Always validate a SWIMMING pose, even when called with a stranded roof pose.
+	# Testing the caller's Y accepted the empty air above roofs as safe water.
+	pos.y=_swim_body_y(water_level+wave_sim.sample_surface(pos).y)
+	var shape:=SphereShape3D.new();shape.radius=0.55*growth
+	var query:=PhysicsShapeQueryParameters3D.new();query.shape=shape;query.collision_mask=1
+	query.transform=Transform3D(Basis.IDENTITY,pos+Vector3.UP*0.4*growth)
+	if not get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():return false
+	for offset in [Vector3.ZERO,Vector3.RIGHT*0.45*growth,Vector3.LEFT*0.45*growth,Vector3.FORWARD*0.45*growth,Vector3.BACK*0.45*growth]:
+		var start:Vector3=pos+offset+Vector3.UP*0.4*growth
+		var ray:=PhysicsRayQueryParameters3D.create(start,Vector3(start.x,maxf(25,water_level+20),start.z),1)
+		if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():return false
+	return true
+
+func _escape_roof(body:Node)->void:
+	roof_escape=true;leap_target=null
+	var candidates:Array[Vector3]=[]
+	if body.has_meta("visual"):
+		var mesh:MeshInstance3D=body.get_meta("visual")
+		var key:String=node_building.get(mesh.get_instance_id(),"")
+		var box:AABB=mesh.global_transform*mesh.mesh.get_aabb()
+		if not key.is_empty():
+			for part:MeshInstance3D in buildings[key].parts:
+				if part.visible:box=box.merge(part.global_transform*part.mesh.get_aabb())
+		var margin:float=1.2*growth+0.6
+		for p in [Vector3(box.position.x-margin,0,player.position.z),Vector3(box.end.x+margin,0,player.position.z),Vector3(player.position.x,0,box.position.z-margin),Vector3(player.position.x,0,box.end.z+margin)]:
+			p.y=_swim_body_y(water_level);candidates.append(p)
+	candidates.append(Vector3(last_swim_safe.x,_swim_body_y(water_level),last_swim_safe.z))
+	candidates.sort_custom(func(a:Vector3,b:Vector3):return a.distance_squared_to(player.position)<b.distance_squared_to(player.position))
+	for p in candidates:
+		if _water_column_clear(p):escape_point=p;return
+	escape_point=last_swim_safe
+
+func _check_trapped(dt:float)->void:
+	trap_probe_time+=dt
+	if trap_probe_time<0.2:return
+	var moved:float=player.position.distance_to(trap_probe_position)
+	var invalid_swim:bool=not airborne and not _water_column_clear(player.position)
+	var stalled_air:bool=airborne and air_age>0.6 and moved<0.12
+	if invalid_swim or stalled_air:trapped_time+=trap_probe_time
+	else:trapped_time=0
+	trap_probe_position=player.position;trap_probe_time=0
+	if trapped_time>=0.6:_recover_from_building();trapped_time=0
+
+func _passive_break_growth(mesh:MeshInstance3D)->float:
+	# Buildings remain structural challenges even if an individual wall is tiny.
+	if node_building.has(mesh.get_instance_id()):return INF
+	var box:AABB=mesh.global_transform*mesh.mesh.get_aabb()
+	var axes:Array[float]=[box.size.x,box.size.y,box.size.z];axes.sort()
+	# Bulk, not pole/wire length, determines whether a prop can stop the shark.
+	var required:float=maxf(1.0,maxf(axes[1]/1.6,pow(maxf(0.001,box.get_volume()),1.0/3.0)/2.2))
+	if mesh.get_meta("car",false):required=maxf(2.3,required)
+	return maxf(required,float(mesh.get_meta("required_growth",1.0)))
+
+func _clear_small_obstacles(incoming:Vector3,dt:float)->void:
+	# Clear contacts before move_and_slide so a destroyed boat cannot stop this frame.
+	var shape:=SphereShape3D.new();shape.radius=0.55*growth+0.16
+	var query:=PhysicsShapeQueryParameters3D.new();query.shape=shape;query.collision_mask=1
+	var step:Vector3=incoming*dt
+	for offset in [Vector3.ZERO,step]:
+		query.transform=Transform3D(Basis.IDENTITY,player.position+Vector3.UP*0.4*growth+offset)
+		for hit in get_world_3d().direct_space_state.intersect_shape(query,128):
+			var body:Node=hit.collider
+			if not body.has_meta("visual"):continue
+			var mesh:MeshInstance3D=body.get_meta("visual")
+			if mesh.get_meta("broken",false) or not mesh in destructibles:continue
+			if growth+0.001>=_passive_break_growth(mesh):
+				_break_piece(mesh)
+				notice.text="体型碾压！小物件无需冲刺，建筑仍需 Shift。"
+
+func _resolve_blocked_motion(before:Vector3,dir:Vector3,speed:float,dt:float)->void:
+	var travelled:=Vector2(player.position.x-before.x,player.position.z-before.z).length()
+	if dir.length()<0.1 or travelled>speed*dt*0.18:
+		blocked_motion_time=0;return
+	blocked_motion_time+=dt
+	if blocked_motion_time<0.18:return
+	# Smoothly slide along solid walls; floating-body triangle seams used to pin
+	# the sphere even though the player was holding a valid escape direction.
+	var wall:=Vector3.ZERO
+	for i in player.get_slide_collision_count():
+		var normal:Vector3=player.get_slide_collision(i).get_normal();normal.y=0
+		if normal.length()>0.3 and dir.dot(normal)<-0.05:wall+=normal.normalized()
+	if wall.length()>0.1:
+		wall=wall.normalized()
+		var tangent:Vector3=dir.slide(wall);tangent.y=0
+		if tangent.length()<0.15:tangent=Vector3(-wall.z,0,wall.x)*slide_side
+		var step:Vector3=(tangent.normalized()+wall*0.2)*speed*dt*0.65
+		if player.test_move(player.global_transform,step):
+			step=(-tangent.normalized()+wall*0.2)*speed*dt*0.65
+			if not player.test_move(player.global_transform,step):slide_side*=-1
+		player.move_and_collide(step)
+	if blocked_motion_time>0.9:
+		_recover_from_building();blocked_motion_time=0
+
+func _recover_from_building()->void:
+	# Last resort for a corner/overhang: only return to a verified clear water pose.
+	var candidates:Array[Vector3]=[last_swim_safe]
+	for radius in [1.0,2.0,3.0,4.5,6.0,10.0,15.0]:
+		for i in 16:candidates.append(player.position+Vector3(cos(TAU*i/16.0),0,sin(TAU*i/16.0))*radius)
+	candidates.sort_custom(func(a:Vector3,b:Vector3):return Vector2(a.x-player.position.x,a.z-player.position.z).length_squared()<Vector2(b.x-player.position.x,b.z-player.position.z).length_squared())
+	for p in candidates:
+		p.y=_swim_body_y(water_level+wave_sim.sample_surface(p).y)
+		if Vector2(p.x-player.position.x,p.z-player.position.z).length()<0.8:continue
+		if absf(p.x)>58 or p.z< -74 or p.z>41:continue
+		if not _water_column_clear(p):continue
+		# A free swimmer blocked by a wall may move sideways, never teleport through it.
+		if not airborne and _water_column_clear(player.position) and player.test_move(player.global_transform,p-player.position):continue
+		player.position=p;player.velocity=Vector3.ZERO;airborne=false;roof_escape=false;air_age=0;jump_velocity=0;leap_target=null
+		water_fx.breach(p,growth,8,true);return
+
+func _update_growth_water(dt:float)->void:
+	# Preserve higher manually raised water; growth raises only the minimum.
+	if water_level<_growth_water_target():water_level=move_toward(water_level,_growth_water_target(),dt*0.45)
+
+func _lower_water(amount:float)->void:
+	water_level=maxf(minf(water_level,_growth_water_target()),water_level-amount)
+
+func _swim_body_y(surface:float)->float:
+	# Sphere center is +0.4*growth and radius is 0.55*growth.
+	return maxf(surface-0.52*growth,swim_floor_y+FLOOR_CLEARANCE+0.15*growth)
 
 func _lock_shark_to_water()->void:
 	# Water locking only applies to swimming. A real leap must follow the body,
@@ -405,7 +603,9 @@ func _lock_shark_to_water()->void:
 	for offset in [Vector3(0,0,-1.5),Vector3(0,0,2.0),Vector3(-0.85,0,0),Vector3(0.85,0,0)]:
 		var point:Vector3=player.position+Basis(Vector3.UP,visual.rotation.y)*offset*size
 		lowest=minf(lowest,water_level+wave_sim.sample_surface(point).y)
-	visual.global_position.y=lowest-0.78*size
+	# The visual has a separate submersion offset: collision alone cannot stop
+	# it being pushed through the road while the flood catches up with growth.
+	visual.global_position.y=maxf(lowest-0.78*size,swim_floor_y+FLOOR_CLEARANCE+SHARK_LOWER_EXTENT*size)
 
 func _process(_dt:float)->void:
 	# Also enforce after growth tweens and between physics ticks.
@@ -445,7 +645,7 @@ func _finish_meal(pos:Vector3)->void:
 
 func _start_boost()->void:
 	if cooldown<=0:
-		boost_time=1.0;cooldown=6.0;notice.text="冲刺：可撞毁建筑！" if growth>=BUILDING_GROWTH else "冲刺！建筑破坏需体型 1.65×。"
+		boost_time=1.0;cooldown=1.0+BOOST_REST;notice.text="冲刺：可撞毁建筑！" if growth>=BUILDING_GROWTH else "冲刺！建筑破坏需体型 1.65×。"
 		if not airborne:fx.splash(player.position,1.25)
 		fx.sound("dash_mid",player.position,-17)
 
@@ -480,11 +680,12 @@ func _make_disaster_fx()->void:
 
 func _break_piece(m:MeshInstance3D)->void:
 	if m.get_meta("broken",false):return
-	if not m.get_meta("car",false) and growth<BUILDING_GROWTH:
-		notice.text="建筑太坚固：需要体型 1.65×（约吞噬 10 人）";return
+	var required:float=m.get_meta("required_growth",BUILDING_GROWTH if node_building.has(m.get_instance_id()) else 1.0)
+	if growth<required:
+		notice.text="建筑太坚固：需要体型 %.2f×"%required;return
 	m.set_meta("broken",true);wrecked+=1;shake=0.6
 	if solids.has(m.get_instance_id()):
-		var body:StaticBody3D=solids[m.get_instance_id()];body.collision_layer=0
+		var body:CollisionObject3D=solids[m.get_instance_id()];body.collision_layer=0
 	var impulse:Vector3=player.velocity
 	if impulse.length()<0.5:impulse=-visual.global_basis.z*8
 	if m.get_meta("car",false):fx.launch_car(m,impulse)
@@ -498,10 +699,13 @@ func _run_verification()->void:
 	await get_tree().create_timer(3.0).timeout
 	if smoke_test:
 		test_origin=player.position
+		var camera_before:=camera.global_position
 		Input.action_press("forward")
 		await get_tree().create_timer(0.5).timeout
 		Input.action_release("forward")
 		trace["movement_distance"]=player.position.distance_to(test_origin)
+		trace["camera_movement_distance"]=camera.global_position.distance_to(camera_before)
+		trace["camera_follows"]=trace.camera_movement_distance>0.5 and camera_target.distance_to(visual.global_position)<5.0
 		var t:=targets[0];t.position=player.position+Vector3(0.7,0,0);_bite()
 		await get_tree().create_timer(0.6).timeout
 		trace["eaten_after_bite"]=eaten;trace["growth"]=growth
@@ -528,6 +732,7 @@ func _run_verification()->void:
 		trace["wave_impulses"]=wave_sim.total_impulses;trace["wave_energy"]=wave_sim.energy();trace["swallow_animations"]=fx.swallow_count;trace["fragment_count"]=fx.spawned_fragments;trace["splash_count"]=fx.splash_count
 		trace["passed"]=trace.movement_distance>1.0 and eaten>0 and growth>1.0 and trace.boost_started and absf(water.position.y-1.6)<0.01 and trace.water_mode_changed and trace.wall_collision and wrecked>0 and fx.swallow_count>0 and fx.spawned_fragments>0 and wave_sim.total_impulses>3
 		trace["fps"]=Engine.get_frames_per_second()
+		trace["passed"]=trace.passed and trace.camera_follows
 		trace["wave_step_ms"]=wave_sim.last_step_ms
 		FileAccess.open("res://research/smoke_test.json",FileAccess.WRITE).store_string(JSON.stringify(trace,"  "))
 		print("SMOKE_TEST ",trace)

@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "end": "(-20.6198, 0.749084, -71.39345)",
+      "height_error": 0.00239046900570383,
+      "key": "JapanStage/japaneseHome (7)",
+      "passed": true,
+      "start": "(-16.9213, 2.52283, -71.39716)"
+    },
+    {
+      "end": "(-20.72826, 0.69984, -63.99756)",
+      "height_error": 0.00208361395597467,
+      "key": "JapanStage/japaneseHome (6)",
+      "passed": true,
+      "start": "(-16.62328, 2.528274, -64.00745)"
+    },
+    {
+      "end": "(-29.86242, 0.834157, -50.22324)",
+      "height_error": 0.00442595458626738,
+      "key": "JapanStage/japaneseHome (22)",
+      "passed": true,
+      "start": "(-29.85655, 2.528278, -46.10728)"
+    },
+    {
+      "end": "(-31.42357, 0.7821, -56.01354)",
+      "height_error": 0.0000000218391419393171,
+      "key": "JapanStage/japaneseHome (19)",
+      "passed": true,
+      "start": "(-27.32728, 2.528275, -56.02344)"
+    }
+  ],
+  "manual_steering_overrides_assist": true,
+  "passed": true
+}

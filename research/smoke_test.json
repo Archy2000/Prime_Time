@@ -1,18 +1,20 @@
 {
   "boost_started": true,
+  "camera_follows": true,
+  "camera_movement_distance": 2.03478240966797,
   "destruction_count": 1,
   "eaten_after_bite": 1,
-  "fps": 77.0,
+  "fps": 43.0,
   "fragment_count": 6,
   "growth": 1.065,
-  "movement_distance": 4.50000762939453,
+  "movement_distance": 4.49929046630859,
   "passed": true,
-  "splash_count": 8,
+  "splash_count": 10,
   "swallow_animations": 1,
   "wall_collision": true,
   "water_mode_changed": true,
   "water_y": 1.60000002384186,
-  "wave_energy": 94.590504142226,
-  "wave_impulses": 1156,
-  "wave_step_ms": 24.699
+  "wave_energy": 80.739093786604,
+  "wave_impulses": 13414,
+  "wave_step_ms": 19.042
 }

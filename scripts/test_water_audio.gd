@@ -40,6 +40,13 @@ func run() -> void:
 	results["switch_no_duplicate_buses"] = AudioServer.bus_count == count
 	results["lab_enabled"] = audio.enabled and audio.loops.size() == 3 and not AudioServer.is_bus_mute(AudioServer.get_bus_index("Water"))
 	before = audio.emitted
+	for i in 180:
+		audio.swim(current_scene.player.position, Vector3(18,0,0), 1.0)
+		audio._process(1.0 / 60.0)
+	results["swim_no_repeated_splashes"] = audio.emitted == before
+	results["swim_no_agitated_water"] = audio.loops[2].volume_linear < 0.001
+	results["swim_quiet_even_at_boost"] = audio.loops[1].volume_linear <= 0.121
+	before = audio.emitted
 	audio.wave()
 	results["lab_wave"] = audio.emitted > before and audio.surge == 1.0
 	results["passed"] = not results.values().has(false)

@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "Boat_01_floating",
+      "travel": 7.02227020263672
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "WoodenBoat_01_floating",
+      "travel": 7.13932847976685
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "@MeshInstance3D@7024",
+      "travel": 6.96079111099243
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "@MeshInstance3D@7027",
+      "travel": 6.96460723876953
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "Buoy_01_floating",
+      "travel": 6.99459505081177
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "@MeshInstance3D@7033",
+      "travel": 7.00722026824951
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "@MeshInstance3D@7037",
+      "travel": 7.16000890731812
+    },
+    {
+      "boost": 0.0,
+      "broken": true,
+      "name": "@MeshInstance3D@7041",
+      "travel": 7.00402975082397
+    }
+  ],
+  "large_prop_has_growth_gate": true,
+  "passed": true,
+  "structures_require_sprint": true
+}

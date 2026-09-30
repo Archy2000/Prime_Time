@@ -13,5 +13,8 @@
   "motion_rises": true,
   "passed": true,
   "pause_freezes": true,
+  "swim_no_agitated_water": true,
+  "swim_no_repeated_splashes": true,
+  "swim_quiet_even_at_boost": true,
   "switch_no_duplicate_buses": true
 }

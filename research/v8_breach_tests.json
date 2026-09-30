@@ -15,7 +15,7 @@
       },
       "passed": true,
       "size": 1.0,
-      "solver_impulses": 26,
+      "solver_impulses": 210,
       "takeoff": {
         "amplitude": 0.104464285714286,
         "drops": 55,
@@ -33,13 +33,13 @@
       "exactly_two_events": true,
       "landed": true,
       "landing": {
-        "amplitude": 0.429750000000001,
+        "amplitude": 0.402750000000001,
         "drops": 140,
         "landing": true,
         "life": 2.27609903369994,
         "radius": 3.36,
         "size": 3.2,
-        "vertical_speed": -19.1
+        "vertical_speed": -17.9
       },
       "passed": true,
       "size": 3.2,

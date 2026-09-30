@@ -1,0 +1,23 @@
+{
+  "all_discrete_props_registered": true,
+  "boat_destroyed": true,
+  "boats_and_beacons": 8,
+  "grown_destroys_tower": true,
+  "grown_eats_roof_guard": true,
+  "grown_locks_high_guard": true,
+  "guards_fire": true,
+  "passed": true,
+  "prop_families_destroyed": true,
+  "roof_landing_returns_to_water": true,
+  "small_apex_below_tower": true,
+  "small_cannot_destroy_tower": true,
+  "small_cannot_lock_high_guard": true,
+  "stones_bounded": true,
+  "stones_float": true,
+  "stones_follow_flow": true,
+  "stones_spawned": 512,
+  "tower_fully_collapsed": true,
+  "tower_guards": 16,
+  "tower_ram_starts_collapse": true,
+  "towers": 4
+}

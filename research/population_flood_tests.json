@@ -1,0 +1,10 @@
+{
+  "blocked_water_spawns": 0,
+  "growth_water": 7.75,
+  "max_water": 12.0,
+  "npcs_follow_high_water": true,
+  "passed": true,
+  "roof_npcs": 80,
+  "water_mesh_follows": true,
+  "water_npcs": 180
+}
