@@ -9,10 +9,12 @@ var rng:=RandomNumberGenerator.new()
 var mesh:MultiMeshInstance3D
 var material:ShaderMaterial
 var clock:=0.0
-var emission_timer:=0.0
 var cursor:=0
 var born:=0
 var contact_groups:=0
+var scan_credit:=0.0
+var contact_credit:=0.0
+var update_accumulator:=0.0
 
 func setup(field:RefCounted,level:float)->void:
 	sim=field;water_y=level;rng.seed=39172
@@ -44,10 +46,21 @@ func _spawn(pos:Vector3,state:float,scale_value:float,drift:Vector2)->void:
 	born+=1
 
 func update(dt:float,level:float)->void:
-	water_y=level;clock+=dt;emission_timer+=dt
+	water_y=level;clock+=dt
 	material.set_shader_parameter("water_y",water_y)
-	if emission_timer>=0.14:
-		emission_timer=0;_emit_contacts()
+	# Particle simulation runs at most at the 60 Hz gameplay clock, independently of
+	# display refresh rate. Do not double/triple its CPU work on fast displays.
+	update_accumulator+=dt
+	if update_accumulator<1.0/60.0:return
+	dt=update_accumulator;update_accumulator=0.0
+	# Spread the old 1,400-cell scan over frames. Keep the same per-second
+	# scan/emission budget and cap catch-up after a hitch.
+	scan_credit=minf(512.0,scan_credit+dt*10000.0)
+	contact_credit=minf(5.0,contact_credit+dt*5.0/0.14)
+	if scan_credit>=1.0 and contact_credit>=1.0 and particles.size()<=CAPACITY-12:
+		var steps:=mini(256,int(scan_credit))
+		contact_credit-=_emit_contacts(steps,mini(2,int(contact_credit)))
+		scan_credit-=steps
 	for i in range(particles.size()-1,-1,-1):
 		var particle:Dictionary=particles[i]
 		particle.state-=dt*0.2 # Whitewater_Update: state decays at 0.2 per second.
@@ -66,13 +79,13 @@ func update(dt:float,level:float)->void:
 	for id in swimmer_times.keys():
 		if clock-float(swimmer_times[id])>4:swimmer_times.erase(id)
 
-func _emit_contacts()->void:
+func _emit_contacts(steps:int=1400,max_groups:int=5)->int:
 	var camera:=get_viewport().get_camera_3d()
-	if not camera:return
+	if not camera:return 0
 	var emitted:=0
 	var total:int=sim.N*sim.N
 	var space:=get_world_3d().direct_space_state
-	for step in 1400:
+	for step in steps:
 		cursor=(cursor+37)%total
 		var i:=cursor;var x:int=i%sim.N;var z:int=i/sim.N
 		if x<1 or z<1 or x>=sim.N-1 or z>=sim.N-1 or sim.rgba[i*4+3]>0.5:continue
@@ -94,4 +107,5 @@ func _emit_contacts()->void:
 		for dot in 12:
 			_spawn(center+tangent*rng.randf_range(-0.065,0.065)+normal*rng.randf_range(0,0.06),rng.randf_range(0.30,0.58),rng.randf_range(1.25,1.85),Vector2(normal.x,normal.z)*rng.randf_range(0.025,0.075))
 		contact_groups+=1;emitted+=1
-		if emitted>=5:return
+		if emitted>=max_groups:return emitted
+	return emitted

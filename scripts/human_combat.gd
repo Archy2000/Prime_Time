@@ -6,9 +6,11 @@ var shots_fired:=0
 var hits:=0
 var blocked:=0
 var tracer_material:StandardMaterial3D
+var tracer_mesh:BoxMesh
 
 func setup(owner_game:Node3D)->void:
  game=owner_game
+ tracer_mesh=BoxMesh.new();tracer_mesh.size=Vector3(0.045,0.045,0.65)
  tracer_material=StandardMaterial3D.new()
  tracer_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
  tracer_material.albedo_color=Color(1.0,0.72,0.22)
@@ -17,8 +19,7 @@ func setup(owner_game:Node3D)->void:
 func fire(shooter:Node3D,origin:Vector3,aim:Vector3,damage:float)->void:
  if bullets.size()>=96:return
  var tracer:=MeshInstance3D.new()
- var shape:=BoxMesh.new();shape.size=Vector3(0.045,0.045,0.65)
- tracer.mesh=shape;tracer.material_override=tracer_material
+ tracer.mesh=tracer_mesh;tracer.material_override=tracer_material
  tracer.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
  add_child(tracer);tracer.position=origin
  var direction:Vector3=(aim-origin).normalized()

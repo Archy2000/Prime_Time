@@ -14,10 +14,26 @@ var panic_left:=0.0
 var velocity:=Vector3.ZERO
 var escape:=Vector3.FORWARD
 var roof_turn:=1.0
+var simulation_wait:=0.0
+var simulation_elapsed:=0.0
+
+# Keep combat and capture-range actors at physics frequency. Distant actors
+# accumulate real time, with staggered deadlines to avoid population-wide spikes.
+func scheduled_delta(game:Node3D,dt:float)->float:
+ simulation_elapsed+=dt
+ simulation_wait-=dt
+ var distance_squared:=position.distance_squared_to(game.player.position)
+ if distance_squared>32.0*32.0 and simulation_wait>0.0:return 0.0
+ var interval:=0.0 if distance_squared<=32.0*32.0 else 0.1 if distance_squared<=55.0*55.0 else 0.2
+ simulation_wait=interval
+ var elapsed:=simulation_elapsed
+ simulation_elapsed=0.0
+ return elapsed
 
 func setup(person:MeshInstance3D,index:int,standing:bool)->void:
  mesh=person
  phase=float(index)*2.39996
+ simulation_wait=fmod(float(index)*0.0618034,0.2)
  roof_turn=1.0 if index%2==0 else -1.0
  var box:=mesh.mesh.get_aabb()
  for surface in mesh.mesh.get_surface_count():
@@ -80,6 +96,11 @@ func update_civilian(game:Node3D,dt:float)->void:
  if not frightened:speed=0.0 if on_roof else 0.18
  if on_roof and role!="civilian" and game.elapsed>=6.0 and distance<24.0 and distance>3.0:
   direction=-away.normalized();speed=0.65
+ # Idle roof residents have no movement to validate. Previously each one
+ # performed five support rays every physics tick, even with a zero step.
+ if speed<=0.0:
+  animate(dt,not on_roof,0.0)
+  return
  if on_roof:
   direction=direction.rotated(Vector3.UP,sin(phase*0.27)*0.65)
  var moved:=Vector3.ZERO

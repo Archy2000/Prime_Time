@@ -41,7 +41,7 @@ func accept_piece(body:RigidBody3D)->void:
 	mesh.reparent(self);mesh.global_transform=xf
 	var center:Vector3=mesh.mesh.get_aabb().get_center()
 	var pos:Vector3=xf*center
-	stones.append({"node":mesh,"basis":xf.basis,"center":center,"p":pos,"v":body.linear_velocity*0.3,"size":(xf.basis*mesh.mesh.get_aabb().size).length(),"age":0.0,"life":rng.randf_range(50,70),"angle":0.0,"floating":false})
+	stones.append({"node":mesh,"basis":xf.basis,"center":center,"p":pos,"v":body.linear_velocity*0.3,"size":(xf.basis*mesh.mesh.get_aabb().size).length(),"age":0.0,"life":rng.randf_range(50,70),"angle":0.0,"floating":false,"pending_dt":0.0})
 	emitted_stones+=1
 	while stones.size()>MAX_STONES:
 		stones[0].node.queue_free();stones.pop_front()
@@ -84,17 +84,21 @@ func update(dt:float)->void:
 	for i in range(stones.size()-1,-1,-1):
 		var s:Dictionary=stones[i];s.age+=dt
 		if s.age>s.life:s.node.queue_free();stones.remove_at(i);continue
+		s.pending_dt+=dt
+		# Falling and nearby pieces stay at physics frequency. Distant settled
+		# debris uses accumulated time and swept wall tests at 30 Hz.
+		if s.floating and s.p.distance_squared_to(game.player.position)>576.0 and s.pending_dt<1.0/30.0:continue
+		var step_dt:float=s.pending_dt;s.pending_dt=0.0
 		var field:Vector3=game.wave_sim.sample_surface(s.p);var surface:float=game.water_level+field.y
 		if not s.floating:
-			s.v.y-=9.8*dt;s.p+=s.v*dt
+			s.v.y-=9.8*step_dt;s.p+=s.v*step_dt
 			if s.p.y<=surface+s.size*0.1:s.floating=true;s.v.y=0
 		else:
 			var wanted:=Vector3(field.x,0,field.z)*0.8
-			s.v=s.v.lerp(wanted,1-exp(-dt*2.5));s.v.y=0
-			s.p=_move_in_water(s.p,s.v*dt)
-			s.p.y=lerpf(s.p.y,surface-s.size*0.12,minf(1,dt*9))
-			s.angle+=dt*(field.x-field.z)*0.3
-	for s in stones:
+			s.v=s.v.lerp(wanted,1-exp(-step_dt*2.5));s.v.y=0
+			s.p=_move_in_water(s.p,s.v*step_dt)
+			s.p.y=lerpf(s.p.y,surface-s.size*0.12,minf(1,step_dt*9))
+			s.angle+=step_dt*(field.x-field.z)*0.3
 		var fade:float=clampf((s.life-s.age)/5,0,1)
 		var basis:Basis=Basis(Vector3.UP,s.angle)*s.basis.scaled(Vector3.ONE*fade)
 		s.node.transform=Transform3D(basis,s.p-basis*s.center)

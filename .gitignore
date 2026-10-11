@@ -5,3 +5,5 @@ tools/godot/
 research/*.log
 local_data/
 research/**/*.log
+__pycache__/
+*.pyc

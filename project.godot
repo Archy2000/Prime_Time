@@ -13,7 +13,7 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [rendering]
-shader_compiler/shader_cache/enabled=false
+shader_compiler/shader_cache/enabled=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=false

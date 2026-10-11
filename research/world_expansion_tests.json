@@ -15,7 +15,7 @@
   "stones_bounded": true,
   "stones_float": true,
   "stones_follow_flow": true,
-  "stones_spawned": 512,
+  "stones_spawned": 95,
   "tower_fully_collapsed": true,
   "tower_guards": 16,
   "tower_ram_starts_collapse": true,

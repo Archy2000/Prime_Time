@@ -1,6 +1,8 @@
 extends Node3D
 
 const CITY_SCALE := 0.2
+const SHARK_FORMS:Array[int]=[1,2,3,5,9]
+@export var shark_head_count:=3
 const BUILDING_GROWTH:=1.65
 var airborne:=false
 var air_age:=0.0
@@ -93,6 +95,30 @@ var bite_window:=0.0
 var showcase:=false
 var physics_frames:=0
 var draw_frames:=0
+var city_batches:Node3D
+var collision_mesh_cache:Dictionary={}
+var obstacle_probe_shape:SphereShape3D
+var obstacle_probe_query:PhysicsShapeQueryParameters3D
+var growth_tween:Tween
+var growth_feedback_pending:=false
+var shark_heads:Node3D
+const MAX_COLLAPSE_PARTS_PER_TICK:=2
+var collapse_jobs:Array[Dictionary]=[]
+var collapse_jobs_processed:=0
+
+func collision_mesh(mesh:Mesh)->ConcavePolygonShape3D:
+	var id:=mesh.get_instance_id()
+	if not collision_mesh_cache.has(id):collision_mesh_cache[id]=mesh.create_trimesh_shape()
+	return collision_mesh_cache[id]
+var profile_enabled:=false
+var profile_samples:Dictionary={}
+
+func profile_time(section:String,start:int)->int:
+	var now:=Time.get_ticks_usec()
+	if profile_enabled:
+		if not profile_samples.has(section):profile_samples[section]=[]
+		profile_samples[section].append(float(now-start)/1000.0)
+	return now
 
 func _ready()->void:
 	process_mode=Node.PROCESS_MODE_ALWAYS
@@ -103,6 +129,7 @@ func _ready()->void:
 	_input_setup()
 	_environment()
 	_load_city()
+	city_batches=preload("res://scripts/city_batches.gd").new();add_child(city_batches);city_batches.setup(city)
 	_make_water()
 	if OS.get_cmdline_user_args().has("--dry"):water.visible=false
 	_make_player()
@@ -114,6 +141,7 @@ func _ready()->void:
 	_make_roof_targets()
 	tower_district=preload("res://scripts/tower_district.gd").new();add_child(tower_district);tower_district.setup(self)
 	floating_world=preload("res://scripts/floating_world.gd").new();add_child(floating_world);floating_world.setup(self)
+	fx.prepare_fractures()
 	await get_tree().physics_frame
 	_make_targets()
 	last_swim_safe=player.position
@@ -198,7 +226,7 @@ func _load_city()->void:
 		if (item.get("collider",false) or breakable) and not mesh_name.contains("shadow") and not mesh_name.contains("grass"):
 			var body:=StaticBody3D.new();body.collision_layer=1;body.collision_mask=0
 			mesh_node.add_child(body)
-			var shape:=CollisionShape3D.new();shape.shape=mesh_node.mesh.create_trimesh_shape();body.add_child(shape)
+			var shape:=CollisionShape3D.new();shape.shape=collision_mesh(mesh_node.mesh);body.add_child(shape)
 			body.set_meta("visual",mesh_node)
 			solids[mesh_node.get_instance_id()]=body
 	# Navigation stays within the extracted area.
@@ -209,7 +237,10 @@ func _load_city()->void:
 func _make_water()->void:
 	wave_sim=load("res://scripts/water_async.gd").new()
 	water=MeshInstance3D.new()
-	var plane:=PlaneMesh.new();plane.size=Vector2(180,180);plane.subdivide_width=300;plane.subdivide_depth=300
+	var plane:=PlaneMesh.new();plane.size=Vector2(180,180)
+	# Tessellate at the solver's cell spacing; finer geometry cannot add fluid detail.
+	var subdivisions:=ceili(180.0/wave_sim.cell)-1
+	plane.subdivide_width=subdivisions;plane.subdivide_depth=subdivisions
 	water.mesh=plane;water.position=Vector3(0,water_level,-20)
 	water_mat=ShaderMaterial.new();water_mat.shader=load("res://shaders/water_v3.gdshader")
 	water_mat.set_shader_parameter("water_normal",load("res://assets/extracted/sandcastle_water_normal.png"))
@@ -226,6 +257,7 @@ func _make_player()->void:
 	player.collision_layer=2;player.collision_mask=1;add_child(player);player.position=Vector3(START.x,water_level-0.52,START.z)
 	var shape:=CollisionShape3D.new();var sphere:=SphereShape3D.new();sphere.radius=0.55;shape.shape=sphere;shape.position.y=0.40;player.add_child(shape)
 	visual=Node3D.new();visual.set_script(load("res://scripts/shark.gd"));player.add_child(visual)
+	_set_shark_heads(shark_head_count)
 	camera=Camera3D.new();camera.fov=17;camera.near=0.1;camera.far=500;add_child(camera);camera.current=true
 	_camera_update(1.0)
 
@@ -266,7 +298,7 @@ func _make_roof_targets()->void:
 		if crowded:continue
 		if not solids.has(roof.get_instance_id()):
 			var body:=StaticBody3D.new();body.collision_layer=1;body.set_meta("visual",roof);roof.add_child(body)
-			var shape:=CollisionShape3D.new();shape.shape=roof.mesh.create_trimesh_shape();body.add_child(shape);solids[roof.get_instance_id()]=body
+			var shape:=CollisionShape3D.new();shape.shape=collision_mesh(roof.mesh);body.add_child(shape);solids[roof.get_instance_id()]=body
 		var role:String="police" if roof_targets%4==1 else "military" if roof_targets%4==3 else "civilian"
 		var person:Node3D=fx.make_civilian(roof_targets,true,role);add_child(person);person.position=pos
 		person.set_meta("rooftop",true);person.set_meta("roof_support",roof);person.set_meta("phase",rng.randf()*TAU)
@@ -296,14 +328,38 @@ func _jump()->void:
 	notice.text="跃起！靠近楼顶居民可吞噬，WASD 调整空中方向。"
 
 func _can_eat(target:Node3D,active:bool)->bool:
+	# Reject distant actors before transforms, metadata and line-of-sight queries.
+	var reach:float=(2.6 if active else 1.45)*growth
+	var broad_reach:=reach+1.3*growth
+	if target.position.distance_squared_to(visual.global_position)>broad_reach*broad_reach:return false
 	var roof:bool=target.get_meta("rooftop",false)
 	if roof and not airborne:return false
 	var mouth:Vector3=visual.global_position-visual.global_basis.z.normalized()*0.6*growth+Vector3.UP*0.12*growth
 	var aim:Vector3=target.position+Vector3.UP*(0.45 if roof else 0.0)
-	if absf(aim.y-mouth.y)>1.25*growth:return false
-	if mouth.distance_to(aim)>(2.6 if active else 1.45)*growth:return false
-	var ray:=PhysicsRayQueryParameters3D.create(mouth,aim,1)
-	return get_world_3d().direct_space_state.intersect_ray(ray).is_empty()
+	var sockets:Array=[]
+	if is_instance_valid(shark_heads):sockets=shark_heads.sockets
+	for index in maxi(1,sockets.size()):
+		if not sockets.is_empty():mouth=sockets[index].global_position
+		if absf(aim.y-mouth.y)>1.25*growth:continue
+		if mouth.distance_squared_to(aim)>reach*reach:continue
+		var ray:=PhysicsRayQueryParameters3D.create(mouth,aim,1)
+		if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():continue
+		if not sockets.is_empty():target.set_meta("mutation_socket",weakref(sockets[index]))
+		return true
+	return false
+
+func _set_shark_heads(count:int)->void:
+	if not count in SHARK_FORMS:return
+	if is_instance_valid(shark_heads):shark_heads.free()
+	shark_heads=null;shark_head_count=count
+	if count>1:
+		shark_heads=preload("res://scripts/source_shark_hydra.gd").new()
+		visual.add_child(shark_heads);shark_heads.setup(visual.get_node("PS1Shark"),count)
+	if is_instance_valid(notice):notice.text="鲨鱼形态：%d 头  /  F4 切换外形"%count
+
+func primary_mouth()->Vector3:
+	if is_instance_valid(shark_heads):return shark_heads.sockets[0].global_position
+	return visual.global_position-visual.global_basis.z.normalized()*growth*0.85
 
 func _make_hud()->void:
 	retro_filter = load("res://scripts/retro_filter.gd").new()
@@ -320,13 +376,13 @@ func _make_hud()->void:
 	health_label=Label.new();health_label.add_theme_font_size_override("font_size",14);health_label.modulate=Color(1,0.55,0.40);v.add_child(health_label)
 	hit_overlay=ColorRect.new();hit_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);hit_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;hit_overlay.color=Color(0.8,0.03,0.01,0);root.add_child(hit_overlay)
 	boost_bar=ProgressBar.new();boost_bar.custom_minimum_size.y=5;boost_bar.show_percentage=false;v.add_child(boost_bar)
-	var hint:=Label.new();hint.text="WASD 游动 · 空格跃起 · Shift 冲刺 · E 吞噬";hint.add_theme_font_size_override("font_size",13);v.add_child(hint)
+	var hint:=Label.new();hint.text="WASD 游动 · 空格跃起 · Shift 冲刺 · E 吞噬 · F4 切换鲨鱼";hint.add_theme_font_size_override("font_size",13);v.add_child(hint)
 	var bottom:=PanelContainer.new();root.add_child(bottom);bottom.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);bottom.offset_top=-59;bottom.offset_left=24;bottom.offset_right=-24;bottom.offset_bottom=-18;_panel_style(bottom)
 	feed_label=Label.new();feed_label.add_theme_font_size_override("font_size",15);bottom.add_child(feed_label)
 	notice=Label.new();notice.position=Vector2(26,175);notice.modulate=Color(0.94,0.77,0.40);root.add_child(notice)
 	notice.text="屋顶警察与军方会开火！利用建筑掩护，跃起吞噬可回血。"
 	help=PanelContainer.new();root.add_child(help);help.position=Vector2(24,210);_panel_style(help);help.visible=false
-	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 4 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位（最高 12 米）\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF11：全屏    F1：收起说明\n\n体型 1.65× 可撞毁普通建筑，2.30× 可撞毁高楼。\n比自身弱小的杂物、树木、船只接触即可碾碎。\n大物件先成长或冲刺；车辆至少 2.30× 才能直接碾压。\n成长带动涨水，跃起接近高楼守卫可吞噬。\n警察单发 / 军方连射；建筑挡子弹，吞噬回复 8 点生命。";help.add_child(text)
+	var text:=Label.new();text.text="操作说明\n\nWASD / 方向键 / 左摇杆：移动\n空格 / 手柄 X：跃出水面\nShift / 手柄 B：冲刺（冷却 4 秒）\n接触：自动吞噬；E / 左键 / 手柄 A：主动吸入\nPageUp / PageDown：升降水位（最高 12 米）\nT：切换清澈 / 浑浊水体\nTab：开关全部滤镜\nF3：滤镜调节面板\n鼠标滚轮：镜头远近\nR：重新开始    Esc：暂停\nF4：切换普通 / 双头 / 三头 / 五头 / 九头模型\nF11：全屏    F1：收起说明\n\n体型 1.65× 可撞毁普通建筑，2.30× 可撞毁高楼。\n比自身弱小的杂物、树木、船只接触即可碾碎。\n大物件先成长或冲刺；车辆至少 2.30× 才能直接碾压。\n成长带动涨水，跃起接近高楼守卫可吞噬。\n警察单发 / 军方连射；建筑挡子弹，吞噬回复 8 点生命。";help.add_child(text)
 	var corner:=Label.new();root.add_child(corner);corner.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);corner.offset_left=-330;corner.offset_top=26;corner.offset_right=-24;corner.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;corner.text="人群与高水位  19\nF1 帮助 · F2 水体 · F3 滤镜"
 	combo_label=Label.new();root.add_child(combo_label);combo_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);combo_label.offset_left=-310;combo_label.offset_top=88;combo_label.offset_right=-24;combo_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;combo_label.add_theme_font_size_override("font_size",26);combo_label.modulate=Color(0.98,0.8,0.3)
 	pause_label=Label.new();root.add_child(pause_label);pause_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER);pause_label.offset_left=-100;pause_label.offset_top=-30;pause_label.add_theme_font_size_override("font_size",32);pause_label.text="已暂停  /  ESC";pause_label.visible=false
@@ -344,6 +400,8 @@ func _unhandled_input(event:InputEvent)->void:
 				if defeated:return
 				paused=not paused;pause_label.visible=paused;get_tree().paused=paused
 			KEY_F1:help.visible=not help.visible
+			KEY_F4:
+				if not defeated:_set_shark_heads(SHARK_FORMS[(SHARK_FORMS.find(shark_head_count)+1)%SHARK_FORMS.size()])
 			KEY_F2:get_tree().paused=false;get_tree().change_scene_to_file("res://scenes/water_lab.tscn")
 			KEY_R:get_tree().paused=false;get_tree().reload_current_scene()
 			KEY_TAB:
@@ -363,6 +421,8 @@ func _toggle_water()->void:
 
 func _physics_process(dt:float)->void:
 	if not ready_done or paused or defeated:return
+	var profile_start:int=Time.get_ticks_usec() if profile_enabled else 0
+	var profile_tick:=profile_start
 	physics_frames+=1
 	elapsed+=dt
 	combo_timer=maxf(0,combo_timer-dt)
@@ -436,6 +496,7 @@ func _physics_process(dt:float)->void:
 	_check_trapped(dt)
 	_lock_shark_to_water()
 	visual.update_motion(dt,Vector2(player.velocity.x,player.velocity.z).length()/growth,airborne)
+	if is_instance_valid(shark_heads):shark_heads.update_sockets()
 	if boost_time>0:
 		_ram_nearby(ram_velocity)
 		for i in player.get_slide_collision_count():
@@ -444,26 +505,38 @@ func _physics_process(dt:float)->void:
 			if body and body.has_meta("visual"):
 				var m:MeshInstance3D=body.get_meta("visual")
 				if m in destructibles:_break_piece(m)
+	if profile_enabled:profile_tick=profile_time("player",profile_tick)
 	npc_audio.update(dt)
 	if Input.is_action_pressed("bite") and bite_timer<=0:_bite()
 	for i in range(targets.size()-1,-1,-1):
 		var target:Node3D=targets[i]
 		if not is_instance_valid(target):continue
-		target.update_civilian(self,dt)
-		npc_audio.update_actor(target,dt)
+		var actor_dt:float=target.scheduled_delta(self,dt)
+		if actor_dt>0.0:
+			target.update_civilian(self,actor_dt)
+			npc_audio.update_actor(target,actor_dt)
 		if _can_eat(target,bite_window>0):_capture_target(i);continue
+	if profile_enabled:profile_tick=profile_time("npcs",profile_tick)
 	combat.update(dt)
 	damage_flash=maxf(0.0,damage_flash-dt*0.9)
 	hit_overlay.color.a=damage_flash
 	health_label.text="生命 %03d / 100  ·  警戒 %s"%[ceili(health),"交火中" if combat.bullets.size()>0 else "搜索中"]
+	if profile_enabled:profile_tick=profile_time("combat",profile_tick)
 	_update_water(dt)
+	if profile_enabled:profile_tick=profile_time("water",profile_tick)
 	floating_world.update(dt)
+	if profile_enabled:profile_tick=profile_time("floating",profile_tick)
+	_process_collapses()
 	fx.update(dt)
+	if profile_enabled:profile_tick=profile_time("effects",profile_tick)
 	_camera_update(dt)
 	status.text="吞噬 %02d   /   体型 %.2f×   /   破坏 %02d"%[eaten,growth,wrecked]
 	boost_bar.value=100.0*(1.0-clampf((cooldown-boost_time)/BOOST_REST,0,1))
 	combo_label.text=("COMBO ×%d\n"%combo if combo>1 else "")+"%06d"%score
 	feed_label.text="洪水现场   /   水位 %.1fm    ·    %s    |    PAGE↑↓ 调水位    |    %02d:%02d"%[water_level,"清澈水体" if clear_water else "末世浑水",int(elapsed)/60,int(elapsed)%60]
+	if profile_enabled:
+		profile_time("hud_camera",profile_tick)
+		profile_time("physics_total",profile_start)
 
 func _growth_water_target()->float:
 	return minf(MAX_WATER_LEVEL,BASE_WATER_LEVEL+maxf(0.0,growth-1.0)*WATER_PER_GROWTH)
@@ -524,10 +597,16 @@ func _passive_break_growth(mesh:MeshInstance3D)->float:
 
 func _clear_small_obstacles(incoming:Vector3,dt:float)->void:
 	# Clear contacts before move_and_slide so a destroyed boat cannot stop this frame.
-	var shape:=SphereShape3D.new();shape.radius=0.55*growth+0.16
-	var query:=PhysicsShapeQueryParameters3D.new();query.shape=shape;query.collision_mask=1
+	if obstacle_probe_shape==null:
+		obstacle_probe_shape=SphereShape3D.new()
+		obstacle_probe_query=PhysicsShapeQueryParameters3D.new();obstacle_probe_query.shape=obstacle_probe_shape;obstacle_probe_query.collision_mask=1
+	var radius:=0.55*growth+0.16
+	if not is_equal_approx(obstacle_probe_shape.radius,radius):obstacle_probe_shape.radius=radius
+	var query:=obstacle_probe_query
 	var step:Vector3=incoming*dt
-	for offset in [Vector3.ZERO,step]:
+	var offsets:Array[Vector3]=[Vector3.ZERO]
+	if step.length_squared()>0.000001:offsets.append(step)
+	for offset in offsets:
 		query.transform=Transform3D(Basis.IDENTITY,player.position+Vector3.UP*0.4*growth+offset)
 		for hit in get_world_3d().direct_space_state.intersect_shape(query,128):
 			var body:Node=hit.collider
@@ -609,7 +688,7 @@ func _lock_shark_to_water()->void:
 
 func _process(_dt:float)->void:
 	# Also enforce after growth tweens and between physics ticks.
-	if ready_done:_lock_shark_to_water()
+	if ready_done and not paused:_lock_shark_to_water()
 
 func _camera_update(dt:float)->void:
 	camera_target=camera_target.lerp(visual.global_position,1.0-exp(-dt/0.3))
@@ -623,15 +702,19 @@ func _bite()->void:
 	bite_timer=0.35;bite_window=0.22
 	for i in range(targets.size()-1,-1,-1):
 		var t:=targets[i]
-		if is_instance_valid(t) and _can_eat(t,true):_capture_target(i)
+		if is_instance_valid(t) and _can_eat(t,true):
+			_capture_target(i)
 	if not airborne:fx.splash(player.position,0.65)
 
-func _capture_target(i:int)->void:
+func _capture_target(i:int)->bool:
+	if i<0 or i>=targets.size():return false
 	var target:Node3D=targets[i]
+	if not is_instance_valid(target) or target.get_meta("captured",false):return false
 	if target.get_meta("rooftop",false):
 		roof_eaten+=1
 		if target==leap_target:leap_target=null;air_drift=-visual.global_basis.z.normalized()*6.5
 	targets.remove_at(i);fx.swallow(target)
+	return true
 
 func _finish_meal(pos:Vector3)->void:
 	if defeated:return
@@ -639,9 +722,18 @@ func _finish_meal(pos:Vector3)->void:
 	eaten+=1;growth=minf(3.2,1.0+eaten*0.065);combo+=1;combo_timer=3.0;score+=100*maxi(1,combo)
 	(player.get_child(0) as CollisionShape3D).shape.radius=0.55*growth
 	(player.get_child(0) as CollisionShape3D).position.y=0.40*growth
-	var tween:=create_tween();tween.tween_property(visual,"scale",Vector3.ONE*growth*1.08,0.08);tween.tween_property(visual,"scale",Vector3.ONE*growth,0.15)
+	if not growth_feedback_pending:
+		growth_feedback_pending=true;_animate_growth.call_deferred()
 	shake=0.22;fx.popup(pos,"+%d"%(100*maxi(1,combo)),Color(1,0.8,0.38))
 	notice.text="体型 %.2f× / 1.65× · %s"%[growth,"可撞毁建筑！" if growth>=BUILDING_GROWTH else "继续捕食，解锁建筑破坏"]
+
+func _animate_growth()->void:
+	growth_feedback_pending=false
+	if growth_tween and growth_tween.is_valid():growth_tween.kill()
+	growth_tween=create_tween()
+	growth_tween.set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	growth_tween.tween_property(visual,"scale",Vector3.ONE*growth*1.08,0.08)
+	growth_tween.tween_property(visual,"scale",Vector3.ONE*growth,0.15)
 
 func _start_boost()->void:
 	if cooldown<=0:
@@ -771,7 +863,8 @@ func _damage_structure(m:MeshInstance3D,impulse:Vector3)->void:
 		var part_box:AABB=node.global_transform*node.mesh.get_aabb()
 		var distance:float=part_box.get_center().distance_to(bounds.get_center())
 		delay+=0.025
-		get_tree().create_timer(delay+distance*0.045+maxf(0,part_box.get_center().y-bounds.get_center().y)*0.06,false).timeout.connect(_collapse_part.bind(node,impulse))
+		collapse_jobs.append({"node":node,"impulse":impulse,"due":elapsed+delay+distance*0.045+maxf(0,part_box.get_center().y-bounds.get_center().y)*0.06})
+	collapse_jobs.sort_custom(func(a:Dictionary,c:Dictionary):return a.due<c.due)
 	notice.text="建筑失去支撑 · 连锁坍塌！"
 
 func _ram_nearby(incoming_velocity:Vector3=Vector3.ZERO)->void:
@@ -793,10 +886,29 @@ func _ram_nearby(incoming_velocity:Vector3=Vector3.ZERO)->void:
 func _collapse_part(node:MeshInstance3D,impulse:Vector3)->void:
 	if not is_instance_valid(node) or node.get_meta("broken",false):return
 	if paused:
-		get_tree().create_timer(0.2).timeout.connect(_collapse_part.bind(node,impulse));return
+		collapse_jobs.append({"node":node,"impulse":impulse,"due":elapsed+0.2})
+		collapse_jobs.sort_custom(func(a:Dictionary,c:Dictionary):return a.due<c.due)
+		return
 	node.set_meta("broken",true)
 	if solids.has(node.get_instance_id()):solids[node.get_instance_id()].collision_layer=0
 	fx.fracture(node,impulse,3);wrecked+=1;score+=75;obstacle_dirty=true;shake=maxf(shake,0.25)
+
+func _process_collapses()->void:
+	if paused or defeated:return
+	var started:=Time.get_ticks_usec()
+	var processed:=0
+	var inspected:=0
+	while not collapse_jobs.is_empty() and processed<MAX_COLLAPSE_PARTS_PER_TICK and inspected<32:
+		if float(collapse_jobs[0].due)>elapsed:break
+		var job:Dictionary=collapse_jobs.pop_front()
+		inspected+=1
+		if not is_instance_valid(job.node):continue
+		var node:MeshInstance3D=job.node
+		if not is_instance_valid(node) or node.get_meta("broken",false):continue
+		_collapse_part(node,job.impulse);processed+=1;collapse_jobs_processed+=1
+		# Preserve the wave of collapsing parts, without executing all overdue
+		# timer callbacks in one frame after a hitch or several simultaneous hits.
+		if Time.get_ticks_usec()-started>=1500:break
 
 func _update_water(dt:float)->void:
 	water_fx.audio.follow(player.global_position,camera,water.visible)

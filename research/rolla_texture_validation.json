@@ -1,0 +1,11 @@
+{
+  "gltf_files_checked": 286,
+  "referenced_images_verified": 460,
+  "model_material_texture_channels": {
+    "baseColorTexture": 235,
+    "metallicRoughnessTexture": 55,
+    "normalTexture": 1,
+    "emissiveTexture": 2
+  },
+  "failures": []
+}

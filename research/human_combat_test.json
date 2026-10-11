@@ -8,9 +8,9 @@
   "passed": true,
   "police_shots": 3,
   "roles": {
-    "civilian": 71,
-    "military": 8,
-    "police": 8
+    "civilian": 212,
+    "military": 32,
+    "police": 16
   },
   "variants": 12,
   "wall_blocks_aim": true,

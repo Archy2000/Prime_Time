@@ -13,9 +13,12 @@
         "size": 1.0,
         "vertical_speed": -14.1
       },
+      "landing_spray_visible": true,
       "passed": true,
       "size": 1.0,
-      "solver_impulses": 210,
+      "solver_impulses": 110,
+      "spray_above_crown": true,
+      "spray_bounds_cover_drops": true,
       "takeoff": {
         "amplitude": 0.104464285714286,
         "drops": 55,
@@ -25,6 +28,7 @@
         "size": 1.0,
         "vertical_speed": 15.0
       },
+      "takeoff_spray_visible": true,
       "visual_leaves_water": true,
       "visual_returns_underwater": true
     },
@@ -33,17 +37,20 @@
       "exactly_two_events": true,
       "landed": true,
       "landing": {
-        "amplitude": 0.402750000000001,
+        "amplitude": 0.423000000000001,
         "drops": 140,
         "landing": true,
         "life": 2.27609903369994,
         "radius": 3.36,
         "size": 3.2,
-        "vertical_speed": -17.9
+        "vertical_speed": -18.8
       },
+      "landing_spray_visible": true,
       "passed": true,
       "size": 3.2,
-      "solver_impulses": 26,
+      "solver_impulses": 138,
+      "spray_above_crown": true,
+      "spray_bounds_cover_drops": true,
       "takeoff": {
         "amplitude": 0.28665,
         "drops": 134,
@@ -53,6 +60,7 @@
         "size": 3.2,
         "vertical_speed": 20.5
       },
+      "takeoff_spray_visible": true,
       "visual_leaves_water": true,
       "visual_returns_underwater": true
     }

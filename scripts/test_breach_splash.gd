@@ -13,6 +13,7 @@ func run()->void:
 	for target:Node3D in game.targets:target.position=Vector3(-55,game.water_level,-70)
 	var cases:Array=[]
 	for size in [1.0,3.2]:
+		game.water_level=1.15 if size==1.0 else 7.8
 		game.growth=size;game.visual.scale=Vector3.ONE*size
 		game.player.get_child(0).shape.radius=0.55*size;game.player.get_child(0).position.y=0.4*size
 		game.player.position=Vector3(0,game.water_level-0.52*size,-35);game.player.velocity=Vector3.ZERO;game.visual.rotation=Vector3.ZERO
@@ -23,6 +24,7 @@ func run()->void:
 		game._jump();game.leap_target=null;game.air_drift=Vector3.ZERO
 		var takeoff:Dictionary=water_fx.last_breach.duplicate()
 		await create_timer(0.18).timeout
+		var takeoff_spray:bool=water_fx.droplets.size()>=int(takeoff.drops*0.5) and water_fx.spray.multimesh.visible_instance_count>0
 		var visual_airborne:bool=game.visual.global_position.y>game.water_level
 		await capture("takeoff_"+str(size))
 		var landed:=false
@@ -31,11 +33,18 @@ func run()->void:
 			if not game.airborne:landed=true;break
 		var landing:Dictionary=water_fx.last_breach.duplicate()
 		await create_timer(0.20).timeout
+		var landing_spray:bool=water_fx.droplets.size()>=int(landing.drops*0.5) and water_fx.spray.multimesh.visible_instance_count>0
 		await capture("landing_"+str(size))
 		var item:={"size":size,"takeoff":takeoff,"landing":landing,"landed":landed,"exactly_two_events":water_fx.breach_count==count+2,"solver_impulses":game.wave_sim.total_impulses-impulses,"bounded_droplets":water_fx.droplets.size()<=water_fx.MAX_DROPS}
 		item["visual_leaves_water"]=visual_airborne
+		item["takeoff_spray_visible"]=takeoff_spray
+		item["landing_spray_visible"]=landing_spray
+		item["spray_above_crown"]=water_fx.spray.material_override.render_priority>5
+		item["spray_bounds_cover_drops"]=true
+		for drop in water_fx.droplets:
+			if not water_fx.spray.multimesh.custom_aabb.has_point(drop.p):item.spray_bounds_cover_drops=false
 		item["visual_returns_underwater"]=game.visual.global_position.y<game.water_level
-		item["passed"]=landed and item.exactly_two_events and not takeoff.landing and landing.landing and item.solver_impulses>=26 and item.bounded_droplets and visual_airborne and item.visual_returns_underwater
+		item["passed"]=landed and item.exactly_two_events and not takeoff.landing and landing.landing and item.solver_impulses>=26 and item.bounded_droplets and visual_airborne and item.visual_returns_underwater and takeoff_spray and landing_spray and item.spray_above_crown and item.spray_bounds_cover_drops
 		cases.append(item)
 		await create_timer(0.4).timeout;await capture("waves_"+str(size))
 		game.paused=true;paused=true

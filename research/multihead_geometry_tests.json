@@ -1,0 +1,27 @@
+{
+  "2": {
+    "connected_components": 1,
+    "closed_skin": true,
+    "mouth_count": 2,
+    "triangles": 38084
+  },
+  "3": {
+    "connected_components": 1,
+    "closed_skin": true,
+    "mouth_count": 3,
+    "triangles": 44216
+  },
+  "5": {
+    "connected_components": 1,
+    "closed_skin": true,
+    "mouth_count": 5,
+    "triangles": 59836
+  },
+  "9": {
+    "connected_components": 1,
+    "closed_skin": true,
+    "mouth_count": 9,
+    "triangles": 85692
+  },
+  "passed": true
+}

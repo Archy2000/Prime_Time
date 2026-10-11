@@ -37,7 +37,6 @@ func run()->void:
 	await create_timer(3.0).timeout
 	result["roof_landing_returns_to_water"]=not game.airborne and game._water_column_clear(game.player.position)
 	# High guards cannot be reached by small-shark jump assistance.
-	var guard:Node3D=tower.guards[0]
 	game.player.position=tower.position+Vector3(-8,game._swim_body_y(game.water_level),0)
 	game.visual.rotation.y=-PI/2;game.player.velocity=Vector3.RIGHT*8;game.jump_cooldown=0
 	game._jump()

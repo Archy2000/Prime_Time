@@ -43,13 +43,22 @@ func run()->void:
 			game.player.position.y=level-0.52*game.growth
 			game.visual.rotation=Vector3(0,PI/2,0)
 			var before:int=game.wrecked
+			var family_hits_before:=0
+			for key:String in game.buildings:
+				if family in key.to_lower():family_hits_before+=int(game.buildings[key].hits)
 			game.growth=1.0;game._ram_nearby(-normal*12)
 			var gated:bool=game.wrecked==before
 			game.growth=3.2 if level>3 else 1.65
 			for attempt in 3:
 				game._ram_nearby(-normal*12)
 				await physics_frame
-			var damaged:bool=game.buildings[key_selected].hits>0
+			# The large-shark sphere overlaps adjacent houses of the same family.
+			# Query order is unspecified; require NEW damage to this family instead
+			# of assuming the fixture's particular house is one of the first two hits.
+			var family_hits_after:=0
+			for key:String in game.buildings:
+				if family in key.to_lower():family_hits_after+=int(game.buildings[key].hits)
+			var damaged:bool=family_hits_after>family_hits_before
 			scenarios.append({"family":family,"level":level,"growth":game.growth,"growth_gate":gated,"passed":damaged and gated})
 	result["ram_scenarios"]=scenarios
 	result["all_families_ram"]=true

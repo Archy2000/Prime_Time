@@ -1,0 +1,9 @@
+{
+  "batched_instances": 1845,
+  "batches": 595,
+  "colliders": 3160,
+  "collision_shapes": 80,
+  "hide_removes_instance": true,
+  "passed": true,
+  "show_restores_instance": true
+}

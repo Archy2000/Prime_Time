@@ -13,6 +13,7 @@ var vx:=PackedFloat32Array()
 var vz:=PackedFloat32Array()
 var foam:=PackedFloat32Array()
 var next_foam:=PackedFloat32Array()
+var next_height:=PackedFloat32Array()
 var impact:=PackedFloat32Array()
 var solid:=PackedByteArray()
 var rgba:=PackedFloat32Array()
@@ -29,6 +30,7 @@ var max_height:=0.0
 
 func _init()->void:
 	height.resize(N*N);floor_height.resize(N*N);base_floor.resize(N*N)
+	next_height.resize(N*N)
 	vx.resize(N*N);vz.resize(N*N);foam.resize(N*N);next_foam.resize(N*N);solid.resize(N*N)
 	impact.resize(N*N)
 	base_floor.fill(-0.3);floor_height.fill(-0.3)
@@ -140,7 +142,7 @@ func _step()->void:
 			var dd:=clampf(level+(h+height[i+N])*0.5-maxf(floor_height[i],floor_height[i+N]),0,3)
 			var du:=clampf(level+(h+height[i-N])*0.5-maxf(floor_height[i],floor_height[i-N]),0,3)
 			var change:float=-STEP/cell*(vx[i]*dr-vx[i-1]*dl+vz[i]*dd-vz[i-N]*du)
-			flow_rgba[i*4+2]=maxf(floor_height[i]-level,clampf(h+change,-0.65,0.85))
+			next_height[i]=maxf(floor_height[i]-level,clampf(h+change,-0.65,0.85))
 			var wet_depth:=maxf(0,level+h-floor_height[i])
 			# Use the fluid-side surface at solid neighbours: a wall is not a wave crest.
 			var hr:float=h if solid[i+1]>0 else height[i+1]
@@ -169,7 +171,7 @@ func _step()->void:
 			var i:=z*N+x
 			if solid[i]>0:continue
 			var edge:=mini(x,N-1-x)
-			height[i]=flow_rgba[i*4+2]*lerpf(0.91,0.998,smoothstep(0,8,edge))
+			height[i]=next_height[i]*lerpf(0.91,0.998,smoothstep(0,8,edge))
 			if z<8:height[i]*=lerpf(0.88,1.0,float(z)/8.0)
 			foam[i]=next_foam[i];max_height=maxf(max_height,absf(height[i]))
 	# Boundary forcing; interior waves travel via flux, not scrolling sine foam.

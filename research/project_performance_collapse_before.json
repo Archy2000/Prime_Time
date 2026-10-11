@@ -1,0 +1,325 @@
+{
+  "phases": {
+    "destruction": {
+      "draw_calls": 1392.0,
+      "frames": {
+        "max_ms": 33.961,
+        "mean_ms": 7.3995166461159,
+        "p50_ms": 6.567,
+        "p95_ms": 13.656,
+        "samples": 811
+      },
+      "modules": {
+        "combat": {
+          "max_ms": 0.088,
+          "mean_ms": 0.0202486187845304,
+          "p50_ms": 0.016,
+          "p95_ms": 0.032,
+          "samples": 362
+        },
+        "effects": {
+          "max_ms": 1.37,
+          "mean_ms": 0.194430939226519,
+          "p50_ms": 0.082,
+          "p95_ms": 0.951,
+          "samples": 362
+        },
+        "floating": {
+          "max_ms": 3.579,
+          "mean_ms": 1.23874861878453,
+          "p50_ms": 1.339,
+          "p95_ms": 1.62,
+          "samples": 362
+        },
+        "hud_camera": {
+          "max_ms": 0.071,
+          "mean_ms": 0.0361906077348066,
+          "p50_ms": 0.034,
+          "p95_ms": 0.048,
+          "samples": 362
+        },
+        "npcs": {
+          "max_ms": 3.805,
+          "mean_ms": 1.66458839779005,
+          "p50_ms": 1.773,
+          "p95_ms": 2.268,
+          "samples": 362
+        },
+        "physics_total": {
+          "max_ms": 9.49,
+          "mean_ms": 3.68716850828729,
+          "p50_ms": 3.552,
+          "p95_ms": 5.805,
+          "samples": 362
+        },
+        "player": {
+          "max_ms": 4.286,
+          "mean_ms": 0.248530386740332,
+          "p50_ms": 0.14,
+          "p95_ms": 0.941,
+          "samples": 362
+        },
+        "water": {
+          "max_ms": 3.449,
+          "mean_ms": 0.283453038674033,
+          "p50_ms": 0.151,
+          "p95_ms": 0.904,
+          "samples": 362
+        },
+        "water_effects": {
+          "max_ms": 7.28,
+          "mean_ms": 1.48136374845869,
+          "p50_ms": 1.038,
+          "p95_ms": 3.598,
+          "samples": 811
+        }
+      },
+      "nodes": 11286.0,
+      "primitives": 492212.0,
+      "render_objects": 1514.0,
+      "wake_tracks": 11,
+      "wave_step_ms": 34.807
+    },
+    "feeding": {
+      "draw_calls": 863.0,
+      "frames": {
+        "max_ms": 23.997,
+        "mean_ms": 7.05931411764707,
+        "p50_ms": 6.134,
+        "p95_ms": 14.66,
+        "samples": 850
+      },
+      "modules": {
+        "combat": {
+          "max_ms": 0.125,
+          "mean_ms": 0.0266388888888888,
+          "p50_ms": 0.024,
+          "p95_ms": 0.048,
+          "samples": 360
+        },
+        "effects": {
+          "max_ms": 3.038,
+          "mean_ms": 0.698511111111111,
+          "p50_ms": 0.65,
+          "p95_ms": 1.082,
+          "samples": 360
+        },
+        "floating": {
+          "max_ms": 0.203,
+          "mean_ms": 0.119877777777778,
+          "p50_ms": 0.117,
+          "p95_ms": 0.163,
+          "samples": 360
+        },
+        "hud_camera": {
+          "max_ms": 0.073,
+          "mean_ms": 0.0376888888888888,
+          "p50_ms": 0.036,
+          "p95_ms": 0.05,
+          "samples": 360
+        },
+        "npcs": {
+          "max_ms": 5.85,
+          "mean_ms": 2.18451388888889,
+          "p50_ms": 2.262,
+          "p95_ms": 3.103,
+          "samples": 360
+        },
+        "physics_total": {
+          "max_ms": 8.845,
+          "mean_ms": 3.66745833333333,
+          "p50_ms": 3.401,
+          "p95_ms": 5.762,
+          "samples": 360
+        },
+        "player": {
+          "max_ms": 5.088,
+          "mean_ms": 0.328494444444444,
+          "p50_ms": 0.147,
+          "p95_ms": 1.359,
+          "samples": 360
+        },
+        "water": {
+          "max_ms": 2.764,
+          "mean_ms": 0.270711111111111,
+          "p50_ms": 0.137,
+          "p95_ms": 0.827,
+          "samples": 360
+        },
+        "water_effects": {
+          "max_ms": 6.824,
+          "mean_ms": 1.58212,
+          "p50_ms": 1.128,
+          "p95_ms": 3.854,
+          "samples": 850
+        }
+      },
+      "nodes": 11160.0,
+      "primitives": 377523.0,
+      "render_objects": 980.0,
+      "wake_tracks": 15,
+      "wave_step_ms": 33.158
+    },
+    "idle": {
+      "draw_calls": 1734.0,
+      "frames": {
+        "max_ms": 25.047,
+        "mean_ms": 5.80894487427466,
+        "p50_ms": 5.864,
+        "p95_ms": 9.228,
+        "samples": 1034
+      },
+      "modules": {
+        "combat": {
+          "max_ms": 0.059,
+          "mean_ms": 0.0156805555555556,
+          "p50_ms": 0.015,
+          "p95_ms": 0.02,
+          "samples": 360
+        },
+        "effects": {
+          "max_ms": 0.014,
+          "mean_ms": 0.00607499999999999,
+          "p50_ms": 0.006,
+          "p95_ms": 0.007,
+          "samples": 360
+        },
+        "floating": {
+          "max_ms": 0.238,
+          "mean_ms": 0.120294444444444,
+          "p50_ms": 0.118,
+          "p95_ms": 0.148,
+          "samples": 360
+        },
+        "hud_camera": {
+          "max_ms": 0.07,
+          "mean_ms": 0.0323222222222222,
+          "p50_ms": 0.032,
+          "p95_ms": 0.04,
+          "samples": 360
+        },
+        "npcs": {
+          "max_ms": 4.402,
+          "mean_ms": 2.15940277777778,
+          "p50_ms": 2.095,
+          "p95_ms": 2.524,
+          "samples": 360
+        },
+        "physics_total": {
+          "max_ms": 5.942,
+          "mean_ms": 2.6751,
+          "p50_ms": 2.574,
+          "p95_ms": 3.397,
+          "samples": 360
+        },
+        "player": {
+          "max_ms": 0.288,
+          "mean_ms": 0.139352777777778,
+          "p50_ms": 0.135,
+          "p95_ms": 0.175,
+          "samples": 360
+        },
+        "water": {
+          "max_ms": 0.974,
+          "mean_ms": 0.201055555555556,
+          "p50_ms": 0.129,
+          "p95_ms": 0.717,
+          "samples": 360
+        },
+        "water_effects": {
+          "max_ms": 5.888,
+          "mean_ms": 1.35231655372701,
+          "p50_ms": 0.878,
+          "p95_ms": 3.122,
+          "samples": 1033
+        }
+      },
+      "nodes": 11182.0,
+      "primitives": 828350.0,
+      "render_objects": 1856.0,
+      "wake_tracks": 46,
+      "wave_step_ms": 29.805
+    },
+    "swim": {
+      "draw_calls": 579.0,
+      "frames": {
+        "max_ms": 13.36,
+        "mean_ms": 5.06003119730185,
+        "p50_ms": 4.566,
+        "p95_ms": 9.513,
+        "samples": 1186
+      },
+      "modules": {
+        "combat": {
+          "max_ms": 0.082,
+          "mean_ms": 0.0219166666666666,
+          "p50_ms": 0.021,
+          "p95_ms": 0.035,
+          "samples": 360
+        },
+        "effects": {
+          "max_ms": 0.586,
+          "mean_ms": 0.0971055555555556,
+          "p50_ms": 0.132,
+          "p95_ms": 0.148,
+          "samples": 360
+        },
+        "floating": {
+          "max_ms": 0.196,
+          "mean_ms": 0.116663888888889,
+          "p50_ms": 0.117,
+          "p95_ms": 0.135,
+          "samples": 360
+        },
+        "hud_camera": {
+          "max_ms": 0.05,
+          "mean_ms": 0.0318083333333333,
+          "p50_ms": 0.031,
+          "p95_ms": 0.037,
+          "samples": 360
+        },
+        "npcs": {
+          "max_ms": 4.273,
+          "mean_ms": 2.10605833333333,
+          "p50_ms": 2.263,
+          "p95_ms": 2.804,
+          "samples": 360
+        },
+        "physics_total": {
+          "max_ms": 6.08,
+          "mean_ms": 2.82051944444444,
+          "p50_ms": 2.823,
+          "p95_ms": 4.055,
+          "samples": 360
+        },
+        "player": {
+          "max_ms": 1.481,
+          "mean_ms": 0.26855,
+          "p50_ms": 0.142,
+          "p95_ms": 0.962,
+          "samples": 360
+        },
+        "water": {
+          "max_ms": 1.081,
+          "mean_ms": 0.177588888888889,
+          "p50_ms": 0.136,
+          "p95_ms": 0.569,
+          "samples": 360
+        },
+        "water_effects": {
+          "max_ms": 6.589,
+          "mean_ms": 1.23555733558179,
+          "p50_ms": 0.896,
+          "p95_ms": 3.38,
+          "samples": 1186
+        }
+      },
+      "nodes": 11170.0,
+      "primitives": 259628.0,
+      "render_objects": 699.0,
+      "wake_tracks": 14,
+      "wave_step_ms": 28.883
+    }
+  },
+  "renderer": "NVIDIA GeForce RTX 4060"
+}

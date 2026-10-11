@@ -28,12 +28,34 @@ var blood_previous:=Vector3.ZERO
 var blood_distance:=0.0
 var blood_stamps:=0
 var blood_drops:Array[Dictionary]=[]
+var blood_drop_mesh:SphereMesh
+var blood_drop_material:StandardMaterial3D
+var blood_water_mesh:PlaneMesh
+var blood_land_mesh:PlaneMesh
+var blood_water_material:ShaderMaterial
+var blood_land_material:StandardMaterial3D
 var dust_last:=-10.0
 var chunks_released:=0
 var smoke_clouds:Array[Dictionary]=[]
+var smoke_batch:MultiMeshInstance3D
+const MAX_FRAGMENT_TRANSFERS:=12
+var last_fragment_transfers:=0
+var burst_pool:Dictionary={}
+var active_bursts:Array[Dictionary]=[]
 
 func setup(owner_game:Node3D)->void:
 	game=owner_game;rng.seed=729
+	# Every blood droplet uses the same geometry and appearance. Keep these
+	# resources across meals instead of allocating twelve meshes/materials per NPC.
+	blood_drop_mesh=SphereMesh.new();blood_drop_mesh.radius=0.045;blood_drop_mesh.height=0.09;blood_drop_mesh.radial_segments=4;blood_drop_mesh.rings=2
+	blood_drop_material=StandardMaterial3D.new();blood_drop_material.albedo_color=Color(0.43,0.025,0.012);blood_drop_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+	blood_water_mesh=PlaneMesh.new();blood_water_mesh.size=Vector2.ONE;blood_water_mesh.subdivide_width=8;blood_water_mesh.subdivide_depth=8
+	blood_land_mesh=PlaneMesh.new();blood_land_mesh.size=Vector2.ONE
+	var splat_texture:=preload("res://assets/effects/rollasplat1.png")
+	blood_water_material=ShaderMaterial.new();blood_water_material.shader=preload("res://shaders/blood_diffusion.gdshader");blood_water_material.render_priority=2
+	blood_water_material.set_shader_parameter("wave_field",game.wave_sim.texture);blood_water_material.set_shader_parameter("splat",splat_texture)
+	blood_land_material=StandardMaterial3D.new();blood_land_material.albedo_texture=splat_texture;blood_land_material.albedo_color=Color(0.38,0.035,0.012,0.82)
+	blood_land_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;blood_land_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;blood_land_material.cull_mode=BaseMaterial3D.CULL_DISABLED;blood_land_material.render_priority=2
 	var source:Node3D=load("res://assets/effects/fracture_parts.gltf").instantiate()
 	for child in source.get_children():
 		if not child is MeshInstance3D:continue
@@ -46,9 +68,22 @@ func setup(owner_game:Node3D)->void:
 		elif String(child.name).begins_with("police") and "assembled" in child.name:police_models.append(child.duplicate())
 		elif child.name=="military_assembled":military_models.append(child.duplicate())
 	humans.free()
-	# Cache unique facade meshes at load time, avoiding clipping work during impact.
+
+func prepare_fractures()->void:
+	# Allocate the two collapse particle configurations before gameplay.
+	for i in 14:
+		_pool_burst(_make_burst(Color(0.38,0.32,0.24),20,1.4,0.2,0.75,3.0,"smoke_single"))
+		_pool_burst(_make_burst(Color(0.32,0.28,0.21),18,1.3,0.06,0.17,4.0,""))
+	smoke_batch=MultiMeshInstance3D.new()
+	var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.use_colors=true
+	var quad:=QuadMesh.new();quad.size=Vector2.ONE;mm.mesh=quad;mm.instance_count=70;mm.visible_instance_count=0
+	var mat:=StandardMaterial3D.new();mat.albedo_texture=preload("res://assets/effects/smoke_bally.png");mat.albedo_color=Color(0.022,0.021,0.018,1)
+	mat.vertex_color_use_as_albedo=true;mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;mat.billboard_mode=BaseMaterial3D.BILLBOARD_ENABLED;mat.billboard_keep_scale=true;mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat.render_priority=4
+	smoke_batch.multimesh=mm;smoke_batch.material_override=mat;smoke_batch.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(smoke_batch)
+	# Cache every breakable mesh, including props. Only caching facades left
+	# first-time tree/prop triangle clipping on the movement thread.
 	for node:MeshInstance3D in game.destructibles:
-		if not game.node_building.has(node.get_instance_id()):continue
+		if node.get_meta("car",false):continue
 		var key:int=node.mesh.get_instance_id()
 		if not fracture_cache.has(key):fracture_cache[key]=preload("res://scripts/fracture_mesh.gd").split(node)
 
@@ -77,21 +112,33 @@ func make_civilian(index:int,standing:bool=false,role:String="civilian")->Node3D
 
 func update(dt:float)->void:
 	_update_blood(dt)
+	for i in range(active_bursts.size()-1,-1,-1):
+		var burst_state:Dictionary=active_bursts[i];burst_state.age+=dt
+		if burst_state.age>=burst_state.node.lifetime+0.2:
+			_pool_burst(burst_state.node);active_bursts.remove_at(i);transient_count-=1
 	for i in range(smoke_clouds.size()-1,-1,-1):
 		var cloud:Dictionary=smoke_clouds[i];cloud.age+=dt
 		var t:float=cloud.age/cloud.life
-		cloud.node.position+=cloud.velocity*dt
-		cloud.node.scale=Vector3.ONE*cloud.size*lerpf(0.35,1.65,smoothstep(0,1,t))
-		cloud.material.albedo_color.a=(1.0-smoothstep(0.55,1.0,t))*0.92
-		if t>=1:cloud.node.queue_free();smoke_clouds.remove_at(i)
+		cloud.p+=cloud.velocity*dt
+		if t>=1:smoke_clouds.remove_at(i)
+	if is_instance_valid(smoke_batch):
+		for i in smoke_clouds.size():
+			var cloud:Dictionary=smoke_clouds[i];var t:float=cloud.age/cloud.life
+			smoke_batch.multimesh.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3.ONE*cloud.size*lerpf(0.35,1.65,smoothstep(0,1,t))),cloud.p))
+			smoke_batch.multimesh.set_instance_color(i,Color(1,1,1,(1.0-smoothstep(0.55,1.0,t))*0.92))
+		smoke_batch.multimesh.visible_instance_count=smoke_clouds.size()
+	var capture_mouth:Vector3=game.primary_mouth() if not captures.is_empty() else Vector3.ZERO
 	for i in range(captures.size()-1,-1,-1):
 		var c:Dictionary=captures[i];c.age+=dt
 		var victim:Node3D=c.node
 		if not is_instance_valid(victim):captures.remove_at(i);continue
 		var t:float=clampf(c.age/c.duration,0,1)
-		var mouth:Vector3=game.visual.global_position-game.visual.global_basis.z.normalized()*game.growth*0.85
 		var off:=Vector3(sin(t*TAU+c.phase),0,cos(t*TAU+c.phase))*sin(t*PI)*0.32
-		victim.global_position=c.start.lerp(mouth,t*t)+off+Vector3.UP*sin(t*PI)*0.8
+		var destination:Vector3=capture_mouth
+		var socket_ref:WeakRef=victim.get_meta("mutation_socket") if victim.has_meta("mutation_socket") else null
+		var socket:Node3D=socket_ref.get_ref() if socket_ref else null
+		if is_instance_valid(socket):destination=socket.global_position
+		victim.global_position=c.start.lerp(destination,t*t)+off+Vector3.UP*sin(t*PI)*0.8
 		victim.scale=Vector3.ONE*lerpf(1.0,0.025,t*t)
 		victim.rotation+=Vector3(1.8,4.2,0.7)*dt
 		if t>=1:
@@ -117,7 +164,7 @@ func update(dt:float)->void:
 			if drift.length_squared()>0.0001 and get_world_3d().direct_space_state.intersect_ray(ray).is_empty():s.node.position=next
 			s.node.position.y=game.water_level+0.065
 			var spread:float=1.0+1.8*(1.0-exp(-s.age*0.42))
-			s.node.scale=Vector3(spread,1.0,spread*(1.0+minf(0.25,drift.length()*s.age)))
+			s.node.scale=s.base_scale*Vector3(spread,1.0,spread*(1.0+minf(0.25,drift.length()*s.age)))
 			s.material.set_shader_parameter("age",s.age)
 		elif is_instance_valid(s.support) and s.support.get_meta("broken",false):
 			s.node.queue_free();splats.remove_at(i);continue
@@ -125,12 +172,14 @@ func update(dt:float)->void:
 			var fade:float=1.0-smoothstep(s.life*0.72,s.life,s.age)
 			var col:Color=s.material.albedo_color;col.a=s.opacity*fade;s.material.albedo_color=col
 		if s.age>=s.life:s.node.queue_free();splats.remove_at(i)
+	last_fragment_transfers=0
 	for i in range(fragments.size()-1,-1,-1):
 		var b:=fragments[i]
 		if not is_instance_valid(b):fragments.remove_at(i);continue
 		var age:float=float(b.get_meta("age",0.0))+dt;b.set_meta("age",age)
-		if b.get_meta("masonry",false) and age>0.75:
+		if b.get_meta("masonry",false) and age>0.75 and last_fragment_transfers<MAX_FRAGMENT_TRANSFERS:
 			game.floating_world.accept_piece(b)
+			last_fragment_transfers+=1
 			b.queue_free();fragments.remove_at(i);continue
 		var local_water:Vector3=game.wave_sim.sample_surface(b.position)
 		var surface_y:float=game.water_level+local_water.y
@@ -172,8 +221,7 @@ func blood(pos:Vector3)->void:
 	blood_left=BLOOD_TRAIL_TIME;blood_travel_left=BLOOD_TRAIL_LENGTH
 	for i in 12:
 		if blood_drops.size()>=72:break
-		var node:=MeshInstance3D.new();var mesh:=SphereMesh.new();mesh.radius=0.045;mesh.height=0.09;mesh.radial_segments=4;mesh.rings=2;node.mesh=mesh
-		var mat:=StandardMaterial3D.new();mat.albedo_color=Color(0.43,0.025,0.012);mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;node.material_override=mat
+		var node:=MeshInstance3D.new();node.mesh=blood_drop_mesh;node.material_override=blood_drop_material
 		add_child(node);node.position=pos+Vector3.UP*0.25;node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		blood_drops.append({"node":node,"velocity":game.player.velocity*0.23+Vector3(rng.randf_range(-2.8,2.8),rng.randf_range(1.8,4.5),rng.randf_range(-2.8,2.8)),"age":0.0})
 
@@ -183,24 +231,21 @@ func _stamp_blood(pos:Vector3,size:float,angle:float)->void:
 	var on_water:bool=hit.is_empty() or hit.position.y<game.water_level
 	var support:Node=null
 	if not hit.is_empty() and hit.collider.has_meta("visual"):support=hit.collider.get_meta("visual")
-	var plane:=MeshInstance3D.new();var quad:=PlaneMesh.new();quad.size=Vector2(size*rng.randf_range(0.8,1.25),size*rng.randf_range(0.8,1.25));plane.mesh=quad
-	var mat:=StandardMaterial3D.new();mat.albedo_texture=load("res://assets/effects/rollasplat1.png");mat.albedo_color=Color(0.38+rng.randf()*0.08,0.035,0.012,0.82)
-	mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat.cull_mode=BaseMaterial3D.CULL_DISABLED;mat.render_priority=2
+	var plane:=MeshInstance3D.new();plane.mesh=blood_water_mesh if on_water else blood_land_mesh
+	plane.scale=Vector3(size*rng.randf_range(0.8,1.25),1,size*rng.randf_range(0.8,1.25))
+	var mat:Material=blood_water_material.duplicate() if on_water else blood_land_material.duplicate()
+	if not on_water:mat.albedo_color=Color(0.38+rng.randf()*0.08,0.035,0.012,0.82)
 	plane.material_override=mat;plane.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(plane)
 	plane.position=Vector3(pos.x,game.water_level+0.065 if on_water else hit.position.y+0.025,pos.z);plane.rotation.y=angle
 	if not on_water:
 		var normal:Vector3=hit.normal
 		if normal.dot(Vector3.UP)<0.98 and normal.dot(Vector3.UP)>0.3:
-			var tangent:=Vector3.RIGHT.slide(normal).normalized();plane.basis=Basis(tangent,normal,tangent.cross(normal))
+			var tangent:=Vector3.RIGHT.slide(normal).normalized();plane.basis=Basis(tangent,normal,tangent.cross(normal)).scaled(plane.scale)
 	var life:float=rng.randf_range(5.0,7.0) if on_water else 90.0
 	var stain_material:Material=mat
 	if on_water:
-		quad.subdivide_width=8;quad.subdivide_depth=8
-		var diffusion:=ShaderMaterial.new();diffusion.shader=preload("res://shaders/blood_diffusion.gdshader");diffusion.render_priority=2
-		diffusion.set_shader_parameter("wave_field",game.wave_sim.texture)
-		diffusion.set_shader_parameter("splat",mat.albedo_texture);diffusion.set_shader_parameter("lifetime",life);diffusion.set_shader_parameter("seed",rng.randf()*100.0)
-		plane.material_override=diffusion;stain_material=diffusion
-	splats.append({"node":plane,"material":stain_material,"age":0.0,"life":life,"opacity":0.82,"water":on_water,"support":support})
+		mat.set_shader_parameter("lifetime",life);mat.set_shader_parameter("seed",rng.randf()*100.0)
+	splats.append({"node":plane,"material":stain_material,"age":0.0,"life":life,"opacity":0.82,"water":on_water,"support":support,"base_scale":plane.scale})
 	blood_stamps+=1
 	while splats.size()>MAX_SPLATS:splats[0].node.queue_free();splats.remove_at(0)
 
@@ -270,17 +315,14 @@ func fracture(mesh_node:MeshInstance3D,impulse:Vector3,amount:int=8)->void:
 
 func _smoke_cloud(pos:Vector3)->void:
 	for i in 5:
-		var node:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2.ONE;node.mesh=quad
-		var mat:=StandardMaterial3D.new();mat.albedo_texture=load("res://assets/effects/smoke_bally.png");mat.albedo_color=Color(0.022,0.021,0.018,0.9)
-		mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;mat.billboard_mode=BaseMaterial3D.BILLBOARD_ENABLED;mat.billboard_keep_scale=true;mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat.render_priority=4
-		node.material_override=mat;node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(node)
-		node.position=pos+Vector3(rng.randf_range(-0.8,0.8),rng.randf_range(0,0.7),rng.randf_range(-0.8,0.8));node.scale=Vector3.ONE*0.5
-		smoke_clouds.append({"node":node,"material":mat,"age":0.0,"life":rng.randf_range(2.6,4.0),"size":rng.randf_range(1.8,3.3),"velocity":Vector3(rng.randf_range(-0.3,0.3),rng.randf_range(0.65,1.1),0.12)})
-	while smoke_clouds.size()>70:smoke_clouds[0].node.queue_free();smoke_clouds.remove_at(0)
+		smoke_clouds.append({"p":pos+Vector3(rng.randf_range(-0.8,0.8),rng.randf_range(0,0.7),rng.randf_range(-0.8,0.8)),"age":0.0,"life":rng.randf_range(2.6,4.0),"size":rng.randf_range(1.8,3.3),"velocity":Vector3(rng.randf_range(-0.3,0.3),rng.randf_range(0.65,1.1),0.12)})
+	while smoke_clouds.size()>70:smoke_clouds.remove_at(0)
 
 func launch_car(mesh_node:MeshInstance3D,impulse:Vector3)->void:
 	var xf:=mesh_node.global_transform
 	var copy:=mesh_node.duplicate() as MeshInstance3D
+	copy.layers=int(mesh_node.get_meta("render_layers",1))
+	copy.cast_shadow=int(mesh_node.get_meta("render_shadow",GeometryInstance3D.SHADOW_CASTING_SETTING_ON))
 	for c in copy.get_children():c.free()
 	var box:=copy.mesh.get_aabb();var center:Vector3=xf*box.get_center()
 	var b:=RigidBody3D.new();b.mass=1.2;b.collision_layer=4;b.collision_mask=1;b.linear_damp=0.3
@@ -292,7 +334,23 @@ func launch_car(mesh_node:MeshInstance3D,impulse:Vector3)->void:
 	mesh_node.hide();splash(center,1.2);sound("carbreak",center,-12)
 
 func burst(pos:Vector3,color:Color,count:int,life:float,min_size:float,max_size:float,speed:float,tex:String)->void:
+	if transient_count>=28:return
+	var key:=str([color,count,life,min_size,max_size,speed,tex])
+	var p:CPUParticles3D
+	if burst_pool.has(key) and not burst_pool[key].is_empty():p=burst_pool[key].pop_back()
+	else:p=_make_burst(color,count,life,min_size,max_size,speed,tex)
+	p.process_mode=Node.PROCESS_MODE_INHERIT;p.position=pos;p.show();p.restart();p.emitting=true
+	active_bursts.append({"node":p,"age":0.0});transient_count+=1
+
+func _pool_burst(p:CPUParticles3D)->void:
+	var key:String=p.get_meta("pool_key")
+	p.emitting=false;p.hide();p.process_mode=Node.PROCESS_MODE_DISABLED
+	if not burst_pool.has(key):burst_pool[key]=[]
+	burst_pool[key].append(p)
+
+func _make_burst(color:Color,count:int,life:float,min_size:float,max_size:float,speed:float,tex:String)->CPUParticles3D:
 	var p:=CPUParticles3D.new();p.amount=maxi(1,count);p.lifetime=life;p.one_shot=true;p.explosiveness=0.95;p.local_coords=false;p.direction=Vector3.UP;p.spread=65
+	p.set_meta("pool_key",str([color,count,life,min_size,max_size,speed,tex]))
 	p.initial_velocity_min=speed*0.4;p.initial_velocity_max=speed;p.gravity=Vector3(0,-5.5,0) if tex.is_empty() else Vector3(0.15,0.4,0.1)
 	p.emission_shape=CPUParticles3D.EMISSION_SHAPE_SPHERE;p.emission_sphere_radius=0.5
 	p.scale_amount_min=min_size;p.scale_amount_max=max_size
@@ -307,8 +365,8 @@ func burst(pos:Vector3,color:Color,count:int,life:float,min_size:float,max_size:
 	mesh.surface_set_material(0,mat);p.mesh=mesh
 	var grad:=Gradient.new();grad.colors=PackedColorArray([Color.WHITE,Color.WHITE,Color(1,1,1,0)]);grad.offsets=PackedFloat32Array([0,0.6,1]);p.color_ramp=grad
 	var curve:=Curve.new();curve.add_point(Vector2(0,0.35));curve.add_point(Vector2(0.25,1));curve.add_point(Vector2(1,1.8 if not tex.is_empty() else 0.05));p.scale_amount_curve=curve
-	add_child(p);p.position=pos;transient_count+=1
-	get_tree().create_timer(life+0.2,false).timeout.connect(func():if is_instance_valid(p):p.queue_free();transient_count-=1)
+	p.emitting=false;add_child(p)
+	return p
 
 func sound(key:String,pos:Vector3,volume:float)->void:
 	var audio:=AudioStreamPlayer3D.new();audio.stream=load("res://assets/effects/"+key+".wav");audio.volume_db=volume;audio.unit_size=18;audio.max_distance=250;audio.pitch_scale=rng.randf_range(0.93,1.06)

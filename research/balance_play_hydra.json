@@ -1,0 +1,51 @@
+{
+  "eaten": 17,
+  "elapsed": 47.733333333334,
+  "family": "hydra",
+  "first_evolution_seconds": 5.2,
+  "health": 0.0,
+  "milestones": [
+    {
+      "eaten": 0,
+      "nearest": "(2.731961, 1.15, -20.91835)",
+      "position": "(0.0, 0.63, -24.0)",
+      "seconds": 0.0
+    },
+    {
+      "eaten": 15,
+      "nearest": "(3.05991, 2.235732, 20.65655)",
+      "position": "(0.006381, 1.601311, 22.95341)",
+      "seconds": 15.0666666666666
+    },
+    {
+      "eaten": 17,
+      "nearest": "(3.657502, 2.384878, 0.498985)",
+      "position": "(3.208554, 1.894719, 12.40663)",
+      "seconds": 30.0666666666666
+    },
+    {
+      "eaten": 17,
+      "nearest": "(4.953281, 2.410954, -2.360597)",
+      "position": "(5.533088, 1.888989, 12.39679)",
+      "seconds": 45.0000000000006
+    }
+  ],
+  "passed": true,
+  "pick_history": [
+    {
+      "eaten": 6,
+      "id": "hydra",
+      "pick": 1,
+      "rank": 1,
+      "seconds": 5.2
+    },
+    {
+      "eaten": 15,
+      "id": "frenzy",
+      "pick": 2,
+      "rank": 1,
+      "seconds": 13.8666666666666
+    }
+  ],
+  "upgrades": 2
+}

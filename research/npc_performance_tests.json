@@ -1,0 +1,13 @@
+{
+  "batch_meals": 16,
+  "bounded_blood_drops": true,
+  "every_frame_ms": 3.090875,
+  "every_frame_updates": 31200,
+  "nearby_capturable": true,
+  "nearby_immediate": true,
+  "passed": true,
+  "population": 260,
+  "scheduled_ms": 1.98364166666667,
+  "scheduled_updates": 15877,
+  "shared_blood_resources": true
+}

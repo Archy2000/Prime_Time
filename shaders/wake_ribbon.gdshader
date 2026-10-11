@@ -7,9 +7,20 @@ uniform float water_y=1.15;
 uniform float clock=0.0;
 uniform bool terrain_clipping=false;
 varying vec3 world_pos;
+varying float wake_alpha;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
 void vertex(){
+    float age=max(0.0,clock-UV2.x);
+    float size=UV2.y;
+    float body=smoothstep(0.30,1.0,size);
+    float life=mix(0.75,1.65,body);
+    if(NORMAL.y>0.5){
+        VERTEX.xz+=normalize(NORMAL.xz)*age*size*(0.65+(UV.x-0.5)*0.14*mix(0.85,1.0,body));
+        wake_alpha=COLOR.a*pow(max(0.0,1.0-age/life),1.4)*exp(-COLOR.r*10.0*age/max(0.01,size*4.0));
+    }else{
+        wake_alpha=COLOR.a*clamp((0.25-age)*6.0,0.0,1.0);
+    }
     world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
     vec4 f=texture(wave_field,(world_pos.xz-field_origin)/field_extent);
     float ridge=exp(-pow((UV.x-0.43)*5.5,2.0));
@@ -28,5 +39,5 @@ void fragment(){
     float ridge=exp(-pow((UV.x-0.4)*4.0,2.0));
     float foam=core*(0.35+0.65*broken)+flecks*0.25;
     ALBEDO=mix(vec3(0.15,0.47,0.48),vec3(0.92,0.98,0.96),clamp(foam*1.7,0.0,1.0));
-    ALPHA=(ridge*0.08+foam*0.90)*COLOR.a*edge;
+    ALPHA=(ridge*0.08+foam*0.90)*wake_alpha*edge;
 }

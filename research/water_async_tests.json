@@ -1,0 +1,7 @@
+{
+  "finite_energy": true,
+  "passed": true,
+  "published_snapshots_immutable": true,
+  "same_height_foam_floor_velocity_impact": true,
+  "steps": 12
+}

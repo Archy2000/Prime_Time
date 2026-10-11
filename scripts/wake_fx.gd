@@ -18,6 +18,11 @@ var surf_timer:=0.0
 var surf_phase:=0
 var surf_emitted:=0
 var whitewater:Node3D
+var profile_enabled:=false
+var profile_samples:Array[float]=[]
+const MAX_PATH_BUILDS:=4
+var path_builds:=0
+var path_cursor:=0
 
 func setup(field:RefCounted,level:float)->void:
 	sim=field;water_y=level;rng.seed=791
@@ -28,7 +33,10 @@ func setup(field:RefCounted,level:float)->void:
 	material.set_shader_parameter("terrain_clipping",sim.extent<100)
 	spray=MultiMeshInstance3D.new();var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.use_colors=true
 	var sphere:=SphereMesh.new();sphere.radius=1;sphere.height=2;sphere.radial_segments=6;sphere.rings=3;mm.mesh=sphere;mm.instance_count=MAX_DROPS;mm.visible_instance_count=0;spray.multimesh=mm
-	var m:=StandardMaterial3D.new();m.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;m.albedo_color=Color("deeeec");m.vertex_color_use_as_albedo=true;m.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;spray.material_override=m;spray.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(spray)
+	var m:=StandardMaterial3D.new();m.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;m.albedo_color=Color("deeeec");m.vertex_color_use_as_albedo=true;m.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+	# The transparent splash crown renders at priority 5. Draw airborne drops
+	# afterward so its broad transparent surface does not cover the spray.
+	m.render_priority=6;spray.material_override=m;spray.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(spray)
 
 func swimmer(id:int,pos:Vector3,velocity:Vector3,size:float)->void:
 	if id==0:audio.swim(pos,velocity,size)
@@ -39,13 +47,15 @@ func swimmer(id:int,pos:Vector3,velocity:Vector3,size:float)->void:
 	var direction:=Vector3(velocity.x,0,velocity.z).normalized()
 	if not tracks.has(id):
 		var mesh:=MeshInstance3D.new();mesh.material_override=material;mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(mesh)
-		tracks[id]={"mesh":mesh,"points":[],"last":pos-direction*0.4,"distance":0.0,"spray_time":0.0,"life":lerpf(0.75,1.65,smoothstep(0.30,1.0,size))}
+		mesh.extra_cull_margin=maxf(2.0,size*2.0)
+		tracks[id]={"mesh":mesh,"points":[],"last":pos-direction*0.4,"distance":0.0,"spray_time":0.0,"life":lerpf(0.75,1.65,smoothstep(0.30,1.0,size)),"dirty":true}
 	var track:Dictionary=tracks[id]
 	var distance:float=pos.distance_to(track.last)
-	if distance>6.0*size:track.points.clear();track.last=pos;return
+	if distance>6.0*size:track.points.clear();track.last=pos;track.dirty=true;return
 	if distance<lerpf(maxf(0.12,0.22*size),0.035,small_body):return
 	track.distance+=distance;track.last=pos
 	track.points.push_front({"pos":pos,"direction":direction,"born":clock,"size":size,"speed":speed,"u":track.distance})
+	track.dirty=true
 	while track.points.size()>64:track.points.pop_back()
 	if speed>2.5 and clock-track.spray_time>0.06:
 		track.spray_time=clock
@@ -88,7 +98,7 @@ func breach(pos:Vector3,size:float,vertical_speed:float,landing:bool)->void:
 		var p:Vector3=center+d*radius*rng.randf_range(0.35,0.9)
 		p.y=water_y+sim.sample_surface(p).y+0.16
 		var velocity:Vector3=d*rng.randf_range(1.4,3.0)*sqrt(size)*impact+Vector3.UP*rng.randf_range(3.0,5.5)*sqrt(size)*impact
-		_drop(p,velocity,rng.randf_range(0.04,0.085)*sqrt(size),clampf(velocity.y/4.9+0.15,0.8,2.7),9.8)
+		_drop(p,velocity,rng.randf_range(0.06,0.11)*sqrt(size),clampf(velocity.y/4.9+0.15,0.8,2.7),9.8)
 	breach_count+=1
 	last_breach={"landing":landing,"size":size,"radius":radius,"amplitude":amplitude,"drops":count,"life":life,"vertical_speed":vertical_speed}
 
@@ -97,6 +107,7 @@ func _drop(pos:Vector3,velocity:Vector3,size:float,life:float=0.65,gravity:float
 	droplets.append({"p":pos,"v":velocity,"size":size,"age":0.0,"life":life,"gravity":gravity});emitted+=1
 
 func _process(dt:float)->void:
+	var profile_start:int=Time.get_ticks_usec() if profile_enabled else 0
 	# Only completed snapshots are read; never read worker-owned height/solid arrays.
 	surf_timer+=dt
 	if surf_timer>=0.14:
@@ -107,19 +118,35 @@ func _process(dt:float)->void:
 	for i in range(breaches.size()-1,-1,-1):
 		var b:Dictionary=breaches[i];b.age+=dt;b.node.position.y=water_y+0.075;b.material.set_shader_parameter("age",b.age)
 		if b.age>=b.life:b.node.queue_free();breaches.remove_at(i)
-	for id in tracks.keys():
+	var track_ids:Array=tracks.keys()
+	for offset in track_ids.size():
+		var id=track_ids[(path_cursor+offset)%track_ids.size()]
 		var track:Dictionary=tracks[id]
-		while not track.points.is_empty() and clock-track.points.back().born>track.life:track.points.pop_back()
+		while not track.points.is_empty() and clock-track.points.back().born>track.life:
+			track.points.pop_back();track.dirty=true
 		if track.points.is_empty():track.mesh.queue_free();tracks.erase(id);continue
-		_build(track)
+		# Age, widening and fade run in the vertex shader. Re-upload only when
+		# the actual path changes, never merely because another frame rendered.
+		if track.dirty and (id==0 or path_builds<MAX_PATH_BUILDS):
+			_build(track);track.dirty=false
+			if id!=0:path_builds+=1
 	for i in range(droplets.size()-1,-1,-1):
 		var drop:Dictionary=droplets[i];drop.age+=dt;drop.v.y-=drop.gravity*dt;drop.p+=drop.v*dt
 		if drop.age>drop.life or drop.p.y<water_y+sim.sample_surface(drop.p).y-0.05:droplets.remove_at(i)
 	spray.multimesh.visible_instance_count=droplets.size()
+	var spray_bounds:=AABB()
 	for i in droplets.size():
 		var drop:Dictionary=droplets[i];var size:float=drop.size*(1.0-drop.age/drop.life*0.4)
+		if i==0:spray_bounds=AABB(drop.p,Vector3.ZERO)
+		else:spray_bounds=spray_bounds.expand(drop.p)
 		spray.multimesh.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3(size,size*1.5,size)),drop.p))
 		spray.multimesh.set_instance_color(i,Color(1,1,1,minf(1,(drop.life-drop.age)*5)))
+	# World-space instances must remain visible at raised flood levels and away
+	# from the origin, including while their ballistic arc rises above the water.
+	spray.multimesh.custom_aabb=spray_bounds.grow(0.5) if not droplets.is_empty() else AABB()
+	if profile_enabled:profile_samples.append(float(Time.get_ticks_usec()-profile_start)/1000.0)
+	path_builds=0
+	path_cursor=(path_cursor+MAX_PATH_BUILDS)%maxi(1,tracks.size())
 
 func _surface_spray()->void:
 	if not sim or droplets.size()>96:return
@@ -149,30 +176,30 @@ func _surface_spray()->void:
 
 func _build(track:Dictionary)->void:
 	if track.points.size()<2:return
-	var vertices:=PackedVector3Array();var uv:=PackedVector2Array();var colors:=PackedColorArray();var indices:=PackedInt32Array()
+	var vertices:=PackedVector3Array();var uv:=PackedVector2Array();var ages:=PackedVector2Array();var normals:=PackedVector3Array();var colors:=PackedColorArray();var indices:=PackedInt32Array()
 	for sign_value in [-1.0,1.0]:
 		var base:=vertices.size()
 		for i in track.points.size():
-			var p:Dictionary=track.points[i];var age:float=clock-p.born
+			var p:Dictionary=track.points[i]
 			var side:Vector3=p.direction.cross(Vector3.UP)*sign_value
-			var spread:float=p.size*(0.46+age*0.65)
+			var spread:float=p.size*0.46
 			var detail_scale:float=lerpf(0.85,1.0,smoothstep(0.30,1.0,p.size))
-			var width:float=p.size*(0.48+age*0.14)*detail_scale
+			var width:float=p.size*0.48*detail_scale
 			var center:Vector3=p.pos+side*spread-p.direction*0.12
-			var travelled:float=track.distance-p.u
 			var swim_speed:float=lerpf(0.65,5.0,smoothstep(0.30,1.0,p.size))
-			var fade:float=pow(maxf(0,1-age/track.life),1.4)*exp(-travelled/(p.size*4.0))*clampf(p.speed/swim_speed,0,1)*detail_scale*lerpf(0.35,1.0,smoothstep(0.30,1.0,p.size))
+			var fade:float=clampf(p.speed/swim_speed,0,1)*detail_scale*lerpf(0.35,1.0,smoothstep(0.30,1.0,p.size))
 			# Taper both ends; no rectangular end cap or texture stamp.
 			fade*=minf(1,float(i+1)/2.0)*minf(1,float(track.points.size()-i)/3.0)
 			for u in [0.0,0.25,0.5,0.75,1.0]:
 				vertices.append(center+side*(u-0.5)*width);uv.append(Vector2(u,p.u));colors.append(Color(minf(1,p.speed/10),0,0,fade))
+				ages.append(Vector2(p.born,p.size));normals.append(Vector3(side.x,1.0,side.z))
 			if i>0:
 				for j in 4:
 					var k:int=base+i*5+j;indices.append_array(PackedInt32Array([k-5,k-4,k,k-4,k+1,k]))
 	# Curved bow lip joins the two side crests at the front of the swimmer.
-	var head:Dictionary=track.points.front();var head_age:float=clock-head.born
+	var head:Dictionary=track.points.front()
 	var body_blend:float=smoothstep(0.30,1.0,head.size)
-	var bow_alpha:float=clampf((0.25-head_age)*6,0,1)*clampf(head.speed/lerpf(0.65,6.0,body_blend),0,1)
+	var bow_alpha:float=clampf(head.speed/lerpf(0.65,6.0,body_blend),0,1)
 	bow_alpha*=lerpf(0.85,1.0,body_blend)
 	bow_alpha*=lerpf(0.28,1.0,body_blend)
 	var bow_base:=vertices.size();var lateral:Vector3=head.direction.cross(Vector3.UP)
@@ -181,9 +208,13 @@ func _build(track:Dictionary)->void:
 		var outward:Vector3=head.direction*cos(angle)+lateral*sin(angle)
 		var center:Vector3=head.pos+(head.direction*cos(angle)*head.size*0.91+lateral*sin(angle)*head.size*0.48)*lerpf(1.35,1.0,body_blend)
 		for u in [0.0,0.25,0.5,0.75,1.0]:
-			vertices.append(center+outward*(u-0.5)*head.size*0.50);uv.append(Vector2(u,angle*head.size+clock*0.13));colors.append(Color(minf(1.0,head.size),0,0,bow_alpha))
+			vertices.append(center+outward*(u-0.5)*head.size*0.50);uv.append(Vector2(u,angle*head.size+head.born*0.13));colors.append(Color(minf(1.0,head.size),0,0,bow_alpha))
+			ages.append(Vector2(head.born,head.size));normals.append(Vector3(outward.x,0.0,outward.z))
 		if segment>0:
 			for j in 4:
 				var k:int=bow_base+segment*5+j;indices.append_array(PackedInt32Array([k-5,k-4,k,k-4,k+1,k]))
-	var arrays:=[];arrays.resize(Mesh.ARRAY_MAX);arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_TEX_UV]=uv;arrays[Mesh.ARRAY_COLOR]=colors;arrays[Mesh.ARRAY_INDEX]=indices
-	var mesh:=ArrayMesh.new();mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays);track.mesh.mesh=mesh
+	var arrays:=[];arrays.resize(Mesh.ARRAY_MAX);arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_TEX_UV]=uv;arrays[Mesh.ARRAY_TEX_UV2]=ages;arrays[Mesh.ARRAY_NORMAL]=normals;arrays[Mesh.ARRAY_COLOR]=colors;arrays[Mesh.ARRAY_INDEX]=indices
+	var mesh:=track.mesh.mesh as ArrayMesh
+	if mesh==null:mesh=ArrayMesh.new();track.mesh.mesh=mesh
+	else:mesh.clear_surfaces()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)

@@ -1,0 +1,23 @@
+{
+  "active_spam_cannot_bypass_bite_cooldown": true,
+  "base_healing_is_not_double_counted": true,
+  "cannot_chain_first_two_body_ranks": true,
+  "final_body_rank_available_late": true,
+  "final_body_rank_still_locked": true,
+  "food_budget_leaves_objective_margin": true,
+  "main_bite_cannot_swallow_entire_crowd": true,
+  "main_bite_recovers": true,
+  "nine_heads_have_bounded_burst": true,
+  "normal_building_break_unlocked_before_midrun": true,
+  "objective_does_not_unlock_one_meal_early": true,
+  "objective_unlocks_at_advertised_food": true,
+  "old_victory_food_no_longer_maximizes_growth": true,
+  "passed": true,
+  "passive_capture_shares_main_cooldown": true,
+  "second_body_rank_at_third_choice": true,
+  "side_heads_recover": true,
+  "side_heads_respect_their_cooldown": true,
+  "stacked_heal_is_bounded": true,
+  "third_body_rank_available_midrun": true,
+  "third_body_rank_still_locked": true
+}

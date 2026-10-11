@@ -1,0 +1,2782 @@
+[
+  {
+    "image": "images/000_Cylinder.png",
+    "model": "000_Cylinder.gltf",
+    "save_error": 0,
+    "size": [
+      1.00000011920929,
+      2.0,
+      1.00000023841858
+    ]
+  },
+  {
+    "image": "images/001_Quad.png",
+    "model": "001_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/002_blobbubble.png",
+    "model": "002_blobbubble.gltf",
+    "save_error": 0,
+    "size": [
+      2.44749999046326,
+      2.29523205757141,
+      2.20917892456055
+    ]
+  },
+  {
+    "image": "images/003_Cylinder.png",
+    "model": "003_Cylinder.gltf",
+    "save_error": 0,
+    "size": [
+      1.00000011920929,
+      2.0,
+      1.00000023841858
+    ]
+  },
+  {
+    "image": "images/004_Cube.png",
+    "model": "004_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/005_Plane.png",
+    "model": "005_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/006_Cube.png",
+    "model": "006_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/007_Plane.png",
+    "model": "007_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/008_Plane.png",
+    "model": "008_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/009_highriserWall_cell_004.png",
+    "model": "009_highriserWall_cell_004.gltf",
+    "save_error": 0,
+    "size": [
+      2.42132091522217,
+      0.368241995573044,
+      5.40041303634644
+    ]
+  },
+  {
+    "image": "images/010_tolppaWired_001.png",
+    "model": "010_tolppaWired_001.gltf",
+    "save_error": 0,
+    "size": [
+      9.19065475463867,
+      5.40981912612915,
+      28.0840377807617
+    ]
+  },
+  {
+    "image": "images/011_tolppaWired_001.png",
+    "model": "011_tolppaWired_001.gltf",
+    "save_error": 0,
+    "size": [
+      9.19065475463867,
+      5.40981912612915,
+      28.0840377807617
+    ]
+  },
+  {
+    "image": "images/012_highriserRoof.png",
+    "model": "012_highriserRoof.gltf",
+    "save_error": 0,
+    "size": [
+      3.99426293373108,
+      4.28666305541992,
+      0.210507988929749
+    ]
+  },
+  {
+    "image": "images/013_highriserWall_cell_004.png",
+    "model": "013_highriserWall_cell_004.gltf",
+    "save_error": 0,
+    "size": [
+      2.42132091522217,
+      0.368241995573044,
+      5.40041303634644
+    ]
+  },
+  {
+    "image": "images/014_Quad.png",
+    "model": "014_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/015_highriserWall_cell_003.png",
+    "model": "015_highriserWall_cell_003.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321212768555,
+      1.19946300983429,
+      4.15975284576416
+    ]
+  },
+  {
+    "image": "images/016_highriserWall_cell_005.png",
+    "model": "016_highriserWall_cell_005.gltf",
+    "save_error": 0,
+    "size": [
+      1.30460894107819,
+      0.368241995573044,
+      2.2075469493866
+    ]
+  },
+  {
+    "image": "images/017_mailbox.png",
+    "model": "017_mailbox.gltf",
+    "save_error": 0,
+    "size": [
+      1.07431900501251,
+      1.45300102233887,
+      3.04201316833496
+    ]
+  },
+  {
+    "image": "images/018_highriserWall_cell_003.png",
+    "model": "018_highriserWall_cell_003.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321212768555,
+      1.19946300983429,
+      4.15975284576416
+    ]
+  },
+  {
+    "image": "images/019_highriserWall_cell_005.png",
+    "model": "019_highriserWall_cell_005.gltf",
+    "save_error": 0,
+    "size": [
+      1.30460894107819,
+      0.368241995573044,
+      2.2075469493866
+    ]
+  },
+  {
+    "image": "images/020_squareShadow.png",
+    "model": "020_squareShadow.gltf",
+    "save_error": 0,
+    "size": [
+      1.99811601638794,
+      0.00000999999974737875,
+      1.99811601638794
+    ]
+  },
+  {
+    "image": "images/021_highriserWall_cell_006.png",
+    "model": "021_highriserWall_cell_006.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368241995573044,
+      7.4180326461792
+    ]
+  },
+  {
+    "image": "images/022_telkkari.png",
+    "model": "022_telkkari.gltf",
+    "save_error": 0,
+    "size": [
+      1.44590902328491,
+      1.07253003120422,
+      0.666366994380951
+    ]
+  },
+  {
+    "image": "images/023_tolppaWired.png",
+    "model": "023_tolppaWired.gltf",
+    "save_error": 0,
+    "size": [
+      1.08491396903992,
+      1.2892849445343,
+      12.6094598770142
+    ]
+  },
+  {
+    "image": "images/024_wires.png",
+    "model": "024_wires.gltf",
+    "save_error": 0,
+    "size": [
+      69.7254791259766,
+      6.13616275787354,
+      1.7723560333252
+    ]
+  },
+  {
+    "image": "images/025_highriserWall_cell_006.png",
+    "model": "025_highriserWall_cell_006.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368241995573044,
+      7.4180326461792
+    ]
+  },
+  {
+    "image": "images/026_highriserWall_cell_001.png",
+    "model": "026_highriserWall_cell_001.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368241995573044,
+      2.68210411071777
+    ]
+  },
+  {
+    "image": "images/027_highriserWall_cell_001.png",
+    "model": "027_highriserWall_cell_001.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368241995573044,
+      2.68210411071777
+    ]
+  },
+  {
+    "image": "images/028_floor_wood.png",
+    "model": "028_floor_wood.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.379285007715225
+    ]
+  },
+  {
+    "image": "images/029_car_Van.png",
+    "model": "029_car_Van.gltf",
+    "save_error": 0,
+    "size": [
+      2.24989080429077,
+      5.22064781188965,
+      2.09892988204956
+    ]
+  },
+  {
+    "image": "images/030_highriserWall.png",
+    "model": "030_highriserWall.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      5.31647205352783,
+      13.0134792327881
+    ]
+  },
+  {
+    "image": "images/031_highrisermiddle.png",
+    "model": "031_highrisermiddle.gltf",
+    "save_error": 0,
+    "size": [
+      3.85361194610596,
+      5.31647205352783,
+      12.6136608123779
+    ]
+  },
+  {
+    "image": "images/032_tolppaWired_004.png",
+    "model": "032_tolppaWired_004.gltf",
+    "save_error": 0,
+    "size": [
+      9.19065475463867,
+      5.40981912612915,
+      10.6485710144043
+    ]
+  },
+  {
+    "image": "images/033_highriserWall_cell_007.png",
+    "model": "033_highriserWall_cell_007.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/034_highriserWall_cell.png",
+    "model": "034_highriserWall_cell.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/035_tolppaWired_002.png",
+    "model": "035_tolppaWired_002.gltf",
+    "save_error": 0,
+    "size": [
+      9.19065475463867,
+      5.40981912612915,
+      28.0840377807617
+    ]
+  },
+  {
+    "image": "images/036_highriserWall_cell_002.png",
+    "model": "036_highriserWall_cell_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/037_tolppaWired_003.png",
+    "model": "037_tolppaWired_003.gltf",
+    "save_error": 0,
+    "size": [
+      0.788874983787537,
+      0.788874983787537,
+      8.04209804534912
+    ]
+  },
+  {
+    "image": "images/038_highriserWall_cell_007.png",
+    "model": "038_highriserWall_cell_007.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/039_highriserWall_cell_002.png",
+    "model": "039_highriserWall_cell_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/040_highriserWall_cell.png",
+    "model": "040_highriserWall_cell.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/041_Body.png",
+    "model": "041_Body.gltf",
+    "save_error": 0,
+    "size": [
+      181.053512573242,
+      177.02897644043,
+      30.6020259857178
+    ]
+  },
+  {
+    "image": "images/042_man_scientist.png",
+    "model": "042_man_scientist.gltf",
+    "save_error": 0,
+    "size": [
+      1.86176824569702,
+      1.85717344284058,
+      0.318327754735947
+    ]
+  },
+  {
+    "image": "images/043_man_hazard.png",
+    "model": "043_man_hazard.gltf",
+    "save_error": 0,
+    "size": [
+      1.86539697647095,
+      1.80714559555054,
+      0.287811756134033
+    ]
+  },
+  {
+    "image": "images/044_woman_scientist.png",
+    "model": "044_woman_scientist.gltf",
+    "save_error": 0,
+    "size": [
+      0.0184993296861649,
+      0.0179296284914017,
+      0.00367054087109864
+    ]
+  },
+  {
+    "image": "images/045_Clumps_001.png",
+    "model": "045_Clumps_001.gltf",
+    "save_error": 0,
+    "size": [
+      0.118174001574516,
+      0.0538913421332836,
+      0.0569482669234276
+    ]
+  },
+  {
+    "image": "images/046_Plane.png",
+    "model": "046_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/047_Cube.png",
+    "model": "047_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/048_Plane.png",
+    "model": "048_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/049_radiotower.png",
+    "model": "049_radiotower.gltf",
+    "save_error": 0,
+    "size": [
+      11.2435646057129,
+      11.0637016296387,
+      43.0830497741699
+    ]
+  },
+  {
+    "image": "images/050_Cube.png",
+    "model": "050_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/051_OceanMesh_Clone_.png",
+    "model": "051_OceanMesh_Clone_.gltf",
+    "save_error": 0,
+    "size": [
+      30.0,
+      0.0599999837577343,
+      30.0
+    ]
+  },
+  {
+    "image": "images/052_L.png",
+    "model": "052_L.gltf",
+    "save_error": 0,
+    "size": [
+      4.76770782470703,
+      0.380882978439331,
+      6.04049777984619
+    ]
+  },
+  {
+    "image": "images/053_blobbubble_simple.png",
+    "model": "053_blobbubble_simple.gltf",
+    "save_error": 0,
+    "size": [
+      2.42882204055786,
+      2.29523205757141,
+      2.20917892456055
+    ]
+  },
+  {
+    "image": "images/054_lowrise2Wall_cell_005.png",
+    "model": "054_lowrise2Wall_cell_005.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.45599901676178,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/055_valiviiva_017.png",
+    "model": "055_valiviiva_017.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      57.1757888793945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/056_rooftile.png",
+    "model": "056_rooftile.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/057_lowrise2Wall_cell_003.png",
+    "model": "057_lowrise2Wall_cell_003.gltf",
+    "save_error": 0,
+    "size": [
+      3.60349607467651,
+      0.368241995573044,
+      4.27307081222534
+    ]
+  },
+  {
+    "image": "images/058_floor_wood.png",
+    "model": "058_floor_wood.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.379285007715225
+    ]
+  },
+  {
+    "image": "images/059_snow.png",
+    "model": "059_snow.gltf",
+    "save_error": 0,
+    "size": [
+      62.4623489379883,
+      59.2545928955078,
+      0.0410660021007061
+    ]
+  },
+  {
+    "image": "images/060_default.png",
+    "model": "060_default.gltf",
+    "save_error": 0,
+    "size": [
+      0.751788973808289,
+      1.95324397087097,
+      0.758167028427124
+    ]
+  },
+  {
+    "image": "images/061_lowriseWall_001.png",
+    "model": "061_lowriseWall_001.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.831220984458923,
+      0.696202993392944
+    ]
+  },
+  {
+    "image": "images/062_lowrise2Wall_cell_001.png",
+    "model": "062_lowrise2Wall_cell_001.gltf",
+    "save_error": 0,
+    "size": [
+      2.31664991378784,
+      4.28666305541992,
+      0.21050800383091
+    ]
+  },
+  {
+    "image": "images/063_lowrisemarkiisi.png",
+    "model": "063_lowrisemarkiisi.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.831220984458923,
+      0.696202993392944
+    ]
+  },
+  {
+    "image": "images/064_lowriseRoof.png",
+    "model": "064_lowriseRoof.gltf",
+    "save_error": 0,
+    "size": [
+      3.99426293373108,
+      4.28666305541992,
+      0.210507988929749
+    ]
+  },
+  {
+    "image": "images/065_lowrise2Roof.png",
+    "model": "065_lowrise2Roof.gltf",
+    "save_error": 0,
+    "size": [
+      3.99426293373108,
+      4.28666305541992,
+      0.210507988929749
+    ]
+  },
+  {
+    "image": "images/066_A.png",
+    "model": "066_A.gltf",
+    "save_error": 0,
+    "size": [
+      5.44066619873047,
+      0.380066007375717,
+      5.94409799575806
+    ]
+  },
+  {
+    "image": "images/067_valiviiva_021.png",
+    "model": "067_valiviiva_021.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      152.468765258789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/068_lowriseWall_cell_002.png",
+    "model": "068_lowriseWall_cell_002.gltf",
+    "save_error": 0,
+    "size": [
+      2.13855791091919,
+      4.28666400909424,
+      0.210507988929749
+    ]
+  },
+  {
+    "image": "images/069_lowriseWall_cell_001.png",
+    "model": "069_lowriseWall_cell_001.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368240982294083,
+      4.54281187057495
+    ]
+  },
+  {
+    "image": "images/070_lowriseWall.png",
+    "model": "070_lowriseWall.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      4.48525142669678,
+      9.77139282226563
+    ]
+  },
+  {
+    "image": "images/071_windowPlane.png",
+    "model": "071_windowPlane.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/072_lowrise2Wall_cell_009.png",
+    "model": "072_lowrise2Wall_cell_009.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321212768555,
+      1.19946300983429,
+      3.48300218582153
+    ]
+  },
+  {
+    "image": "images/073_Quad.png",
+    "model": "073_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/074_Cube_004.png",
+    "model": "074_Cube_004.gltf",
+    "save_error": 0,
+    "size": [
+      13.8407669067383,
+      29.0888900756836,
+      9.60756969451904
+    ]
+  },
+  {
+    "image": "images/075_lowrise2Wall_cell_007.png",
+    "model": "075_lowrise2Wall_cell_007.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.455998003482819
+    ]
+  },
+  {
+    "image": "images/076_road.png",
+    "model": "076_road.gltf",
+    "save_error": 0,
+    "size": [
+      1340.70385742188,
+      1253.77783203125,
+      0.000744014978408813
+    ]
+  },
+  {
+    "image": "images/077_prop_door.png",
+    "model": "077_prop_door.gltf",
+    "save_error": 0,
+    "size": [
+      3.35830998420715,
+      0.661055088043213,
+      5.54991912841797
+    ]
+  },
+  {
+    "image": "images/078_Extrude_001.png",
+    "model": "078_Extrude_001.gltf",
+    "save_error": 0,
+    "size": [
+      666.419555664063,
+      1593.64721679688,
+      3334.5537109375
+    ]
+  },
+  {
+    "image": "images/079_Extrude_001.png",
+    "model": "079_Extrude_001.gltf",
+    "save_error": 0,
+    "size": [
+      666.419555664063,
+      1593.64721679688,
+      3334.5537109375
+    ]
+  },
+  {
+    "image": "images/080_Plane_005.png",
+    "model": "080_Plane_005.gltf",
+    "save_error": 0,
+    "size": [
+      1524.21459960938,
+      1532.564453125,
+      0.159402996301651
+    ]
+  },
+  {
+    "image": "images/081_Plane_005.png",
+    "model": "081_Plane_005.gltf",
+    "save_error": 0,
+    "size": [
+      1524.21044921875,
+      1603.7734375,
+      0.369982004165649
+    ]
+  },
+  {
+    "image": "images/082_valiviiva_005.png",
+    "model": "082_valiviiva_005.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      98.0156326293945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/083_Cube.png",
+    "model": "083_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/084_lowriseWall_cell_004.png",
+    "model": "084_lowriseWall_cell_004.gltf",
+    "save_error": 0,
+    "size": [
+      2.35100603103638,
+      0.368241995573044,
+      1.50353801250458
+    ]
+  },
+  {
+    "image": "images/085_lowrisemarkiisi.png",
+    "model": "085_lowrisemarkiisi.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.831220984458923,
+      0.696202993392944
+    ]
+  },
+  {
+    "image": "images/086_lowrise2Wall_cell_006.png",
+    "model": "086_lowrise2Wall_cell_006.gltf",
+    "save_error": 0,
+    "size": [
+      1.81462895870209,
+      0.48427802324295,
+      4.7515721321106
+    ]
+  },
+  {
+    "image": "images/087_DP_retailWindow.png",
+    "model": "087_DP_retailWindow.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/088_seina2.png",
+    "model": "088_seina2.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      1.0,
+      10.0
+    ]
+  },
+  {
+    "image": "images/089_valiviiva_016.png",
+    "model": "089_valiviiva_016.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      57.1757888793945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/090_DP_housetriangle2.png",
+    "model": "090_DP_housetriangle2.gltf",
+    "save_error": 0,
+    "size": [
+      18.3866634368896,
+      0.85489696264267,
+      3.17327690124512
+    ]
+  },
+  {
+    "image": "images/091_lowriseWall_cell_003.png",
+    "model": "091_lowriseWall_cell_003.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      0.368241012096405,
+      5.8695330619812
+    ]
+  },
+  {
+    "image": "images/092_StylizedConiferTree_1.png",
+    "model": "092_StylizedConiferTree_1.gltf",
+    "save_error": 0,
+    "size": [
+      0.291229009628296,
+      0.26085102558136,
+      4.44264698028564
+    ]
+  },
+  {
+    "image": "images/093_lowriseWall_cell.png",
+    "model": "093_lowriseWall_cell.gltf",
+    "save_error": 0,
+    "size": [
+      2.12211108207703,
+      4.48524904251099,
+      0.504204034805298
+    ]
+  },
+  {
+    "image": "images/094_tykki.png",
+    "model": "094_tykki.gltf",
+    "save_error": 0,
+    "size": [
+      2.85313606262207,
+      4.0383186340332,
+      8.56037139892578
+    ]
+  },
+  {
+    "image": "images/095_valiviiva_018.png",
+    "model": "095_valiviiva_018.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      43.5625076293945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/096_kyltti4.png",
+    "model": "096_kyltti4.gltf",
+    "save_error": 0,
+    "size": [
+      1.56290400028229,
+      1.84421598911285,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/097_Sphere.png",
+    "model": "097_Sphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/098_lowrise2Wall.png",
+    "model": "098_lowrise2Wall.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      4.71328496932983,
+      7.21301221847534
+    ]
+  },
+  {
+    "image": "images/099_aitaHalf1.png",
+    "model": "099_aitaHalf1.gltf",
+    "save_error": 0,
+    "size": [
+      0.801177024841309,
+      13.7051792144775,
+      4.04411888122559
+    ]
+  },
+  {
+    "image": "images/100_ovi_shop.png",
+    "model": "100_ovi_shop.gltf",
+    "save_error": 0,
+    "size": [
+      4.90865802764893,
+      0.254458010196686,
+      4.92672824859619
+    ]
+  },
+  {
+    "image": "images/101_Cube_002.png",
+    "model": "101_Cube_002.gltf",
+    "save_error": 0,
+    "size": [
+      5.47338676452637,
+      105.523994445801,
+      4.8826961517334
+    ]
+  },
+  {
+    "image": "images/102_Plane.png",
+    "model": "102_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      128.240905761719,
+      152.215240478516,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/103_enemy_cop_001.png",
+    "model": "103_enemy_cop_001.gltf",
+    "save_error": 0,
+    "size": [
+      0.593840956687927,
+      0.765918970108032,
+      1.80643701553345
+    ]
+  },
+  {
+    "image": "images/104_lowrise2Wall_cell_008.png",
+    "model": "104_lowrise2Wall_cell_008.gltf",
+    "save_error": 0,
+    "size": [
+      0.175657004117966,
+      0.455998003482819,
+      0.455998986959457
+    ]
+  },
+  {
+    "image": "images/105_Plane_002.png",
+    "model": "105_Plane_002.gltf",
+    "save_error": 0,
+    "size": [
+      72.2718963623047,
+      90.3708190917969,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/106_Clumps_001.png",
+    "model": "106_Clumps_001.gltf",
+    "save_error": 0,
+    "size": [
+      11.8173999786377,
+      5.38913440704346,
+      5.69482707977295
+    ]
+  },
+  {
+    "image": "images/107_lowrise2Wall_cell.png",
+    "model": "107_lowrise2Wall_cell.gltf",
+    "save_error": 0,
+    "size": [
+      2.18120503425598,
+      1.15420496463776,
+      0.21050900220871
+    ]
+  },
+  {
+    "image": "images/108_LowWallPiece1mILITARY.png",
+    "model": "108_LowWallPiece1mILITARY.gltf",
+    "save_error": 0,
+    "size": [
+      9.26140689849854,
+      4.61465215682983,
+      9.02684116363525
+    ]
+  },
+  {
+    "image": "images/109_sportbench.png",
+    "model": "109_sportbench.gltf",
+    "save_error": 0,
+    "size": [
+      13.3770780563354,
+      4.71829319000244,
+      2.2732949256897
+    ]
+  },
+  {
+    "image": "images/110_Quad.png",
+    "model": "110_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/111_lowrise2Wall_cell_004.png",
+    "model": "111_lowrise2Wall_cell_004.gltf",
+    "save_error": 0,
+    "size": [
+      0.455998003482819,
+      0.455998003482819,
+      0.404148012399673
+    ]
+  },
+  {
+    "image": "images/112_lowriseWall_cell_006.png",
+    "model": "112_lowriseWall_cell_006.gltf",
+    "save_error": 0,
+    "size": [
+      2.03450107574463,
+      0.368241995573044,
+      4.19963598251343
+    ]
+  },
+  {
+    "image": "images/113_lowrise2Wall_cell_002.png",
+    "model": "113_lowrise2Wall_cell_002.gltf",
+    "save_error": 0,
+    "size": [
+      2.42824006080627,
+      3.39775991439819,
+      0.21050900220871
+    ]
+  },
+  {
+    "image": "images/114_valiviiva_008.png",
+    "model": "114_valiviiva_008.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      186.501968383789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/115_CavePlatform1.png",
+    "model": "115_CavePlatform1.gltf",
+    "save_error": 0,
+    "size": [
+      88.1089324951172,
+      114.970825195313,
+      89.3048858642578
+    ]
+  },
+  {
+    "image": "images/116_CavePlatform1.png",
+    "model": "116_CavePlatform1.gltf",
+    "save_error": 0,
+    "size": [
+      88.1089324951172,
+      114.970825195313,
+      89.3048858642578
+    ]
+  },
+  {
+    "image": "images/117_bulldozer.png",
+    "model": "117_bulldozer.gltf",
+    "save_error": 0,
+    "size": [
+      3.9102668762207,
+      3.00163102149963,
+      6.21356296539307
+    ]
+  },
+  {
+    "image": "images/118_exitpipe.png",
+    "model": "118_exitpipe.gltf",
+    "save_error": 0,
+    "size": [
+      7.70126581192017,
+      7.84140777587891,
+      32.5971336364746
+    ]
+  },
+  {
+    "image": "images/119_exitpipe_002.png",
+    "model": "119_exitpipe_002.gltf",
+    "save_error": 0,
+    "size": [
+      7.70126581192017,
+      7.84140777587891,
+      32.5917053222656
+    ]
+  },
+  {
+    "image": "images/120_lowWallOnePiece.png",
+    "model": "120_lowWallOnePiece.gltf",
+    "save_error": 0,
+    "size": [
+      18.4267921447754,
+      1.76743900775909,
+      5.46413993835449
+    ]
+  },
+  {
+    "image": "images/121_valiviiva_019.png",
+    "model": "121_valiviiva_019.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      43.5625076293945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/122_valiviiva.png",
+    "model": "122_valiviiva.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      574.480529785156,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/123_bicycle.png",
+    "model": "123_bicycle.gltf",
+    "save_error": 0,
+    "size": [
+      2.32395696640015,
+      1.31493198871613,
+      0.647608041763306
+    ]
+  },
+  {
+    "image": "images/124_valiviiva_013.png",
+    "model": "124_valiviiva_013.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      138.855484008789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/125_DP_retailWindow3.png",
+    "model": "125_DP_retailWindow3.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/126_sidewalks.png",
+    "model": "126_sidewalks.gltf",
+    "save_error": 0,
+    "size": [
+      37.9869766235352,
+      44.6188507080078,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/127_verkkoaitaReuna.png",
+    "model": "127_verkkoaitaReuna.gltf",
+    "save_error": 0,
+    "size": [
+      0.427251994609833,
+      0.200527995824814,
+      3.14804697036743
+    ]
+  },
+  {
+    "image": "images/128_valiviiva_002.png",
+    "model": "128_valiviiva_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      77.5957107543945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/129_lowriseWall_cell_005.png",
+    "model": "129_lowriseWall_cell_005.gltf",
+    "save_error": 0,
+    "size": [
+      2.06101703643799,
+      4.28666305541992,
+      0.104552999138832
+    ]
+  },
+  {
+    "image": "images/130_ar_003.png",
+    "model": "130_ar_003.gltf",
+    "save_error": 0,
+    "size": [
+      2.22252416610718,
+      1.82367491722107,
+      2.0
+    ]
+  },
+  {
+    "image": "images/131_verkkoaitaReuna_003.png",
+    "model": "131_verkkoaitaReuna_003.gltf",
+    "save_error": 0,
+    "size": [
+      0.17153799533844,
+      0.170826002955437,
+      3.58083486557007
+    ]
+  },
+  {
+    "image": "images/132_DP_retailWindow3.png",
+    "model": "132_DP_retailWindow3.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/133_O.png",
+    "model": "133_O.gltf",
+    "save_error": 0,
+    "size": [
+      5.61542320251465,
+      0.381799012422562,
+      6.14884996414185
+    ]
+  },
+  {
+    "image": "images/134_valiviiva_001.png",
+    "model": "134_valiviiva_001.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      186.501968383789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/135_Sphere.png",
+    "model": "135_Sphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/136_verkkoaitaReuna_002.png",
+    "model": "136_verkkoaitaReuna_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.427251994609833,
+      0.171240001916885,
+      3.14804697036743
+    ]
+  },
+  {
+    "image": "images/137_Plane_001.png",
+    "model": "137_Plane_001.gltf",
+    "save_error": 0,
+    "size": [
+      1504.82861328125,
+      1697.88696289063,
+      1.72275400161743
+    ]
+  },
+  {
+    "image": "images/138_wires.png",
+    "model": "138_wires.gltf",
+    "save_error": 0,
+    "size": [
+      69.7254791259766,
+      6.13616275787354,
+      1.7723560333252
+    ]
+  },
+  {
+    "image": "images/139_jungle_plant1.png",
+    "model": "139_jungle_plant1.gltf",
+    "save_error": 0,
+    "size": [
+      13.4818153381348,
+      13.3436584472656,
+      10.8483180999756
+    ]
+  },
+  {
+    "image": "images/140_rauniopohja.png",
+    "model": "140_rauniopohja.gltf",
+    "save_error": 0,
+    "size": [
+      18.1714210510254,
+      3.92206001281738,
+      1.40279603004456
+    ]
+  },
+  {
+    "image": "images/141_valiviiva_009.png",
+    "model": "141_valiviiva_009.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      91.2089920043945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/142_bullet.png",
+    "model": "142_bullet.gltf",
+    "save_error": 0,
+    "size": [
+      0.183507993817329,
+      1.96608102321625,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/143_valiviiva_007.png",
+    "model": "143_valiviiva_007.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      29.9492244720459,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/144_rooftileVar2_001.png",
+    "model": "144_rooftileVar2_001.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/145_rooftile.png",
+    "model": "145_rooftile.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/146_rooftileVar2_001.png",
+    "model": "146_rooftileVar2_001.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/147_bullet2.png",
+    "model": "147_bullet2.gltf",
+    "save_error": 0,
+    "size": [
+      0.411343991756439,
+      1.89338207244873,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/148_floor_bigpile.png",
+    "model": "148_floor_bigpile.gltf",
+    "save_error": 0,
+    "size": [
+      74.364875793457,
+      74.9148254394531,
+      34.9874305725098
+    ]
+  },
+  {
+    "image": "images/149_squareShadow.png",
+    "model": "149_squareShadow.gltf",
+    "save_error": 0,
+    "size": [
+      1.99811601638794,
+      0.00000999999974737875,
+      1.99811601638794
+    ]
+  },
+  {
+    "image": "images/150_valiviiva_011.png",
+    "model": "150_valiviiva_011.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      84.4023513793945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/151_LowwallPiece2military.png",
+    "model": "151_LowwallPiece2military.gltf",
+    "save_error": 0,
+    "size": [
+      6.98207473754883,
+      4.61465215682983,
+      9.02684116363525
+    ]
+  },
+  {
+    "image": "images/152_valiviiva_003.png",
+    "model": "152_valiviiva_003.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      70.7890701293945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/153_Plane.png",
+    "model": "153_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/154_rooftile.png",
+    "model": "154_rooftile.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/155_rooftileVar2.png",
+    "model": "155_rooftileVar2.gltf",
+    "save_error": 0,
+    "size": [
+      8.4054012298584,
+      18.6332702636719,
+      0.399096012115479
+    ]
+  },
+  {
+    "image": "images/156_valiviiva_012.png",
+    "model": "156_valiviiva_012.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      36.7558670043945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/157_kyltti6.png",
+    "model": "157_kyltti6.gltf",
+    "save_error": 0,
+    "size": [
+      1.56290400028229,
+      0.510128021240234,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/158_valiviiva_010.png",
+    "model": "158_valiviiva_010.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      166.082046508789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/159_valiviiva_004.png",
+    "model": "159_valiviiva_004.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      179.695327758789,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/160_Plane_003.png",
+    "model": "160_Plane_003.gltf",
+    "save_error": 0,
+    "size": [
+      399.226257324219,
+      497.904907226563,
+      0.0000119999967864715
+    ]
+  },
+  {
+    "image": "images/161_Plane_003.png",
+    "model": "161_Plane_003.gltf",
+    "save_error": 0,
+    "size": [
+      14.5900316238403,
+      581.322143554688,
+      0.0000100000033853576
+    ]
+  },
+  {
+    "image": "images/162_rantavahtituoli.png",
+    "model": "162_rantavahtituoli.gltf",
+    "save_error": 0,
+    "size": [
+      2.45915198326111,
+      2.45915198326111,
+      6.71890020370483
+    ]
+  },
+  {
+    "image": "images/163_enemy_cop.png",
+    "model": "163_enemy_cop.gltf",
+    "save_error": 0,
+    "size": [
+      1.04222595691681,
+      1.87801206111908,
+      1.92808294296265
+    ]
+  },
+  {
+    "image": "images/164_enemy_soldier_002.png",
+    "model": "164_enemy_soldier_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.64724999666214,
+      1.75447905063629,
+      0.712866008281708
+    ]
+  },
+  {
+    "image": "images/165_LowHouseWindows2OnePiece.png",
+    "model": "165_LowHouseWindows2OnePiece.gltf",
+    "save_error": 0,
+    "size": [
+      18.4267921447754,
+      0.864843964576721,
+      5.49052095413208
+    ]
+  },
+  {
+    "image": "images/166_tuoli.png",
+    "model": "166_tuoli.gltf",
+    "save_error": 0,
+    "size": [
+      1.02590394020081,
+      0.906584978103638,
+      1.54936695098877
+    ]
+  },
+  {
+    "image": "images/167_Cube.png",
+    "model": "167_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/168_skidmark_kaari.png",
+    "model": "168_skidmark_kaari.gltf",
+    "save_error": 0,
+    "size": [
+      492.93701171875,
+      671.714721679688,
+      0.542195975780487
+    ]
+  },
+  {
+    "image": "images/169_Plane_001.png",
+    "model": "169_Plane_001.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      4.54180383682251,
+      2.01336598396301
+    ]
+  },
+  {
+    "image": "images/170_car_sedan.png",
+    "model": "170_car_sedan.gltf",
+    "save_error": 0,
+    "size": [
+      5.38819217681885,
+      2.21642804145813,
+      1.50667905807495
+    ]
+  },
+  {
+    "image": "images/171_sign_arcade.png",
+    "model": "171_sign_arcade.gltf",
+    "save_error": 0,
+    "size": [
+      18.8137149810791,
+      14.7349462509155,
+      0.554551124572754
+    ]
+  },
+  {
+    "image": "images/172_volleycourt.png",
+    "model": "172_volleycourt.gltf",
+    "save_error": 0,
+    "size": [
+      140.538345336914,
+      94.6956253051758,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/173_wreck_crater.png",
+    "model": "173_wreck_crater.gltf",
+    "save_error": 0,
+    "size": [
+      15.1196727752686,
+      2.6841459274292,
+      16.5213794708252
+    ]
+  },
+  {
+    "image": "images/174_Quad.png",
+    "model": "174_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/175_blobbubble_spiky.png",
+    "model": "175_blobbubble_spiky.gltf",
+    "save_error": 0,
+    "size": [
+      3.92519092559814,
+      4.10090589523315,
+      3.71843695640564
+    ]
+  },
+  {
+    "image": "images/176_lowrise2Wall.png",
+    "model": "176_lowrise2Wall.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      4.71328496932983,
+      7.21301221847534
+    ]
+  },
+  {
+    "image": "images/177_verkkoaita_pohja_001.png",
+    "model": "177_verkkoaita_pohja_001.gltf",
+    "save_error": 0,
+    "size": [
+      1.07914197444916,
+      0.266492962837219,
+      0.13924902677536
+    ]
+  },
+  {
+    "image": "images/178_valiviiva_020.png",
+    "model": "178_valiviiva_020.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      104.822273254395,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/179_DP_housetriangle1.png",
+    "model": "179_DP_housetriangle1.gltf",
+    "save_error": 0,
+    "size": [
+      11.9337110519409,
+      0.85489696264267,
+      3.17327690124512
+    ]
+  },
+  {
+    "image": "images/180_verkkoaita_blocked.png",
+    "model": "180_verkkoaita_blocked.gltf",
+    "save_error": 0,
+    "size": [
+      14.1243362426758,
+      6.76379680633545,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/181_aitaHalf2.png",
+    "model": "181_aitaHalf2.gltf",
+    "save_error": 0,
+    "size": [
+      0.801177024841309,
+      13.7295627593994,
+      4.27946710586548
+    ]
+  },
+  {
+    "image": "images/182_kyltti7.png",
+    "model": "182_kyltti7.gltf",
+    "save_error": 0,
+    "size": [
+      2.20561003684998,
+      0.510128021240234,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/183_LowwallPiece3mILITARY.png",
+    "model": "183_LowwallPiece3mILITARY.gltf",
+    "save_error": 0,
+    "size": [
+      10.1055421829224,
+      4.61465215682983,
+      9.02684116363525
+    ]
+  },
+  {
+    "image": "images/184_enemy_soldier.png",
+    "model": "184_enemy_soldier.gltf",
+    "save_error": 0,
+    "size": [
+      1.56914496421814,
+      2.2587251663208,
+      2.87701511383057
+    ]
+  },
+  {
+    "image": "images/185_PointerArrow.png",
+    "model": "185_PointerArrow.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      0.00000999867916107178,
+      2.0
+    ]
+  },
+  {
+    "image": "images/186_grass_001.png",
+    "model": "186_grass_001.gltf",
+    "save_error": 0,
+    "size": [
+      609.999389648438,
+      584.573181152344,
+      23.9049015045166
+    ]
+  },
+  {
+    "image": "images/187_ar_001.png",
+    "model": "187_ar_001.gltf",
+    "save_error": 0,
+    "size": [
+      2.22252416610718,
+      1.82367491722107,
+      2.0
+    ]
+  },
+  {
+    "image": "images/188_palkki.png",
+    "model": "188_palkki.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      11.0355663299561
+    ]
+  },
+  {
+    "image": "images/189_katulamppu.png",
+    "model": "189_katulamppu.gltf",
+    "save_error": 0,
+    "size": [
+      0.531516015529633,
+      19.2339420318604,
+      4.01700925827026
+    ]
+  },
+  {
+    "image": "images/190_tankki.png",
+    "model": "190_tankki.gltf",
+    "save_error": 0,
+    "size": [
+      4.91701984405518,
+      1.73332500457764,
+      6.56056690216064
+    ]
+  },
+  {
+    "image": "images/191_murut.png",
+    "model": "191_murut.gltf",
+    "save_error": 0,
+    "size": [
+      585.657592773438,
+      564.882751464844,
+      2.72019600868225
+    ]
+  },
+  {
+    "image": "images/192_enemy_cop_002.png",
+    "model": "192_enemy_cop_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.454443991184235,
+      0.848312020301819,
+      1.87496399879456
+    ]
+  },
+  {
+    "image": "images/193_valiviiva_006.png",
+    "model": "193_valiviiva_006.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      70.7890701293945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/194_R.png",
+    "model": "194_R.gltf",
+    "save_error": 0,
+    "size": [
+      5.18506383895874,
+      0.388433992862701,
+      6.83148241043091
+    ]
+  },
+  {
+    "image": "images/195_valiviiva_014.png",
+    "model": "195_valiviiva_014.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      91.2089920043945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/196_TrafficFlare.png",
+    "model": "196_TrafficFlare.gltf",
+    "save_error": 0,
+    "size": [
+      5.74077796936035,
+      5.74077796936035,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/197_katto_pyramidi2.png",
+    "model": "197_katto_pyramidi2.gltf",
+    "save_error": 0,
+    "size": [
+      8.84039783477783,
+      8.84039783477783,
+      5.58871173858643
+    ]
+  },
+  {
+    "image": "images/198_trashTruck.png",
+    "model": "198_trashTruck.gltf",
+    "save_error": 0,
+    "size": [
+      3.21188592910767,
+      8.34050178527832,
+      4.00538301467896
+    ]
+  },
+  {
+    "image": "images/199_sportbench_002.png",
+    "model": "199_sportbench_002.gltf",
+    "save_error": 0,
+    "size": [
+      14.5412178039551,
+      4.71829319000244,
+      9.48426628112793
+    ]
+  },
+  {
+    "image": "images/200_enemy_soldier_001.png",
+    "model": "200_enemy_soldier_001.gltf",
+    "save_error": 0,
+    "size": [
+      0.740756988525391,
+      1.75247991085052,
+      0.81612902879715
+    ]
+  },
+  {
+    "image": "images/201_player_circle.png",
+    "model": "201_player_circle.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/202_grass.png",
+    "model": "202_grass.gltf",
+    "save_error": 0,
+    "size": [
+      585.657592773438,
+      564.882751464844,
+      2.72019600868225
+    ]
+  },
+  {
+    "image": "images/203_ar_002.png",
+    "model": "203_ar_002.gltf",
+    "save_error": 0,
+    "size": [
+      2.2225239276886,
+      1.82367491722107,
+      2.0
+    ]
+  },
+  {
+    "image": "images/204_Cube.png",
+    "model": "204_Cube.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/205_solidwall.png",
+    "model": "205_solidwall.gltf",
+    "save_error": 0,
+    "size": [
+      18.4267921447754,
+      1.76743900775909,
+      5.46413993835449
+    ]
+  },
+  {
+    "image": "images/206_ar.png",
+    "model": "206_ar.gltf",
+    "save_error": 0,
+    "size": [
+      2.22252416610718,
+      1.82367503643036,
+      2.0
+    ]
+  },
+  {
+    "image": "images/207_flag_blue.png",
+    "model": "207_flag_blue.gltf",
+    "save_error": 0,
+    "size": [
+      1.29028594493866,
+      3.64618802070618,
+      0.0339950025081635
+    ]
+  },
+  {
+    "image": "images/208_enemy_soldier.png",
+    "model": "208_enemy_soldier.gltf",
+    "save_error": 0,
+    "size": [
+      1.56914496421814,
+      3.7216420173645,
+      3.17147898674011
+    ]
+  },
+  {
+    "image": "images/209_sportbench_001.png",
+    "model": "209_sportbench_001.gltf",
+    "save_error": 0,
+    "size": [
+      14.5412178039551,
+      4.71829319000244,
+      6.42300319671631
+    ]
+  },
+  {
+    "image": "images/210_sign_arcade_001.png",
+    "model": "210_sign_arcade_001.gltf",
+    "save_error": 0,
+    "size": [
+      32.5146217346191,
+      14.8621129989624,
+      0.566247940063477
+    ]
+  },
+  {
+    "image": "images/211_valiviiva_015.png",
+    "model": "211_valiviiva_015.gltf",
+    "save_error": 0,
+    "size": [
+      0.711766958236694,
+      50.3691482543945,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/212_bird.png",
+    "model": "212_bird.gltf",
+    "save_error": 0,
+    "size": [
+      1.65827691555023,
+      1.67264544963837,
+      0.312185674905777
+    ]
+  },
+  {
+    "image": "images/213_man_cowboy.png",
+    "model": "213_man_cowboy.gltf",
+    "save_error": 0,
+    "size": [
+      1.86014258861542,
+      1.88891613483429,
+      0.434286534786224
+    ]
+  },
+  {
+    "image": "images/214_man_lumberjack.png",
+    "model": "214_man_lumberjack.gltf",
+    "save_error": 0,
+    "size": [
+      1.86176824569702,
+      1.85288119316101,
+      0.280627936124802
+    ]
+  },
+  {
+    "image": "images/215_man_carpenter.png",
+    "model": "215_man_carpenter.gltf",
+    "save_error": 0,
+    "size": [
+      1.86176812648773,
+      1.79998970031738,
+      0.294997811317444
+    ]
+  },
+  {
+    "image": "images/216_man_business.png",
+    "model": "216_man_business.gltf",
+    "save_error": 0,
+    "size": [
+      1.86176824569702,
+      1.7782564163208,
+      0.302767902612686
+    ]
+  },
+  {
+    "image": "images/217_man_casual.png",
+    "model": "217_man_casual.gltf",
+    "save_error": 0,
+    "size": [
+      1.86176824569702,
+      1.80468487739563,
+      0.27551805973053
+    ]
+  },
+  {
+    "image": "images/218_man_construction_worker.png",
+    "model": "218_man_construction_worker.gltf",
+    "save_error": 0,
+    "size": [
+      1.86830627918243,
+      1.84995973110199,
+      0.324796855449677
+    ]
+  },
+  {
+    "image": "images/219_default.png",
+    "model": "219_default.gltf",
+    "save_error": 0,
+    "size": [
+      0.751788973808289,
+      1.95324397087097,
+      0.758167028427124
+    ]
+  },
+  {
+    "image": "images/220_highriserWall.png",
+    "model": "220_highriserWall.gltf",
+    "save_error": 0,
+    "size": [
+      4.09321308135986,
+      5.31647205352783,
+      13.0134792327881
+    ]
+  },
+  {
+    "image": "images/221_roskaakasa.png",
+    "model": "221_roskaakasa.gltf",
+    "save_error": 0,
+    "size": [
+      21.1140766143799,
+      20.274938583374,
+      1.17993593215942
+    ]
+  },
+  {
+    "image": "images/222_Plane.png",
+    "model": "222_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/223_Plane.png",
+    "model": "223_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/224_radiotower_001.png",
+    "model": "224_radiotower_001.gltf",
+    "save_error": 0,
+    "size": [
+      11.2435646057129,
+      11.0637016296387,
+      7.57277679443359
+    ]
+  },
+  {
+    "image": "images/225_kori_copcar.png",
+    "model": "225_kori_copcar.gltf",
+    "save_error": 0,
+    "size": [
+      3.04581594467163,
+      2.38216590881348,
+      7.33108615875244
+    ]
+  },
+  {
+    "image": "images/226_kori_copcar_japan.png",
+    "model": "226_kori_copcar_japan.gltf",
+    "save_error": 0,
+    "size": [
+      3.04581594467163,
+      2.45660305023193,
+      7.33108615875244
+    ]
+  },
+  {
+    "image": "images/227_Icosphere.png",
+    "model": "227_Icosphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.91227793693542,
+      1.89837002754211,
+      1.96336901187897
+    ]
+  },
+  {
+    "image": "images/228_enemy_cop_001.png",
+    "model": "228_enemy_cop_001.gltf",
+    "save_error": 0,
+    "size": [
+      0.593840956687927,
+      0.765918970108032,
+      1.80643701553345
+    ]
+  },
+  {
+    "image": "images/229_enemy_cop_001_japan.png",
+    "model": "229_enemy_cop_001_japan.gltf",
+    "save_error": 0,
+    "size": [
+      0.593840956687927,
+      0.765918970108032,
+      1.80643701553345
+    ]
+  },
+  {
+    "image": "images/230_crosshair.png",
+    "model": "230_crosshair.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/231_Truck.png",
+    "model": "231_Truck.gltf",
+    "save_error": 0,
+    "size": [
+      2.3181939125061,
+      15.6728887557983,
+      2.67622399330139
+    ]
+  },
+  {
+    "image": "images/232_wheel.png",
+    "model": "232_wheel.gltf",
+    "save_error": 0,
+    "size": [
+      0.799999892711639,
+      1.0,
+      1.00000011920929
+    ]
+  },
+  {
+    "image": "images/233_radiotower_004.png",
+    "model": "233_radiotower_004.gltf",
+    "save_error": 0,
+    "size": [
+      6.02620601654053,
+      5.929603099823,
+      5.13557624816895
+    ]
+  },
+  {
+    "image": "images/234_Sphere.png",
+    "model": "234_Sphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/235_Truck_laatikko.png",
+    "model": "235_Truck_laatikko.gltf",
+    "save_error": 0,
+    "size": [
+      2.30157804489136,
+      6.51610422134399,
+      2.31708788871765
+    ]
+  },
+  {
+    "image": "images/236_Plane.png",
+    "model": "236_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/237_enemy_cop.png",
+    "model": "237_enemy_cop.gltf",
+    "save_error": 0,
+    "size": [
+      1.04222595691681,
+      1.87801206111908,
+      2.0433292388916
+    ]
+  },
+  {
+    "image": "images/238_enemy_cop_japan.png",
+    "model": "238_enemy_cop_japan.gltf",
+    "save_error": 0,
+    "size": [
+      1.04222595691681,
+      1.87801206111908,
+      2.04164600372314
+    ]
+  },
+  {
+    "image": "images/239_Airplane.png",
+    "model": "239_Airplane.gltf",
+    "save_error": 0,
+    "size": [
+      79.8800201416016,
+      21.6519050598145,
+      70.4578094482422
+    ]
+  },
+  {
+    "image": "images/240_Plane.png",
+    "model": "240_Plane.gltf",
+    "save_error": 0,
+    "size": [
+      10.0,
+      0.00000999999974737875,
+      10.0
+    ]
+  },
+  {
+    "image": "images/241_radiotower_002.png",
+    "model": "241_radiotower_002.gltf",
+    "save_error": 0,
+    "size": [
+      9.42647552490234,
+      9.31401443481445,
+      9.50366973876953
+    ]
+  },
+  {
+    "image": "images/242_Sphere.png",
+    "model": "242_Sphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/243_wreck_sedan.png",
+    "model": "243_wreck_sedan.gltf",
+    "save_error": 0,
+    "size": [
+      15.1196727752686,
+      2.6841459274292,
+      16.5213794708252
+    ]
+  },
+  {
+    "image": "images/244_Sphere.png",
+    "model": "244_Sphere.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/245_Quad.png",
+    "model": "245_Quad.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      1.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/246_radiotower_003.png",
+    "model": "246_radiotower_003.gltf",
+    "save_error": 0,
+    "size": [
+      7.15104198455811,
+      7.02243614196777,
+      4.89754867553711
+    ]
+  },
+  {
+    "image": "images/247_car_pickup.png",
+    "model": "247_car_pickup.gltf",
+    "save_error": 0,
+    "size": [
+      2.3432469367981,
+      4.99532794952393,
+      1.80164003372192
+    ]
+  },
+  {
+    "image": "images/248_radiotower_005.png",
+    "model": "248_radiotower_005.gltf",
+    "save_error": 0,
+    "size": [
+      3.79126596450806,
+      3.75460600852966,
+      13.7574081420898
+    ]
+  },
+  {
+    "image": "images/249_hillbilly1.png",
+    "model": "249_hillbilly1.gltf",
+    "save_error": 0,
+    "size": [
+      1.56914496421814,
+      3.7350640296936,
+      3.17147898674011
+    ]
+  },
+  {
+    "image": "images/250_radiotower_006.png",
+    "model": "250_radiotower_006.gltf",
+    "save_error": 0,
+    "size": [
+      4.86804866790771,
+      4.83080577850342,
+      4.98232078552246
+    ]
+  },
+  {
+    "image": "images/251_car_armyTruck.png",
+    "model": "251_car_armyTruck.gltf",
+    "save_error": 0,
+    "size": [
+      7.61277484893799,
+      18.3865280151367,
+      7.01736211776733
+    ]
+  },
+  {
+    "image": "images/252_enemy_cop_002.png",
+    "model": "252_enemy_cop_002.gltf",
+    "save_error": 0,
+    "size": [
+      0.454443991184235,
+      0.848312020301819,
+      1.87496399879456
+    ]
+  },
+  {
+    "image": "images/253_enemy_cop_002_japan.png",
+    "model": "253_enemy_cop_002_japan.gltf",
+    "save_error": 0,
+    "size": [
+      0.454443991184235,
+      0.848312020301819,
+      1.87496399879456
+    ]
+  },
+  {
+    "image": "images/254_rubbleparticle.png",
+    "model": "254_rubbleparticle.gltf",
+    "save_error": 0,
+    "size": [
+      0.987115025520325,
+      1.40266394615173,
+      1.66089606285095
+    ]
+  },
+  {
+    "image": "images/255_rubble_asphalt.png",
+    "model": "255_rubble_asphalt.gltf",
+    "save_error": 0,
+    "size": [
+      9.43329620361328,
+      13.8493967056274,
+      1.40532100200653
+    ]
+  },
+  {
+    "image": "images/256_rubbleparticle_simple.png",
+    "model": "256_rubbleparticle_simple.gltf",
+    "save_error": 0,
+    "size": [
+      0.00944230984896421,
+      0.0145650692284107,
+      0.0130935693159699
+    ]
+  },
+  {
+    "image": "images/257_DP_retailWindow3_var4.png",
+    "model": "257_DP_retailWindow3_var4.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/258_ovi_shop_var1_001.png",
+    "model": "258_ovi_shop_var1_001.gltf",
+    "save_error": 0,
+    "size": [
+      4.90865802764893,
+      0.254458010196686,
+      4.92672824859619
+    ]
+  },
+  {
+    "image": "images/259_ovi_shop_var1_002.png",
+    "model": "259_ovi_shop_var1_002.gltf",
+    "save_error": 0,
+    "size": [
+      4.90865802764893,
+      0.254458010196686,
+      4.92672824859619
+    ]
+  },
+  {
+    "image": "images/260_ovi_shop_var1.png",
+    "model": "260_ovi_shop_var1.gltf",
+    "save_error": 0,
+    "size": [
+      4.90865802764893,
+      0.254458010196686,
+      4.92672824859619
+    ]
+  },
+  {
+    "image": "images/261_DP_retailWindow3_var2.png",
+    "model": "261_DP_retailWindow3_var2.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/262_cfxr_spikes_impact_mesh.png",
+    "model": "262_cfxr_spikes_impact_mesh.gltf",
+    "save_error": 0,
+    "size": [
+      0.85546875,
+      0.9296875,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/263_cfxr_ring_mesh.png",
+    "model": "263_cfxr_ring_mesh.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/264_CFX_CircularAngle.png",
+    "model": "264_CFX_CircularAngle.gltf",
+    "save_error": 0,
+    "size": [
+      1.26331853866577,
+      0.0996053069829941,
+      1.26331853866577
+    ]
+  },
+  {
+    "image": "images/265_scrap_higher.png",
+    "model": "265_scrap_higher.gltf",
+    "save_error": 0,
+    "size": [
+      0.117386251688004,
+      0.113479763269424,
+      0.105250306427479
+    ]
+  },
+  {
+    "image": "images/266_CFX_Circular.png",
+    "model": "266_CFX_Circular.gltf",
+    "save_error": 0,
+    "size": [
+      0.719999969005585,
+      0.719999969005585,
+      0.00000999999974737875
+    ]
+  },
+  {
+    "image": "images/267_quad4point.png",
+    "model": "267_quad4point.gltf",
+    "save_error": 0,
+    "size": [
+      0.100000001490116,
+      0.00000999999974737875,
+      0.100000001490116
+    ]
+  },
+  {
+    "image": "images/268_cone.png",
+    "model": "268_cone.gltf",
+    "save_error": 0,
+    "size": [
+      0.502291142940521,
+      0.370824575424194,
+      0.477708339691162
+    ]
+  },
+  {
+    "image": "images/269_DP_retailWindow3_var1.png",
+    "model": "269_DP_retailWindow3_var1.gltf",
+    "save_error": 0,
+    "size": [
+      4.74355125427246,
+      0.445318013429642,
+      7.66330003738403
+    ]
+  },
+  {
+    "image": "images/270_pSphere1.png",
+    "model": "270_pSphere1.gltf",
+    "save_error": 0,
+    "size": [
+      2.00000023841858,
+      2.0,
+      2.00000047683716
+    ]
+  },
+  {
+    "image": "images/271_pCylinder1.png",
+    "model": "271_pCylinder1.gltf",
+    "save_error": 0,
+    "size": [
+      2.00000023841858,
+      2.0,
+      2.00000047683716
+    ]
+  },
+  {
+    "image": "images/272_pPlane1.png",
+    "model": "272_pPlane1.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      0.00000999999974737875,
+      1.0
+    ]
+  },
+  {
+    "image": "images/273_polySurface2.png",
+    "model": "273_polySurface2.gltf",
+    "save_error": 0,
+    "size": [
+      2.00000023841858,
+      4.0,
+      2.00000047683716
+    ]
+  },
+  {
+    "image": "images/274_Capsule.png",
+    "model": "274_Capsule.gltf",
+    "save_error": 0,
+    "size": [
+      1.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "image": "images/275_Icosphere.png",
+    "model": "275_Icosphere.gltf",
+    "save_error": 0,
+    "size": [
+      2.03480195999146,
+      2.13951396942139,
+      2.1395161151886
+    ]
+  },
+  {
+    "image": "images/276_icosahedron.png",
+    "model": "276_icosahedron.gltf",
+    "save_error": 0,
+    "size": [
+      2.2493679523468,
+      2.13925409317017,
+      2.51487588882446
+    ]
+  },
+  {
+    "image": "images/277_pyramid.png",
+    "model": "277_pyramid.gltf",
+    "save_error": 0,
+    "size": [
+      2.0,
+      2.0,
+      1.0
+    ]
+  }
+]

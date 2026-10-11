@@ -1,0 +1,16 @@
+{
+  "all_masonry_transferred": true,
+  "all_parts_collapse": true,
+  "burst_recycled": true,
+  "burst_reuses_emitter": true,
+  "burst_uses_pool": true,
+  "collapse_budget": true,
+  "collapse_parts_per_tick": 2,
+  "passed": true,
+  "pause_preserves_queue": true,
+  "queue_drains": true,
+  "smoke_capacity": true,
+  "smoke_expires": true,
+  "transfer_budget": true,
+  "transfers_per_tick": 12
+}
